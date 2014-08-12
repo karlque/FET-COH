@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<process name="fet.om.defaultProcess">
+  <activity name="start" type="seqActivity">
+    <label>start</label>
+    <x>63.02246</x>
+    <y>30.0</y>
+    <childList>
+      <child name="OrderDecomposition" type="scriptActivity">
+        <label>OrderDecomposition</label>
+        <x>30.0</x>
+        <y>122.0</y>
+      </child>
+      <child name="Wait" type="joinActivity">
+        <label>Wait</label>
+        <x>69.02246</x>
+        <y>218.70117</y>
+      </child>
+      <child name="end" type="completeActivity">
+        <label>end</label>
+        <x>69.02246</x>
+        <y>315.40234</y>
+      </child>
+    </childList>
+  </activity>
+  <curRevision>true</curRevision>
+  <document>doc_fet.om.defaultProcessDoc</document>
+  <group>mainProcess</group>
+  <label>defaultProcess</label>
+  <metaVersion>24</metaVersion>
+  <priority>8</priority>
+  <type>User</type>
+</process>

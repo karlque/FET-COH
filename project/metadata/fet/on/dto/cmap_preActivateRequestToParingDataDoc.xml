@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<conversionMap name="fet.on.dto.preActivateRequestToParingDataDoc">
+  <group>conversionMaps</group>
+  <itemMapList>
+    <itemMap name="IMSI--1984109224" type="mapItem">
+      <sourcePath name="source" type="mapPath">
+        <pathList>
+          <path>dstruct_fet_on_api.submitPreActivateOrderRequest</path>
+          <path>dstruct_fet_on_api.submitPreActivateOrderRequest/dstruct_paringData</path>
+          <path>dstruct_fet_on_api.paringData/dstruct_IMSI</path>
+        </pathList>
+      </sourcePath>
+      <targetPath name="target" type="mapPath">
+        <pathList>
+          <path>doc_fet.on.dao.paringDataDoc</path>
+          <path>doc_fet.on.dao.paringDataDoc/leaf_IMSI</path>
+        </pathList>
+      </targetPath>
+    </itemMap>
+    <itemMap name="MSISDN-1579375191" type="mapItem">
+      <sourcePath name="source" type="mapPath">
+        <pathList>
+          <path>dstruct_fet_on_api.submitPreActivateOrderRequest</path>
+          <path>dstruct_fet_on_api.submitPreActivateOrderRequest/dstruct_paringData</path>
+          <path>dstruct_fet_on_api.paringData/dstruct_MSISDN</path>
+        </pathList>
+      </sourcePath>
+      <targetPath name="target" type="mapPath">
+        <pathList>
+          <path>doc_fet.on.dao.paringDataDoc</path>
+          <path>doc_fet.on.dao.paringDataDoc/leaf_MSISDN</path>
+        </pathList>
+      </targetPath>
+    </itemMap>
+    <itemMap name="ProductId-1999759964" type="mapItem">
+      <sourcePath name="source" type="mapPath">
+        <pathList>
+          <path>dstruct_fet_on_api.submitPreActivateOrderRequest</path>
+          <path>dstruct_fet_on_api.submitPreActivateOrderRequest/dstruct_paringData</path>
+          <path>dstruct_fet_on_api.paringData/dstruct_ProductId</path>
+        </pathList>
+      </sourcePath>
+      <targetPath name="target" type="mapPath">
+        <pathList>
+          <path>doc_fet.on.dao.paringDataDoc</path>
+          <path>doc_fet.on.dao.paringDataDoc/leaf_ProductId</path>
+        </pathList>
+      </targetPath>
+    </itemMap>
+  </itemMapList>
+  <label>preActivateRequestToParingDataDoc</label>
+  <metaVersion>24</metaVersion>
+  <source>dstruct_fet_on_api.submitPreActivateOrderRequest</source>
+  <target>doc_fet.on.dao.paringDataDoc</target>
+</conversionMap>

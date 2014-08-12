@@ -17,7 +17,7 @@
     var preActivateSubscriberResponse = new DataStructure('fet.services.sbcc.preActivateSubscriberResponse');
 
     try {
-        Global.logDebug(preActivateSubscriberRequest.toXML());
+        //Global.logDebug(preActivateSubscriberRequest.toXML());
     } catch (e) {
         preActivateSubscriberResponse.errorMessage = e;
     }

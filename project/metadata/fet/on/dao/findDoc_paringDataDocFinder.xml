@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<findDoc name="fet.on.dao.paringDataDocFinder">
+  <extends>find_com.conceptwave.system.Finder</extends>
+  <group>paringData</group>
+  <input>doc_fet.on.dao.paringDataDoc</input>
+  <label>paringDataDocFinder</label>
+  <metaVersion>24</metaVersion>
+  <output>doc_fet.on.dao.paringDataDoc</output>
+  <type>document</type>
+  <volatility>0</volatility>
+  <searchList>
+    <search type="sitem">
+      <document>doc_fet.on.dao.paringDataDoc</document>
+      <mappedDocument>doc_fet.on.dao.paringDataDoc</mappedDocument>
+      <mappedPath>doc_fet.on.dao.paringDataDoc/leaf_IMSI</mappedPath>
+      <operation>equal</operation>
+      <path>doc_fet.on.dao.paringDataDoc/leaf_IMSI</path>
+    </search>
+    <search type="sitem">
+      <document>doc_fet.on.dao.paringDataDoc</document>
+      <mappedDocument>doc_fet.on.dao.paringDataDoc</mappedDocument>
+      <mappedPath>doc_fet.on.dao.paringDataDoc/leaf_MSISDN</mappedPath>
+      <operation>equal</operation>
+      <path>doc_fet.on.dao.paringDataDoc/leaf_MSISDN</path>
+    </search>
+    <search type="sitem">
+      <document>doc_fet.on.dao.paringDataDoc</document>
+      <mappedDocument>doc_fet.on.dao.paringDataDoc</mappedDocument>
+      <mappedPath>doc_fet.on.dao.paringDataDoc/leaf_ProductId</mappedPath>
+      <operation>equal</operation>
+      <path>doc_fet.on.dao.paringDataDoc/leaf_ProductId</path>
+    </search>
+    <search type="sitem">
+      <document>doc_fet.on.dao.paringDataDoc</document>
+      <mappedDocument>doc_fet.on.dao.paringDataDoc</mappedDocument>
+      <mappedPath>doc_fet.on.dao.paringDataDoc/leaf_processId</mappedPath>
+      <operation>equal</operation>
+      <path>doc_fet.on.dao.paringDataDoc/leaf_processId</path>
+    </search>
+    <search type="sitem">
+      <document>doc_fet.on.dao.paringDataDoc</document>
+      <mappedDocument>doc_fet.on.dao.paringDataDoc</mappedDocument>
+      <mappedPath>doc_fet.on.dao.paringDataDoc/leaf_status</mappedPath>
+      <operation>equal</operation>
+      <path>doc_fet.on.dao.paringDataDoc/leaf_status</path>
+    </search>
+  </searchList>
+</findDoc>

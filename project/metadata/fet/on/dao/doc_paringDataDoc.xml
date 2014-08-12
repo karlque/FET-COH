@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document name="fet.on.dao.paringDataDoc">
+  <dbSchema>ORDER</dbSchema>
+  <extends>doc_com.conceptwave.system.Document</extends>
+  <group>paringData</group>
+  <guid>{13c05a1b-0d4d-4e61-8c77-5e0a36b5de24}</guid>
+  <label>paringDataDoc</label>
+  <metaVersion>24</metaVersion>
+  <variableList>
+    <variable name="processId" type="leaf">
+      <column>PROCESSID</column>
+      <key>1</key>
+      <table>FET_PARINGDATADOC</table>
+      <valueType>dtype_com.conceptwave.system.Integer</valueType>
+    </variable>
+    <variable name="MSISDN" type="leaf">
+      <column>MSISDN</column>
+      <key>2</key>
+      <table>FET_PARINGDATADOC</table>
+      <valueType>dtype_fet.common.dataType.string100</valueType>
+    </variable>
+    <variable name="IMSI" type="leaf">
+      <column>IMSI</column>
+      <key>3</key>
+      <table>FET_PARINGDATADOC</table>
+      <valueType>dtype_fet.common.dataType.string100</valueType>
+    </variable>
+    <variable name="ProductId" type="leaf">
+      <column>PRODUCTID</column>
+      <table>FET_PARINGDATADOC</table>
+      <valueType>dtype_fet.common.dataType.string100</valueType>
+    </variable>
+    <variable name="status" type="leaf">
+      <column>STATUS</column>
+      <table>FET_PARINGDATADOC</table>
+      <valueType>dtype_fet.common.dataType.string100</valueType>
+    </variable>
+  </variableList>
+</document>

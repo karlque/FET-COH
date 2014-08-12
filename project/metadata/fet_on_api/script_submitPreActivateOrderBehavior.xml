@@ -16,12 +16,11 @@
     Global.logDebug(input);
     var submitPreActivateOrderRequest = input;
     var submitPreActivateOrderResponse = new DataStructure('fet_on_api.submitPreActivateOrderResponse');
-
-    var processDoc = new Document('fet_om.defaultProcessDoc');
+    var preActivateProcessDoc = new Document('fet.om.preActivateProcessDoc');
 
     try {
-        processDoc.submitPreActivateOrderRequestJson = submitPreActivateOrderRequest.toJson();
-        var processId = Process.startProcess('fet_om.defaultProcess', processDoc);
+        preActivateProcessDoc.preActivateRequestJson = submitPreActivateOrderRequest.toJson();
+        var processId = Process.startProcess('fet.om.preActivateProcess', preActivateProcessDoc);
         submitPreActivateOrderResponse.processId = processId;
 
     } catch (e) {

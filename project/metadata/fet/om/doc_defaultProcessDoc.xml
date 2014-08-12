@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document name="fet.om.defaultProcessDoc">
+  <extends>doc_com.conceptwave.system.Document</extends>
+  <group>doc</group>
+  <guid>{2a1d810e-384e-4de6-9433-50bd685597f9}</guid>
+  <label>defaultProcessDoc</label>
+  <metaVersion>24</metaVersion>
+</document>

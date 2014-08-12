@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document name="fet.om.preActivateProcessDoc">
+  <extends>doc_com.conceptwave.system.Document</extends>
+  <group>doc</group>
+  <guid>{04a211ad-df9d-48cd-8631-2b54f6dfdc8a}</guid>
+  <label>preActivateProcessDoc</label>
+  <metaVersion>24</metaVersion>
+  <variableList>
+    <variable name="preActivateRequestJson" type="leaf">
+      <valueType>dtype_com.conceptwave.system.String</valueType>
+    </variable>
+    <variable name="requestCount" type="leaf">
+      <valueType>dtype_com.conceptwave.system.Integer</valueType>
+    </variable>
+  </variableList>
+  <methodList>
+    <method name="cwLeafInitAction$requestCount" type="laction">
+      <path>doc_fet.om.preActivateProcessDoc/leaf_requestCount</path>
+      <type>initializer</type>
+      <valueType>doc_fet.om.preActivateProcessDoc/leaf_requestCount</valueType>
+      <script><![CDATA[
+        /*
+         * auther:karl
+         */
+
+        return 0;
+      ]]></script>
+    </method>
+  </methodList>
+</document>

@@ -15,20 +15,20 @@
 
     var queryParingDataRequest = input;
     var queryParingDataResponse = new DataStructure('fet_on_api.queryParingDataResponse');
-    var paringDataDocFinder = new Finder('fet_on_api.paringDataDocFinder');
-    var submitPreActivateOrderRequestDoc = new Document('fet_om.submitPreActivateOrderRequestDoc');
-    submitPreActivateOrderRequestDoc.processId = queryParingDataRequest.processId;
-    submitPreActivateOrderRequestDoc.MSISDN = queryParingDataRequest.MSISDN;
-    submitPreActivateOrderRequestDoc.IMSI = queryParingDataRequest.IMSI;
-    submitPreActivateOrderRequestDoc.ProductId = queryParingDataRequest.ProductId;
+    var paringDataDocFinder = new Finder('fet.on.dao.paringDataDocFinder');
+    var paringDataDoc = new Document('fet.on.dao.paringDataDoc');
+    paringDataDoc.processId = queryParingDataRequest.processId;
+    paringDataDoc.MSISDN = queryParingDataRequest.MSISDN;
+    paringDataDoc.IMSI = queryParingDataRequest.IMSI;
+    paringDataDoc.ProductId = queryParingDataRequest.ProductId;
 
     try {
-        var submitPreActivateOrderRequestDocList = paringDataDocFinder.search(null, submitPreActivateOrderRequestDoc);
-        for (var i = 0 ; i < submitPreActivateOrderRequestDocList.length ; i ++) {
-            var submitPreActivateOrderRequestDoc = submitPreActivateOrderRequestDocList[i];
-            queryParingDataResponse.paringData[i].MSISDN = submitPreActivateOrderRequestDoc.MSISDN;
-            queryParingDataResponse.paringData[i].IMSI = submitPreActivateOrderRequestDoc.IMSI;
-            queryParingDataResponse.paringData[i].ProductId = submitPreActivateOrderRequestDoc.ProductId;
+        var paringDataDocList = paringDataDocFinder.search(null, paringDataDoc);
+        for (var i = 0 ; i < paringDataDocList.length ; i ++) {
+            var paringDataDoc = paringDataDocList[i];
+            queryParingDataResponse.paringData[i].MSISDN = paringDataDoc.MSISDN;
+            queryParingDataResponse.paringData[i].IMSI = paringDataDoc.IMSI;
+            queryParingDataResponse.paringData[i].ProductId = paringDataDoc.ProductId;
         }
     } catch (e) {
         queryParingDataResponse.errorMessage = e;

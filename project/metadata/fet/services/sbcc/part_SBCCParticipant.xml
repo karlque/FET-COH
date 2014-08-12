@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<participant name="fet.services.sbcc.SBCCParticipant">
+  <group>client</group>
+  <label>SBCCParticipant</label>
+  <metaVersion>24</metaVersion>
+  <participant>iface_fet.services.sbcc.SBCCInterface</participant>
+</participant>

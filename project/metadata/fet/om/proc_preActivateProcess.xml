@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<process name="fet.om.preActivateProcess">
+  <activity name="start" type="seqActivity">
+    <label>start</label>
+    <x>66.69336</x>
+    <y>30.0</y>
+    <childList>
+      <child name="saveParingData" type="scriptActivity">
+        <label>saveParingData</label>
+        <x>46.001953</x>
+        <y>122.0</y>
+        <methodList>
+          <method name="cwOnProcActCond" type="action">
+            <category>cond</category>
+            <system>true</system>
+            <script><![CDATA[
+              /*
+               * auther:karl
+               */
+
+              var preActivateProcessDoc = process.processDocument;
+              var submitPreActivateOrderRequest = new DataStructure('fet_on_api.submitPreActivateOrderRequest');
+              submitPreActivateOrderRequest.fromJson(preActivateProcessDoc.preActivateRequestJson);
+
+              var paringDataDoc = new Document('fet.on.dao.paringDataDoc');
+              var paringDataDocList = submitPreActivateOrderRequest.mapTo(paringDataDoc, 'fet.on.dto.preActivateRequestToParingDataDoc');
+
+              saveParingData(paringDataDocList);
+
+              return;
+
+              function saveParingData(paringDataDocList) {
+                  for (var i = 0 ; i < paringDataDocList.length ; i ++) {
+                      paringDataDoc = paringDataDocList[i];
+                      paringDataDoc.processId = process.id;
+                      paringDataDoc.save();
+                  }
+              }
+            ]]></script>
+          </method>
+        </methodList>
+      </child>
+      <child name="preActivateSubscriber" type="opActivity">
+        <element>iface_fet.services.sbcc.SBCCInterface/oper_preActivateSubscriber</element>
+        <label>preActivateSubscriber</label>
+        <participant>part_fet.services.sbcc.SBCCParticipant</participant>
+        <x>30.0</x>
+        <y>218.70117</y>
+      </child>
+      <child name="SBCCParticipant" type="participantActivity">
+        <label>SBCCParticipant</label>
+        <participant>part_fet.services.sbcc.SBCCParticipant</participant>
+        <x>31.69336</x>
+        <y>315.40234</y>
+      </child>
+    </childList>
+  </activity>
+  <curRevision>true</curRevision>
+  <document>doc_fet.om.preActivateProcessDoc</document>
+  <group>mainProcess</group>
+  <label>preActivateProcess</label>
+  <metaVersion>24</metaVersion>
+  <priority>8</priority>
+  <type>User</type>
+</process>
