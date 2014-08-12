@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet_on_api.queryCatalogHierarchyBehavior">
+  <group>behaviorScript</group>
+  <label>queryCatalogHierarchyBehavior</label>
+  <metaVersion>24</metaVersion>
+  <parameterList>
+    <parameter name="input" type="rifp">
+      <mandatory>true</mandatory>
+      <type>nmeta_com.conceptwave.system.Object</type>
+    </parameter>
+  </parameterList>
+  <script><![CDATA[
+    /*
+    * auther:karl
+    */
+
+    Global.logDebug(input);
+    var queryCatalogHierarchyRequest = input;
+    var queryCatalogHierarchyResponse = new DataStructure('fet_on_api.queryCatalogHierarchyResponse');
+
+    try {
+        var catalogHelper = new fet_common.ClsCatalogHelper();
+        var hierarchyChildren = catalogHelper.getHierarchyChildren(queryCatalogHierarchyRequest.startingNodeCode);
+
+        for (var i = 0 ; hierarchyChildren && i < hierarchyChildren.length ; i ++) {
+            queryCatalogHierarchyResponse.hierarchyChildrenNode[i].code = hierarchyChildren[i];
+        }
+
+    } catch (e) {
+        queryCatalogHierarchyResponse.errorMessage = e;
+    }
+
+    return queryCatalogHierarchyResponse;
+  ]]></script>
+</script>

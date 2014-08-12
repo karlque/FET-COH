@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet_on_api.queryParingDataBehavior">
+  <group>behaviorScript</group>
+  <label>queryParingDataBehavior</label>
+  <metaVersion>24</metaVersion>
+  <parameterList>
+    <parameter name="input" type="rifp">
+      <type>nmeta_com.conceptwave.system.Object</type>
+    </parameter>
+  </parameterList>
+  <script><![CDATA[
+    /*
+     * auther:karl
+     */
+
+    var queryParingDataRequest = input;
+    var queryParingDataResponse = new DataStructure('fet_on_api.queryParingDataResponse');
+    var paringDataDocFinder = new Finder('fet_on_api.paringDataDocFinder');
+    var submitPreActivateOrderRequestDoc = new Document('fet_om.submitPreActivateOrderRequestDoc');
+    submitPreActivateOrderRequestDoc.processId = queryParingDataRequest.processId;
+    submitPreActivateOrderRequestDoc.MSISDN = queryParingDataRequest.MSISDN;
+    submitPreActivateOrderRequestDoc.IMSI = queryParingDataRequest.IMSI;
+    submitPreActivateOrderRequestDoc.ProductId = queryParingDataRequest.ProductId;
+
+    try {
+        var submitPreActivateOrderRequestDocList = paringDataDocFinder.search(null, submitPreActivateOrderRequestDoc);
+        for (var i = 0 ; i < submitPreActivateOrderRequestDocList.length ; i ++) {
+            var submitPreActivateOrderRequestDoc = submitPreActivateOrderRequestDocList[i];
+            queryParingDataResponse.paringData[i].MSISDN = submitPreActivateOrderRequestDoc.MSISDN;
+            queryParingDataResponse.paringData[i].IMSI = submitPreActivateOrderRequestDoc.IMSI;
+            queryParingDataResponse.paringData[i].ProductId = submitPreActivateOrderRequestDoc.ProductId;
+        }
+    } catch (e) {
+        queryParingDataResponse.errorMessage = e;
+    }
+
+    return queryParingDataResponse;
+  ]]></script>
+</script>

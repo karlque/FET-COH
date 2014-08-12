@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataStructure name="fet_on_api.getEligibleOffersResponse">
+  <container>true</container>
+  <group>dataStructure</group>
+  <jsonMap type="jmap">
+    <exclude>1</exclude>
+  </jsonMap>
+  <label>getEligibleOffersResponse</label>
+  <metaVersion>24</metaVersion>
+  <childList>
+    <child name="item" type="dstruct">
+      <array>true</array>
+      <container>true</container>
+      <label>item</label>
+      <maxInstance>-1</maxInstance>
+      <childList>
+        <child name="code" type="dstruct">
+          <datatype>true</datatype>
+          <element>dtype_com.conceptwave.system.String</element>
+          <label>code</label>
+        </child>
+        <child name="label" type="dstruct">
+          <datatype>true</datatype>
+          <element>dtype_com.conceptwave.system.String</element>
+          <label>label</label>
+        </child>
+      </childList>
+    </child>
+    <child name="errorMessage" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>errorMessage</label>
+    </child>
+  </childList>
+</dataStructure>

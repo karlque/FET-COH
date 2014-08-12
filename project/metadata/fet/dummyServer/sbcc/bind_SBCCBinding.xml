@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<binding name="fet.dummyServer.sbcc.SBCCBinding">
+  <group>server</group>
+  <interface>iface_fet.dummyServer.sbcc.SBCCInterface</interface>
+  <label>SBCCBinding</label>
+  <metaVersion>24</metaVersion>
+  <provider>prov_cwf.soapprov</provider>
+</binding>

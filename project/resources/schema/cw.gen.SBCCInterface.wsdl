@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="fet.dummyServer.sbcc" targetNamespace="fet.dummyServer.sbcc"
+	xmlns:tns="fet.dummyServer.sbcc"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:fet.services.sbcc="fet.services.sbcc">
+
+	<types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="fet.services.sbcc" schemaLocation="fet.services.sbcc.xsd"/>
+		</schema>
+	</types>
+
+	<message name="preActivateSubscriberRequest">
+		<part name="preActivateSubscriberRequest" type="fet.services.sbcc:preActivateSubscriberRequest"/>
+	</message>
+
+	<message name="preActivateSubscriberResponse">
+		<part name="preActivateSubscriberResponse" type="fet.services.sbcc:preActivateSubscriberResponse"/>
+	</message>
+
+	<portType name="SBCCInterface">
+		<operation name="preActivateSubscriber">
+			<input message="tns:preActivateSubscriberRequest"/>
+			<output message="tns:preActivateSubscriberResponse"/>
+		</operation>
+	</portType>
+
+	<binding name="SBCCBinding" type="tns:SBCCInterface">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="preActivateSubscriber">
+			<soap:operation soapAction="preActivateSubscriber"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+
+	<service name="SBCCExternalService">
+		<port name="SBCCPort" binding="tns:SBCCBinding">
+		</port>
+	</service>
+
+</definitions>

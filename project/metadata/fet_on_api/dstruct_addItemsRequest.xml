@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataStructure name="fet_on_api.addItemsRequest">
+  <container>true</container>
+  <group>dataStructure</group>
+  <jsonMap type="jmap">
+    <exclude>1</exclude>
+  </jsonMap>
+  <label>addItemsRequest</label>
+  <metaVersion>24</metaVersion>
+  <childList>
+    <child name="orderId" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>orderId</label>
+    </child>
+    <child name="itemCodes" type="dstruct">
+      <container>true</container>
+      <label>itemCodes</label>
+      <childList>
+        <child name="code" type="dstruct">
+          <array>true</array>
+          <datatype>true</datatype>
+          <element>dtype_com.conceptwave.system.String</element>
+          <label>code</label>
+          <maxInstance>-1</maxInstance>
+        </child>
+      </childList>
+    </child>
+    <child name="parentItemId" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>parentItemId</label>
+    </child>
+  </childList>
+</dataStructure>

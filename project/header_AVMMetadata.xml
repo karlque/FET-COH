@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<header name="AVMMetadata">
+  <APIVersion>2</APIVersion>
+  <author>Unknown</author>
+  <availableList>
+    <available type="loc">
+      <locale>en</locale>
+      <rightToLeft>false</rightToLeft>
+    </available>
+  </availableList>
+  <created>Tue Aug 12 11:02:19 CST 2014</created>
+  <internalName>FET-COH</internalName>
+  <internalSysVersion>14.0.0.0 </internalSysVersion>
+  <label>AVM Metadata</label>
+  <locale type="loc">
+    <locale>en</locale>
+    <rightToLeft>false</rightToLeft>
+  </locale>
+  <metaVersion>24</metaVersion>
+  <metadataVersion>20140611</metadataVersion>
+  <templateList>
+    <template>SIDCommon</template>
+    <template>address</template>
+    <template>billing</template>
+    <template>catalog</template>
+    <template>catalogClient</template>
+    <template>customer</template>
+    <template>cwInitialization</template>
+    <template>cwl_pscm</template>
+    <template>cwl_report</template>
+    <template>cwl_service_registry</template>
+    <template>cws_pscm</template>
+    <template>data_dictionary</template>
+    <template>data_order</template>
+    <template>ecm</template>
+    <template>notification</template>
+    <template>order_negotiations</template>
+    <template>order_negotiations_lib</template>
+    <template>party</template>
+    <template>pscm</template>
+    <template>serviceOrchestrationFramework</template>
+    <template>service_registry</template>
+    <template>wizard</template>
+  </templateList>
+</header>

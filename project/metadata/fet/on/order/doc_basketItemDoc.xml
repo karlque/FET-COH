@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document name="fet.on.order.basketItemDoc">
+  <dynamicTableName>cwpc_basketItemleaves</dynamicTableName>
+  <extends>doc_cwt_pcoe.basketItem</extends>
+  <generatedKey>true</generatedKey>
+  <group>document</group>
+  <guid>{5238a607-e2e4-45c8-b144-7d2489dc32ce}</guid>
+  <isDynamicDoc>true</isDynamicDoc>
+  <label>basketItemDoc</label>
+  <metaVersion>24</metaVersion>
+  <variableList>
+    <variable name="cwOrderId" type="leaf">
+      <column>CWORDERID</column>
+      <table>cwpc_basketItem</table>
+      <valueType>dtype_cwf.cwOrderId</valueType>
+    </variable>
+    <variable name="cwParentId" type="leaf">
+      <column>CWPARENTID</column>
+      <table>cwpc_basketItem</table>
+      <valueType>dtype_cwf.cwParentId</valueType>
+    </variable>
+  </variableList>
+</document>

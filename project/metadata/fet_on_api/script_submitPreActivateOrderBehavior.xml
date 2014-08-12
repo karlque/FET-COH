@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet_on_api.submitPreActivateOrderBehavior">
+  <group>behaviorScript</group>
+  <label>submitPreActivateOrderBehavior</label>
+  <metaVersion>24</metaVersion>
+  <parameterList>
+    <parameter name="input" type="rifp">
+      <type>nmeta_com.conceptwave.system.Object</type>
+    </parameter>
+  </parameterList>
+  <script><![CDATA[
+    /*
+    * auther:karl
+    */
+
+    Global.logDebug(input);
+    var submitPreActivateOrderRequest = input;
+    var submitPreActivateOrderResponse = new DataStructure('fet_on_api.submitPreActivateOrderResponse');
+
+    var processDoc = new Document('fet_om.defaultProcessDoc');
+
+    try {
+        processDoc.submitPreActivateOrderRequestJson = submitPreActivateOrderRequest.toJson();
+        var processId = Process.startProcess('fet_om.defaultProcess', processDoc);
+        submitPreActivateOrderResponse.processId = processId;
+
+    } catch (e) {
+        submitPreActivateOrderResponse.errorMessage = e;
+    }
+
+    return submitPreActivateOrderResponse;
+  ]]></script>
+</script>

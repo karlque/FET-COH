@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<order name="fet.on.order.order">
+  <extends>mdl_com.conceptwave.system.Model</extends>
+  <group>order</group>
+  <label>order</label>
+  <metaVersion>24</metaVersion>
+  <childList>
+    <child name="ShoppingBasket" type="order">
+      <extends>mdl_com.conceptwave.system.Model</extends>
+      <label>ShoppingBasket</label>
+      <mandatory>true</mandatory>
+      <maxInstances>2</maxInstances>
+      <orderType>collection</orderType>
+      <childList>
+        <child name="basketItemDoc" type="order">
+          <extends>mdl_com.conceptwave.system.Model</extends>
+          <label>basketItemDoc</label>
+          <mandatory>true</mandatory>
+          <orderItem>doc_fet.on.order.basketItemDoc</orderItem>
+          <orderType>document</orderType>
+        </child>
+      </childList>
+    </child>
+  </childList>
+</order>

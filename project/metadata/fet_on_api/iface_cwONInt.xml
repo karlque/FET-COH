@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface name="fet_on_api.cwONInt">
+  <group>server</group>
+  <label>cwONInt</label>
+  <metaVersion>24</metaVersion>
+  <operationList>
+    <operation name="createOrder" type="oper">
+      <input>dstruct_fet_on_api.createOrderRequest</input>
+      <label>createOrder</label>
+      <output>dstruct_fet_on_api.createOrderResponse</output>
+      <type>Request-Response</type>
+    </operation>
+    <operation name="queryCatalogHierarchy" type="oper">
+      <input>dstruct_fet_on_api.queryCatalogHierarchyRequest</input>
+      <label>queryCatalogHierarchy</label>
+      <output>dstruct_fet_on_api.queryCatalogHierarchyResponse</output>
+      <type>Request-Response</type>
+    </operation>
+    <operation name="getEligibleOffers" type="oper">
+      <input>dstruct_fet_on_api.getEligibleOffersRequest</input>
+      <label>getEligibleOffers</label>
+      <output>dstruct_fet_on_api.getEligibleOffersResponse</output>
+      <type>Request-Response</type>
+    </operation>
+    <operation name="submitPreActivateOrder" type="oper">
+      <input>dstruct_fet_on_api.submitPreActivateOrderRequest</input>
+      <label>submitPreActivateOrder</label>
+      <output>dstruct_fet_on_api.submitPreActivateOrderResponse</output>
+      <type>Request-Response</type>
+    </operation>
+    <operation name="queryParingData" type="oper">
+      <input>dstruct_fet_on_api.queryParingDataRequest</input>
+      <label>queryParingData</label>
+      <output>dstruct_fet_on_api.queryParingDataResponse</output>
+      <type>Request-Response</type>
+    </operation>
+  </operationList>
+  <revision>6</revision>
+</interface>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataStructure name="fet_on_api.getEligibleOffersRequest">
+  <container>true</container>
+  <group>dataStructure</group>
+  <jsonMap type="jmap">
+    <exclude>1</exclude>
+  </jsonMap>
+  <label>getEligibleOffersRequest</label>
+  <metaVersion>24</metaVersion>
+  <childList>
+    <child name="hierarchyCode" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>hierarchyCode</label>
+    </child>
+    <child name="itemType" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>itemType</label>
+    </child>
+    <child name="date" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.Date</element>
+      <label>date</label>
+    </child>
+  </childList>
+</dataStructure>

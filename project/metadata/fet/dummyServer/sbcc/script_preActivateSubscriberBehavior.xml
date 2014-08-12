@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet.dummyServer.sbcc.preActivateSubscriberBehavior">
+  <group>behaviorScript</group>
+  <label>preActivateSubscriberBehavior</label>
+  <metaVersion>24</metaVersion>
+  <parameterList>
+    <parameter name="input" type="rifp">
+      <type>nmeta_com.conceptwave.system.Object</type>
+    </parameter>
+  </parameterList>
+  <script><![CDATA[
+    /*
+    * auther:karl
+    */
+
+    var preActivateSubscriberRequest = input;
+    var preActivateSubscriberResponse = new DataStructure('fet.services.sbcc.preActivateSubscriberResponse');
+
+    try {
+        Global.logDebug(preActivateSubscriberRequest.toXML());
+    } catch (e) {
+        preActivateSubscriberResponse.errorMessage = e;
+    }
+
+    return preActivateSubscriberResponse;
+  ]]></script>
+</script>

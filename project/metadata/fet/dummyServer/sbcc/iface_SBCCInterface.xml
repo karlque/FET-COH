@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface name="fet.dummyServer.sbcc.SBCCInterface">
+  <group>server</group>
+  <label>SBCCInterface</label>
+  <metaVersion>24</metaVersion>
+  <operationList>
+    <operation name="preActivateSubscriber" type="oper">
+      <input>dstruct_fet.services.sbcc.preActivateSubscriberRequest</input>
+      <label>preActivateSubscriber</label>
+      <output>dstruct_fet.services.sbcc.preActivateSubscriberResponse</output>
+      <type>Request-Response</type>
+    </operation>
+  </operationList>
+  <revision>3</revision>
+</interface>

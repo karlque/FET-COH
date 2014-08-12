@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<binding name="fet.services.sbcc.SBCCBinding">
+  <extensionList>
+    <extension name="preActivateSubscriber" type="ext">
+      <element>Operation</element>
+      <elementItemMap>
+        <elementItem key="soapAction">preActivateSubscriber</elementItem>
+      </elementItemMap>
+    </extension>
+  </extensionList>
+  <group>client</group>
+  <interface>iface_fet.services.sbcc.SBCCInterface</interface>
+  <label>SBCCBinding</label>
+  <metaVersion>24</metaVersion>
+  <provider>prov_cwf.soapprov</provider>
+</binding>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataStructure name="fet_on_api.createOrderResponse">
+  <container>true</container>
+  <group>dataStructure</group>
+  <jsonMap type="jmap">
+    <exclude>1</exclude>
+  </jsonMap>
+  <label>createOrderResponse</label>
+  <metaVersion>24</metaVersion>
+  <childList>
+    <child name="order" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>order</label>
+    </child>
+    <child name="errorMessage" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>errorMessage</label>
+    </child>
+  </childList>
+</dataStructure>

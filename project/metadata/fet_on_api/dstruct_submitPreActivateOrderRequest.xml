@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataStructure name="fet_on_api.submitPreActivateOrderRequest">
+  <container>true</container>
+  <group>dataStructure</group>
+  <jsonMap type="jmap">
+    <exclude>1</exclude>
+  </jsonMap>
+  <label>submitPreActivateOrderRequest</label>
+  <metaVersion>24</metaVersion>
+  <childList>
+    <child name="orderType" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>orderType</label>
+    </child>
+    <child name="paringData" type="dstruct">
+      <array>true</array>
+      <container>true</container>
+      <extends>dstruct_fet_on_api.paringData</extends>
+      <label>paringData</label>
+      <maxInstance>-1</maxInstance>
+    </child>
+  </childList>
+</dataStructure>

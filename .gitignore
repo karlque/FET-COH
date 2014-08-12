@@ -1,0 +1,5 @@
+/project/metadata/fet_common
+/project/templates/*
+/project/.cw.inuse.lock
+/project/cwf.war
+/project/.settings

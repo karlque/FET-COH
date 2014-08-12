@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataStructure name="fet_on_api.submitPreActivateOrderResponse">
+  <container>true</container>
+  <group>dataStructure</group>
+  <jsonMap type="jmap">
+    <exclude>1</exclude>
+  </jsonMap>
+  <label>submitPreActivateOrderResponse</label>
+  <metaVersion>24</metaVersion>
+  <childList>
+    <child name="errorMessage" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>errorMessage</label>
+    </child>
+    <child name="processId" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>processId</label>
+    </child>
+  </childList>
+</dataStructure>

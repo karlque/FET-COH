@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<binding name="fet_on_api.cwONBind">
+  <group>server</group>
+  <interface>iface_fet_on_api.cwONInt</interface>
+  <label>cwONBind</label>
+  <metaVersion>24</metaVersion>
+  <provider>prov_cwf.soapprov</provider>
+</binding>

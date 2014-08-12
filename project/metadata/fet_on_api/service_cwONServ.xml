@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<externalService name="fet_on_api.cwONServ">
+  <group>server</group>
+  <label>cwONServ</label>
+  <metaVersion>24</metaVersion>
+  <portList>
+    <port name="cwONServPort" type="port">
+      <binding>bind_fet_on_api.cwONBind</binding>
+      <exportReferencedOnly>true</exportReferencedOnly>
+      <exportSchemaInsideWsdl>true</exportSchemaInsideWsdl>
+      <label>cwONServPort</label>
+      <listener>true</listener>
+      <recover>5</recover>
+    </port>
+    <port name="cwONServPortJS" type="port">
+      <binding>bind_fet_on_api.cwONBindJS</binding>
+      <exportReferencedOnly>true</exportReferencedOnly>
+      <exportSchemaInsideWsdl>true</exportSchemaInsideWsdl>
+      <label>cwONServPortJS</label>
+      <listener>true</listener>
+      <recover>5</recover>
+    </port>
+  </portList>
+</externalService>

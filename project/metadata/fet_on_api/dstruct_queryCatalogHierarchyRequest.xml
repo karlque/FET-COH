@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataStructure name="fet_on_api.queryCatalogHierarchyRequest">
+  <container>true</container>
+  <group>dataStructure</group>
+  <jsonMap type="jmap">
+    <exclude>1</exclude>
+  </jsonMap>
+  <label>queryCatalogHierarchyRequest</label>
+  <metaVersion>24</metaVersion>
+  <childList>
+    <child name="startingNodeCode" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>startingNodeCode</label>
+    </child>
+    <child name="depth" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>depth</label>
+    </child>
+  </childList>
+</dataStructure>

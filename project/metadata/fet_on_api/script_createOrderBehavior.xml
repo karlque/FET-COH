@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet_on_api.createOrderBehavior">
+  <group>behaviorScript</group>
+  <label>createOrderBehavior</label>
+  <metaVersion>24</metaVersion>
+  <parameterList>
+    <parameter name="input" type="rifp">
+      <mandatory>true</mandatory>
+      <type>nmeta_com.conceptwave.system.Object</type>
+    </parameter>
+  </parameterList>
+  <script><![CDATA[
+    /*
+    * auther:karl
+    */
+
+    Global.logDebug(input);
+    var createOrderRequest = input;
+    var createOrderResponse = new DataStructure('fet_on_api.createOrderResponse');
+
+    try {
+        var orderHelper = new fet_common.ClsDataOrderHelper();
+        orderHelper.createOrderAndBasket();
+        var orderInstance = orderHelper.order.orderInstance;
+        orderInstance.customerId = createOrderRequest.customerId;
+        orderInstance.accountId = createOrderRequest.accountId;
+        orderInstance.orderType = createOrderRequest.orderType;
+
+        orderHelper.save();
+        createOrderResponse.order = orderHelper.order._id;
+    } catch (e) {
+        createOrderResponse.errorMessage = e;
+    }
+
+    return createOrderResponse;
+  ]]></script>
+</script>

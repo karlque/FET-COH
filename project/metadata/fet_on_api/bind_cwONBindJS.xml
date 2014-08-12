@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<binding name="fet_on_api.cwONBindJS">
+  <extensionList>
+    <extension name="createOrder" type="ext">
+      <element>Operation</element>
+      <elementItemMap>
+        <elementItem key="script">return fet_on_api.createOrderBehavior(input);</elementItem>
+      </elementItemMap>
+    </extension>
+    <extension name="queryCatalogHierarchy" type="ext">
+      <element>Operation</element>
+      <elementItemMap>
+        <elementItem key="script">return fet_on_api.queryCatalogHierarchyBehavior(input);</elementItem>
+      </elementItemMap>
+    </extension>
+    <extension name="getEligibleOffers" type="ext">
+      <element>Operation</element>
+      <elementItemMap>
+        <elementItem key="script">return fet_on_api.getEligibleOffersBehavior(input);</elementItem>
+      </elementItemMap>
+    </extension>
+    <extension name="submitPreActivateOrder" type="ext">
+      <element>Operation</element>
+      <elementItemMap>
+        <elementItem key="script">return fet_on_api.submitPreActivateOrderBehavior(input);</elementItem>
+      </elementItemMap>
+    </extension>
+    <extension name="queryParingData" type="ext">
+      <element>Operation</element>
+      <elementItemMap>
+        <elementItem key="script">return fet_on_api.queryParingDataBehavior(input);</elementItem>
+      </elementItemMap>
+    </extension>
+  </extensionList>
+  <group>server</group>
+  <interface>iface_fet_on_api.cwONInt</interface>
+  <label>cwONBindJS</label>
+  <metaVersion>24</metaVersion>
+  <provider>prov_cwf.jsprov</provider>
+</binding>

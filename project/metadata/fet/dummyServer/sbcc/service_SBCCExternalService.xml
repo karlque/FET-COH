@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<externalService name="fet.dummyServer.sbcc.SBCCExternalService">
+  <group>server</group>
+  <label>SBCCExternalService</label>
+  <metaVersion>24</metaVersion>
+  <portList>
+    <port name="SBCCPort" type="port">
+      <binding>bind_fet.dummyServer.sbcc.SBCCBinding</binding>
+      <label>SBCCPort</label>
+      <listener>true</listener>
+      <recover>5</recover>
+    </port>
+    <port name="SBCCPort_JS" type="port">
+      <binding>bind_fet.dummyServer.sbcc.SBCCBinding_JS</binding>
+      <label>SBCCPort_JS</label>
+      <recover>5</recover>
+    </port>
+  </portList>
+</externalService>
