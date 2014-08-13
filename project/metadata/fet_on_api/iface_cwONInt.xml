@@ -34,6 +34,12 @@
       <output>dstruct_fet_on_api.queryParingDataResponse</output>
       <type>Request-Response</type>
     </operation>
+    <operation name="removeItems" type="oper">
+      <input>dstruct_fet_on_api.removeItemsRequset</input>
+      <label>removeItems</label>
+      <output>dstruct_fet_on_api.removeItemsResponse</output>
+      <type>Request-Response</type>
+    </operation>
   </operationList>
-  <revision>6</revision>
+  <revision>7</revision>
 </interface>

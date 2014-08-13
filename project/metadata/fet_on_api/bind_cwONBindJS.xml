@@ -13,12 +13,6 @@
         <elementItem key="script">return fet_on_api.queryCatalogHierarchyBehavior(input);</elementItem>
       </elementItemMap>
     </extension>
-    <extension name="queryEligibleOffers" type="ext">
-      <element>Operation</element>
-      <elementItemMap>
-        <elementItem key="script">return fet_on_api.queryEligibleOffersBehavior(input);</elementItem>
-      </elementItemMap>
-    </extension>
     <extension name="submitPreActivateOrder" type="ext">
       <element>Operation</element>
       <elementItemMap>
@@ -29,6 +23,17 @@
       <element>Operation</element>
       <elementItemMap>
         <elementItem key="script">return fet_on_api.queryParingDataBehavior(input);</elementItem>
+      </elementItemMap>
+    </extension>
+    <extension name="removeItems" type="ext">
+      <element>Operation</element>
+      <elementItemMap>
+        <elementItem key="script"><![CDATA[
+          /*
+           *
+           */
+          return fet_on_api.removeItemBehavior(input);
+        ]]></elementItem>
       </elementItemMap>
     </extension>
   </extensionList>
