@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet.common.ClsCatalogHelper">
+  <group>script</group>
+  <label>ClsCatalogHelper</label>
+  <metaVersion>24</metaVersion>
+  <script><![CDATA[
+    /**
+    * @description This class provides a warper to Catalog
+    * @param
+    * @returns
+    * @author     Qaiser Hamid, Howie Tang
+    * @version
+    */
+
+
+    this.metaType = "CLS.CATALOG.HELPER";
+    //this.clsInterface = cwt_do.getClsInterface();
+    //CONSTANTS
+    //this.CON_RELATION_SCOPE = this.clsInterface.CON_RELATION_SCOPE;
+
+    //METHODS
+    this.listRelatedItems = function(itemCode, associationType, date) {
+        if (itemCode == null) {
+            return null;
+        }
+        theCatalog.setCatalogTime(date);
+        var item = this.getCatalogItemByCode(itemCode, date);
+        if (item == null) {
+            return null;
+        }
+        var relatedItems = new Array();
+        var associations = item.getItemAssociations();
+        for (var i = 0; i < associations.length; i++) {
+            if (associationType == null || associations[i].getAssociationType() == associationType) {
+                var relatedItemCode = associations[i].getTarget();
+                var catalogItem = this.getCatalogItemByCode(relatedItemCode);
+                relatedItems.push(catalogItem);
+            }
+        }
+        return relatedItems;
+    };
+
+    this.getCatalogItemByCode = function(itemCode, date) {
+        var item = theCatalog.getItem(itemCode);
+        return item;
+    };
+
+    this.listItems = function(hierarchyCode, type, timeStamp) {
+        if (hierarchyCode == null) {
+            return null;
+        }
+        var hierarchyNode = theCatalog.getHierarchyNode(hierarchyCode, timeStamp);
+        if (hierarchyNode == null) {
+            return null;
+        }
+        var catalogItemItems = hierarchyNode.getAssociations();
+        var catalogItems = new Array();
+        for (var i = 0 ; catalogItemItems && i < catalogItemItems.length ; i ++) {
+            var catalogItem = theCatalog.getItem(catalogItemItems[i].code);
+            if (type == null || type == catalogItem.type) {
+                catalogItems.push(catalogItem);
+            }
+        }
+
+        return catalogItems;
+    };
+
+    this.getHierarchyChildren = function(hierarchyCode) {
+        if (hierarchyCode ==  null) {
+            var rootNodes = theCatalog.getCatalogTopHierarchyNodes();
+            if (rootNodes == null) {
+                return null;
+            }
+            var roots = new Array();
+            for (var i = 0 ; i < rootNodes.length ; i++) {
+                roots.push(rootNodes[i].code);
+            }
+            return roots;
+        }
+
+        return theCatalog.getHierarchyChildren(hierarchyCode);
+    };
+
+    this.getItemRelation = function(itemCode1, itemCode2, relationType) {
+        if (itemCode1 == null || itemCode2 == null) {
+            return null;
+        }
+        var item1 = this.getCatalogItemByCode(itemCode1, null);
+        if (item1 == null) {
+            return null;
+        }
+        var relations = new Array();
+        var associations = item1.getItemAssociations();
+        for (var i = 0; i < associations.length; i++) {
+            if (associations[i].getTarget() == itemCode2) {
+                if (relationType == null || associations[i].getAssociationType() == relationType) {
+                    relations[relations.length] = associations[i];
+                }
+            }
+        }
+        return relations;
+    };
+
+    this.getAllChildren = function(itemCode) {
+        if (itemCode ==  null) {
+            return;
+        }
+        var children = new Array();
+        var item = this.getCatalogItemByCode(itemCode, null);
+        if (item) {
+            var relations = item.getItemAssociations() ;
+            for (var i = 0 ; i < relations.length ; i++) {
+                var child = this.getCatalogItemByCode(relations[i].getTarget(), null);
+                children.push(child);
+                this.getChildren(child, children);
+            }
+        }
+        return children;
+    };
+
+    this.getChildren = function(item, children) {
+        var relations = item.getItemAssociations();
+        for (var i = 0 ; i < relations.length ; i++) {
+            var child = this.getCatalogItemByCode(relations[i].getTarget(), null);
+            children.push(child);
+            this.getChildren(child, children);
+        }
+    };
+
+    this.isInScope = function (sourceItemCode, targetItemCode){
+        var relations = this.listRelatedItems(sourceItemCode,this.CON_RELATION_SCOPE);
+        for(var r in relations){
+            if( relations[r].getItemCode() == targetItemCode )
+                return true;
+        }
+        return false;
+    };
+  ]]></script>
+</script>

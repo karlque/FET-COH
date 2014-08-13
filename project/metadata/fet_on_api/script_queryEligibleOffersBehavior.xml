@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet_on_api.queryEligibleOffersBehavior">
+  <group>behaviorScript</group>
+  <label>queryEligibleOffersBehavior</label>
+  <metaVersion>24</metaVersion>
+  <parameterList>
+    <parameter name="input" type="rifp">
+      <mandatory>true</mandatory>
+      <type>nmeta_com.conceptwave.system.Object</type>
+    </parameter>
+  </parameterList>
+  <script><![CDATA[
+    /*
+    * auther:karl
+    */
+
+    Global.logDebug(input);
+    var queryEligibleOffersRequest = input;
+    var queryEligibleOffersResponse = new DataStructure('fet_on_api.getEligibleOffersResponse');
+    var hierarchyCode = queryEligibleOffersRequest.hierarchyCode;
+    var itemType = queryEligibleOffersRequest.itemType;
+    var date = queryEligibleOffersRequest.date;
+
+    try {
+        var catalogHelper = new fet.common.ClsCatalogHelper();
+
+
+
+        var catalogItems = catalogHelper.listItems(hierarchyCode, itemType, date);
+
+        for (var i = 0 ; catalogItems && i < catalogItems.length ; i ++) {
+            var catalogItem = catalogItems[i];
+
+
+            //queryEligibleOffersResponse.item[i].code = catalogItems[i].code;
+            //queryEligibleOffersResponse.item[i].label = catalogItems[i].getLabel();
+        }
+
+    } catch (e) {
+        queryEligibleOffersResponse.errorMessage = e;
+    }
+
+    return queryEligibleOffersResponse;
+  ]]></script>
+</script>
