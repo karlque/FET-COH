@@ -8,10 +8,10 @@
   <label>queryEligibleOffersResponse</label>
   <metaVersion>24</metaVersion>
   <childList>
-    <child name="item" type="dstruct">
+    <child name="catalogItem" type="dstruct">
       <array>true</array>
       <container>true</container>
-      <label>item</label>
+      <label>catalogItem</label>
       <maxInstance>-1</maxInstance>
       <childList>
         <child name="code" type="dstruct">
@@ -23,6 +23,62 @@
           <datatype>true</datatype>
           <element>dtype_com.conceptwave.system.String</element>
           <label>label</label>
+        </child>
+        <child name="attributes" type="dstruct">
+          <array>true</array>
+          <container>true</container>
+          <label>attributes</label>
+          <maxInstance>-1</maxInstance>
+          <childList>
+            <child name="code" type="dstruct">
+              <datatype>true</datatype>
+              <element>dtype_fet.common.dataType.string100</element>
+              <label>code</label>
+              <xmlMap type="xmap">
+                <exclude>3</exclude>
+              </xmlMap>
+            </child>
+            <child name="label" type="dstruct">
+              <datatype>true</datatype>
+              <element>dtype_fet.common.dataType.string100</element>
+              <label>label</label>
+              <xmlMap type="xmap">
+                <exclude>3</exclude>
+              </xmlMap>
+            </child>
+            <child name="defaultValue" type="dstruct">
+              <datatype>true</datatype>
+              <element>dtype_fet.common.dataType.string100</element>
+              <label>defaultValue</label>
+              <xmlMap type="xmap">
+                <exclude>3</exclude>
+              </xmlMap>
+            </child>
+            <child name="typeCode" type="dstruct">
+              <datatype>true</datatype>
+              <element>dtype_fet.common.dataType.string100</element>
+              <label>typeCode</label>
+              <xmlMap type="xmap">
+                <exclude>3</exclude>
+              </xmlMap>
+            </child>
+            <child name="typeCodeTable" type="dstruct">
+              <datatype>true</datatype>
+              <element>dtype_fet.common.dataType.string100</element>
+              <label>typeCodeTable</label>
+              <xmlMap type="xmap">
+                <exclude>3</exclude>
+              </xmlMap>
+            </child>
+            <child name="isProperty" type="dstruct">
+              <datatype>true</datatype>
+              <element>dtype_fet.common.dataType.string100</element>
+              <label>isProperty</label>
+              <xmlMap type="xmap">
+                <exclude>3</exclude>
+              </xmlMap>
+            </child>
+          </childList>
         </child>
       </childList>
     </child>

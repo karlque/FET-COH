@@ -13,6 +13,11 @@
       <element>dtype_com.conceptwave.system.String</element>
       <label>hierarchyCode</label>
     </child>
+    <child name="type" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_fet.common.dataType.string100</element>
+      <label>type</label>
+    </child>
     <child name="date" type="dstruct">
       <datatype>true</datatype>
       <element>dtype_com.conceptwave.system.Date</element>

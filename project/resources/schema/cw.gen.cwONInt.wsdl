@@ -113,26 +113,6 @@
 					</sequence>
 				</complexType>
 
-			<complexType name="getEligibleOffersResponse">
-				<annotation>
-					<documentation>getEligibleOffersResponse</documentation>
-				</annotation>
-					<sequence>
-						<element name="item" minOccurs="0" maxOccurs="unbounded">
-							<annotation>
-								<documentation>item</documentation>
-							</annotation>
-							<complexType>
-								<sequence>
-									<element name="code" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-									<element name="label" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-								</sequence>
-							</complexType>
-						</element>
-						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-					</sequence>
-				</complexType>
-
 			<complexType name="submitPreActivateOrderRequest">
 				<annotation>
 					<documentation>submitPreActivateOrderRequest</documentation>
@@ -165,13 +145,33 @@
 					</sequence>
 				</complexType>
 
-			<complexType name="getEligibleOffersRequest">
+			<complexType name="queryEligibleOffersResponse">
 				<annotation>
-					<documentation>getEligibleOffersRequest</documentation>
+					<documentation>queryEligibleOffersResponse</documentation>
+				</annotation>
+					<sequence>
+						<element name="item" minOccurs="0" maxOccurs="unbounded">
+							<annotation>
+								<documentation>item</documentation>
+							</annotation>
+							<complexType>
+								<sequence>
+									<element name="code" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+									<element name="label" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+								</sequence>
+							</complexType>
+						</element>
+						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+					</sequence>
+				</complexType>
+
+			<complexType name="queryEligibleOffersRequest">
+				<annotation>
+					<documentation>queryEligibleOffersRequest</documentation>
 				</annotation>
 					<sequence>
 						<element name="hierarchyCode" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-						<element name="itemType" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="type" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
 						<element name="date" minOccurs="0" maxOccurs="1" type="xsd:date"/>
 					</sequence>
 				</complexType>
@@ -240,14 +240,6 @@
 		<part name="queryCatalogHierarchyResponse" type="fet_on_api:queryCatalogHierarchyResponse"/>
 	</message>
 
-	<message name="getEligibleOffersRequest">
-		<part name="getEligibleOffersRequest" type="fet_on_api:getEligibleOffersRequest"/>
-	</message>
-
-	<message name="getEligibleOffersResponse">
-		<part name="getEligibleOffersResponse" type="fet_on_api:getEligibleOffersResponse"/>
-	</message>
-
 	<message name="submitPreActivateOrderRequest">
 		<part name="submitPreActivateOrderRequest" type="fet_on_api:submitPreActivateOrderRequest"/>
 	</message>
@@ -264,6 +256,14 @@
 		<part name="queryParingDataResponse" type="fet_on_api:queryParingDataResponse"/>
 	</message>
 
+	<message name="queryEligibleOffersRequest">
+		<part name="queryEligibleOffersRequest" type="fet_on_api:queryEligibleOffersRequest"/>
+	</message>
+
+	<message name="queryEligibleOffersResponse">
+		<part name="queryEligibleOffersResponse" type="fet_on_api:queryEligibleOffersResponse"/>
+	</message>
+
 	<portType name="cwONInt">
 		<operation name="createOrder">
 			<input message="tns:createOrderRequest"/>
@@ -273,10 +273,6 @@
 			<input message="tns:queryCatalogHierarchyRequest"/>
 			<output message="tns:queryCatalogHierarchyResponse"/>
 		</operation>
-		<operation name="getEligibleOffers">
-			<input message="tns:getEligibleOffersRequest"/>
-			<output message="tns:getEligibleOffersResponse"/>
-		</operation>
 		<operation name="submitPreActivateOrder">
 			<input message="tns:submitPreActivateOrderRequest"/>
 			<output message="tns:submitPreActivateOrderResponse"/>
@@ -284,6 +280,10 @@
 		<operation name="queryParingData">
 			<input message="tns:queryParingDataRequest"/>
 			<output message="tns:queryParingDataResponse"/>
+		</operation>
+		<operation name="queryEligibleOffers">
+			<input message="tns:queryEligibleOffersRequest"/>
+			<output message="tns:queryEligibleOffersResponse"/>
 		</operation>
 	</portType>
 
@@ -307,15 +307,6 @@
 				<soap:body use="literal"/>
 			</output>
 		</operation>
-		<operation name="getEligibleOffers">
-			<soap:operation soapAction="getEligibleOffers"/>
-			<input>
-				<soap:body use="literal"/>
-			</input>
-			<output>
-				<soap:body use="literal"/>
-			</output>
-		</operation>
 		<operation name="submitPreActivateOrder">
 			<soap:operation soapAction="submitPreActivateOrder"/>
 			<input>
@@ -327,6 +318,15 @@
 		</operation>
 		<operation name="queryParingData">
 			<soap:operation soapAction="queryParingData"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="queryEligibleOffers">
+			<soap:operation soapAction="queryEligibleOffers"/>
 			<input>
 				<soap:body use="literal"/>
 			</input>
