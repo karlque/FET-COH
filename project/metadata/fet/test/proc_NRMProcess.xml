@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<process name="fet.test.NRMProcess">
+  <activity name="start" type="seqActivity">
+    <label>start</label>
+    <x>106.66667</x>
+    <y>30.0</y>
+    <childList>
+      <child name="NRM_testOperation" type="opActivity">
+        <element>iface_fet.dummyServer.nrm.NRMInterface/oper_invokeResourceActviity</element>
+        <label>NRM_testOperation</label>
+        <participant>part_fet.test.NRMParticipant</participant>
+        <x>92.646164</x>
+        <y>122.0</y>
+        <methodList>
+          <method name="cwOnProcActBefore" type="action">
+            <category>before</category>
+            <system>true</system>
+            <script><![CDATA[
+              var invokeResourceActvityRequest = this.activityData;
+
+              invokeResourceActvityRequest.userId = "123";
+
+              invokeResourceActvityRequest.passwd = "abc";
+
+              invokeResourceActvityRequest.processId = "456def";
+
+              Global.logDebug(invokeResourceActvityRequest.toXML());
+            ]]></script>
+          </method>
+        </methodList>
+      </child>
+      <child name="end" type="completeActivity">
+        <label>end</label>
+        <x>196.0</x>
+        <y>248.40234</y>
+      </child>
+      <child name="NRMParticipant" type="participantActivity">
+        <label>NRMParticipant</label>
+        <participant>part_fet.test.NRMParticipant</participant>
+        <x>30.0</x>
+        <y>248.40234</y>
+      </child>
+    </childList>
+  </activity>
+  <curRevision>true</curRevision>
+  <group>testNRMProcess</group>
+  <label>NRMProcess</label>
+  <metaVersion>24</metaVersion>
+  <priority>8</priority>
+  <type>User</type>
+</process>
