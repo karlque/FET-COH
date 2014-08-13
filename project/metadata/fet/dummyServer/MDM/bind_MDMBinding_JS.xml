@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<binding name="fet.dummyServer.MDM.MDMBinding_JS">
+  <extensionList>
+    <extension name="UpdateTx" type="ext">
+      <element>Operation</element>
+      <elementItemMap>
+        <elementItem key="script">return fet.dummyServer.MDM.UpdateTxBehavior(input);</elementItem>
+      </elementItemMap>
+    </extension>
+  </extensionList>
+  <group>server</group>
+  <interface>iface_fet.dummyServer.MDM.MDMInterface</interface>
+  <label>MDMBinding_JS</label>
+  <metaVersion>24</metaVersion>
+  <provider>prov_cwf.jsprov</provider>
+</binding>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="fet.dummyServer.NRM" targetNamespace="fet.dummyServer.NRM"
+	xmlns:tns="fet.dummyServer.NRM"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:fet.services.NRM="fet.services.NRM">
+
+	<types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="fet.services.NRM" schemaLocation="fet.services.NRM.xsd"/>
+		</schema>
+	</types>
+
+	<message name="invokeResourceActivityRequest">
+		<part name="invokeResourceActivityRequest" type="fet.services.NRM:invokeResourceActivityRequest"/>
+	</message>
+
+	<message name="invokeResourceActivityResponse">
+		<part name="invokeResourceActivityResponse" type="fet.services.NRM:invokeResourceActivityResponse"/>
+	</message>
+
+	<portType name="NRMInterface">
+		<operation name="invokeResourceActivity">
+			<input message="tns:invokeResourceActivityRequest"/>
+			<output message="tns:invokeResourceActivityResponse"/>
+		</operation>
+	</portType>
+
+	<binding name="NRMBinding" type="tns:NRMInterface">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="invokeResourceActivity">
+			<soap:operation soapAction="invokeResourceActivity"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+
+	<service name="NRMExternalService">
+		<port name="NRMPort" binding="tns:NRMBinding">
+		</port>
+	</service>
+
+</definitions>
