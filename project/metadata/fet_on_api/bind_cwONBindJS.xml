@@ -13,12 +13,6 @@
         <elementItem key="script">return fet_on_api.queryCatalogHierarchyBehavior(input);</elementItem>
       </elementItemMap>
     </extension>
-    <extension name="queryEligibleOffers" type="ext">
-      <element>Operation</element>
-      <elementItemMap>
-        <elementItem key="script">return fet_on_api.queryEligibleOffersBehavior(input);</elementItem>
-      </elementItemMap>
-    </extension>
     <extension name="submitPreActivateOrder" type="ext">
       <element>Operation</element>
       <elementItemMap>

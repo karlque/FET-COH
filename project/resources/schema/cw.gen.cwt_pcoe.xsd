@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema targetNamespace="http://www.conceptwave.com/templates/pcoe"	
+	xmlns="http://www.w3.org/2001/XMLSchema"	
+	xmlns:cwt_pcoe="http://www.conceptwave.com/templates/pcoe"	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"	
+	xmlns:cwf="http://www.conceptwave.com/system">
+
+
+
+	<import namespace="http://www.conceptwave.com/system" schemaLocation="cwf.xsd"/>
+
+	<annotation>
+		<documentation>CWT Catalog Designer Order Entry</documentation>
+		<appinfo>
+			<metadata>AVM Metadata</metadata>
+			<created>Tue Aug 12 11:02:19 CST 2014</created>
+		</appinfo>
+	</annotation>
+
+	<!-- Data types and elements -->
+
+	<simpleType name="Decimal13_4">
+		<annotation>
+			<documentation>Decimal13_4</documentation>
+		</annotation>
+		<restriction base="xsd:decimal">
+			<totalDigits value="13"/>
+			<fractionDigits value="4"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="Decimal4_0">
+		<annotation>
+			<documentation>Decimal4_0</documentation>
+		</annotation>
+		<restriction base="xsd:decimal">
+			<totalDigits value="4"/>
+			<fractionDigits value="0"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="Decimal8_0">
+		<annotation>
+			<documentation></documentation>
+		</annotation>
+		<restriction base="xsd:decimal">
+			<totalDigits value="8"/>
+			<fractionDigits value="0"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="amount">
+		<annotation>
+			<documentation>amount</documentation>
+		</annotation>
+		<restriction base="xsd:decimal">
+			<totalDigits value="10"/>
+			<fractionDigits value="2"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="catalogCode">
+		<annotation>
+			<documentation></documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="32"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="chargeFrequency">
+		<annotation>
+			<documentation></documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="1"/>
+			<enumeration value="M">
+				<annotation>
+					<documentation>Monthly</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="O">
+				<annotation>
+					<documentation>One Time</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="chargeTypeType">
+		<annotation>
+			<documentation></documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="4"/>
+			<enumeration value="CHAG">
+				<annotation>
+					<documentation>Charge</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="DISC">
+				<annotation>
+					<documentation>Discount</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="COST">
+				<annotation>
+					<documentation>Cost</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="cwBasketStamp">
+		<annotation>
+			<documentation>cwBasketStamp</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="9"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="cwtct_chargeFrequency">
+		<annotation>
+			<documentation></documentation>
+		</annotation>
+		<restriction base="cwf:cwDbEnum">
+			<maxLength value="1"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="label">
+		<annotation>
+			<documentation>label</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="128"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="leafName">
+		<annotation>
+			<documentation>leafName</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="128"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="searchAttribute">
+		<annotation>
+			<documentation>searchAttribute</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="1024"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="string10">
+		<annotation>
+			<documentation>string10</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="10"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="string16">
+		<annotation>
+			<documentation>string16</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="16"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="string3">
+		<annotation>
+			<documentation>string3</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="3"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="string32">
+		<annotation>
+			<documentation>string32</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="32"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="string4000">
+		<annotation>
+			<documentation>string4000</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="4000"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="targetType">
+		<annotation>
+			<documentation>targetType</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="12"/>
+			<enumeration value="relation">
+				<annotation>
+					<documentation>Relation</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="association">
+				<annotation>
+					<documentation>Association</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+
+	<!-- Structures -->
+
+	<complexType name="basketDS">
+		<annotation>
+			<documentation></documentation>
+		</annotation>
+			<sequence>
+				<element name="basketItems" minOccurs="0" maxOccurs="1" type="cwt_pcoe:basketItems"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="basketItemChargeDS">
+		<annotation>
+			<documentation></documentation>
+		</annotation>
+			<sequence>
+				<element name="basketId" minOccurs="0" maxOccurs="1" type="cwt_pcoe:string10"/>
+				<element name="basketItemId" minOccurs="0" maxOccurs="1" type="cwt_pcoe:string16"/>
+				<element name="chargeTypeCode" minOccurs="0" maxOccurs="1" type="cwt_pcoe:catalogCode"/>
+				<element name="amount" minOccurs="0" maxOccurs="1" type="cwt_pcoe:amount"/>
+				<element name="sequenceNo" minOccurs="0" maxOccurs="1" type="cwt_pcoe:Decimal4_0"/>
+				<element name="currency" minOccurs="0" maxOccurs="1" type="cwt_pcoe:string3"/>
+				<element name="frequency" minOccurs="0" maxOccurs="1" type="cwt_pcoe:chargeFrequency"/>
+				<element name="displayOnly" minOccurs="0" maxOccurs="1" type="xsd:boolean"/>
+				<element name="taxCode" minOccurs="0" maxOccurs="1" type="cwt_pcoe:catalogCode"/>
+				<element name="label" minOccurs="0" maxOccurs="1" type="cwt_pcoe:label"/>
+				<element name="cwCreated" minOccurs="0" maxOccurs="1" type="cwf:cwCreated"/>
+				<element name="cwCreatedBy" minOccurs="0" maxOccurs="1" type="cwf:cwCreatedBy"/>
+				<element name="lastUpdatedDate" minOccurs="0" maxOccurs="1" type="cwf:lastUpdatedDate"/>
+				<element name="updatedBy" minOccurs="0" maxOccurs="1" type="cwf:updatedBy"/>
+				<element name="type" minOccurs="0" maxOccurs="1" type="cwt_pcoe:chargeTypeType"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="basketItemCharges">
+		<annotation>
+			<documentation>basketItemCharges</documentation>
+		</annotation>
+			<sequence>
+				<element name="chargeType" minOccurs="0" maxOccurs="unbounded" type="cwt_pcoe:basketItemChargeDS"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="basketItemDS">
+		<annotation>
+			<documentation></documentation>
+		</annotation>
+			<sequence>
+				<element name="basketitemid" minOccurs="1" maxOccurs="1" type="cwt_pcoe:string16"/>
+				<element name="basketid" minOccurs="0" maxOccurs="1" type="cwt_pcoe:string10"/>
+				<element name="itemcode" minOccurs="0" maxOccurs="1" type="cwt_pcoe:string32"/>
+				<element name="basketItemCharges" minOccurs="0" maxOccurs="1" type="cwt_pcoe:basketItemCharges"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="basketItemDocs">
+		<annotation>
+			<documentation>basketItemDocs</documentation>
+		</annotation>
+			<sequence>
+				<element name="basketItem" minOccurs="0" maxOccurs="unbounded" type="cwt_pcoe:basketItem"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="basketItems">
+		<annotation>
+			<documentation>basketItems</documentation>
+		</annotation>
+			<sequence>
+				<element name="basketItem" minOccurs="0" maxOccurs="unbounded" type="cwt_pcoe:basketItemDS"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="groupTarget">
+		<annotation>
+			<documentation></documentation>
+		</annotation>
+			<sequence>
+				<element name="targetType" minOccurs="0" maxOccurs="1" type="cwt_pcoe:targetType"/>
+				<element name="targetName" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="targetItemCode" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="itemSearchDS">
+		<annotation>
+			<documentation>itemSearchDS</documentation>
+		</annotation>
+			<sequence>
+				<element name="basketitemid" minOccurs="0" maxOccurs="1" type="cwt_pcoe:string16"/>
+				<element name="basketid" minOccurs="0" maxOccurs="1" type="cwt_pcoe:string16"/>
+				<element name="itemcode" minOccurs="0" maxOccurs="1" type="cwt_pcoe:catalogCode"/>
+				<element name="parentbasketitemid" minOccurs="0" maxOccurs="1" type="cwt_pcoe:string16"/>
+				<element name="relationname" minOccurs="0" maxOccurs="1" type="cwt_pcoe:catalogCode"/>
+				<element name="requesttime" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+				<element name="state" minOccurs="0" maxOccurs="1" type="cwt_pcoe:string16"/>
+				<element name="customerId" minOccurs="0" maxOccurs="1" type="cwt_pcoe:string32"/>
+				<element name="accountId" minOccurs="0" maxOccurs="1" type="cwt_pcoe:string32"/>
+				<element name="locationId" minOccurs="0" maxOccurs="1" type="cwt_pcoe:string32"/>
+				<element name="siteId" minOccurs="0" maxOccurs="1" type="cwt_pcoe:string32"/>
+				<element name="serviceDate" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+				<element name="family" minOccurs="0" maxOccurs="1" type="cwt_pcoe:string32"/>
+				<element name="category" minOccurs="0" maxOccurs="1" type="cwt_pcoe:string32"/>
+				<element name="maxRows" minOccurs="0" maxOccurs="1" type="xsd:integer"/>
+				<element name="searchKey" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+			</sequence>
+		</complexType>
+
+	<!-- Documents -->
+
+	<complexType name="basket">
+		<annotation>
+			<documentation>basket</documentation>
+		</annotation>
+			<sequence>
+				<element name="basketId" type="cwf:cwDocId"/>
+				<element name="cwCreated" type="cwf:cwCreated"/>
+				<element name="cwCreatedBy" type="cwf:cwCreatedBy"/>
+				<element name="lastUpdatedDate" type="cwf:lastUpdatedDate"/>
+				<element name="updatedBy" type="cwf:updatedBy"/>
+				<element name="cwOrderId" type="cwf:cwOrderId"/>
+				<element name="state" type="cwf:state"/>
+				<element name="cwBasketStamp" type="cwt_pcoe:cwBasketStamp"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="basketItem">
+		<annotation>
+			<documentation>basketItem</documentation>
+		</annotation>
+			<sequence>
+				<element name="basketitemid" type="cwf:cwDocId"/>
+				<element name="basketid" type="cwt_pcoe:string16"/>
+				<element name="itemcode" type="cwt_pcoe:catalogCode"/>
+				<element name="cwcreated" type="cwf:cwCreated"/>
+				<element name="cwcreatedby" type="cwf:cwCreatedBy"/>
+				<element name="lastupdateddate" type="cwf:lastUpdatedDate"/>
+				<element name="updatedby" type="cwf:updatedBy"/>
+				<element name="parentbasketitemid" type="cwt_pcoe:string16"/>
+				<element name="relationname" type="cwt_pcoe:catalogCode"/>
+				<element name="sequenceno" type="cwt_pcoe:Decimal8_0"/>
+				<element name="basketcreationdate" type="xsd:dateTime"/>
+				<element name="requesttime" type="xsd:dateTime"/>
+				<element name="data" type="cwf:NClob"/>
+				<element name="searchText" type="cwt_pcoe:string4000"/>
+				<element name="state" type="cwt_pcoe:string16"/>
+				<element name="action" type="cwt_pcoe:string32"/>
+				<element name="customerId" type="cwt_pcoe:string32"/>
+				<element name="accountId" type="cwt_pcoe:string32"/>
+				<element name="locationId" type="cwt_pcoe:string32"/>
+				<element name="siteId" type="cwt_pcoe:string32"/>
+				<element name="serviceDate" type="xsd:dateTime"/>
+				<element name="family" type="cwt_pcoe:string32"/>
+				<element name="category" type="cwt_pcoe:string32"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="basketItemCharge">
+		<annotation>
+			<documentation>basketItemCharge</documentation>
+		</annotation>
+			<sequence>
+				<element name="basketId" type="cwt_pcoe:string16"/>
+				<element name="basketItemId" type="cwt_pcoe:string16"/>
+				<element name="chargeTypeCode" type="cwt_pcoe:catalogCode"/>
+				<element name="amount" type="cwt_pcoe:Decimal13_4"/>
+				<element name="sequenceNo" type="cwt_pcoe:Decimal4_0"/>
+				<element name="currency" type="cwt_pcoe:string3"/>
+				<element name="frequency" type="cwt_pcoe:chargeFrequency"/>
+				<element name="taxCode" type="cwt_pcoe:catalogCode"/>
+				<element name="label" type="cwt_pcoe:label"/>
+				<element name="cwCreated" type="cwf:cwCreated"/>
+				<element name="cwCreatedBy" type="cwf:cwCreatedBy"/>
+				<element name="lastUpdatedDate" type="cwf:lastUpdatedDate"/>
+				<element name="updatedBy" type="cwf:updatedBy"/>
+				<element name="type" type="cwt_pcoe:chargeTypeType"/>
+				<element name="basketItemChargeId" type="cwf:cwDocId64"/>
+				<element name="itemChargeCode" type="cwt_pcoe:catalogCode"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="basketItemLeaf">
+		<annotation>
+			<documentation>basketItemLeaf</documentation>
+		</annotation>
+			<sequence>
+				<element name="basketitemid" type="cwt_pcoe:string16"/>
+				<element name="leafName" type="cwt_pcoe:leafName"/>
+				<element name="value" type="cwt_pcoe:label"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="basketItemRelation">
+		<annotation>
+			<documentation>basketItemRelation</documentation>
+		</annotation>
+			<sequence>
+				<element name="basketItemIdFrom" type="cwt_pcoe:string16"/>
+				<element name="basketItemIdTo" type="cwt_pcoe:string16"/>
+				<element name="relationName" type="cwt_pcoe:catalogCode"/>
+				<element name="cwCreated" type="cwf:cwCreated"/>
+				<element name="cwCreatedBy" type="cwf:cwCreatedBy"/>
+				<element name="lastUpdatedDate" type="cwf:lastUpdatedDate"/>
+				<element name="updatedBy" type="cwf:updatedBy"/>
+				<element name="basketId" type="cwt_pcoe:string16"/>
+				<element name="basketItemRelationId" type="cwf:cwDocId64"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="basketItemSearch">
+		<annotation>
+			<documentation>basketItemSearch</documentation>
+		</annotation>
+			<sequence>
+				<element name="itemcode" type="cwt_pcoe:string16"/>
+				<element name="nameList" type="cwt_pcoe:searchAttribute"/>
+				<element name="valueList" type="cwt_pcoe:searchAttribute"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="itemAssociation">
+		<annotation>
+			<documentation>itemAssociation</documentation>
+		</annotation>
+			<sequence>
+				<element name="associationName" type="xsd:string"/>
+				<element name="add" type="xsd:boolean"/>
+				<element name="targetCode" type="cwt_pcoe:catalogCode"/>
+				<element name="targetID" type="xsd:string"/>
+				<element name="associationLabel" type="xsd:string"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="itemGroup">
+		<annotation>
+			<documentation>itemGroup</documentation>
+		</annotation>
+			<sequence>
+				<element name="name" type="xsd:string"/>
+				<element name="label" type="xsd:string"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="itemSearchDoc">
+		<annotation>
+			<documentation>itemSearchDoc</documentation>
+		</annotation>
+			<sequence>
+				<element name="basketitemid" type="cwf:cwDocId"/>
+				<element name="basketid" type="cwt_pcoe:string16"/>
+				<element name="itemcode" type="cwt_pcoe:catalogCode"/>
+				<element name="parentbasketitemid" type="cwt_pcoe:string16"/>
+				<element name="relationname" type="cwt_pcoe:catalogCode"/>
+				<element name="requesttime" type="xsd:dateTime"/>
+				<element name="state" type="cwt_pcoe:string16"/>
+				<element name="customerId" type="cwt_pcoe:string32"/>
+				<element name="accountId" type="cwt_pcoe:string32"/>
+				<element name="locationId" type="cwt_pcoe:string32"/>
+				<element name="siteId" type="cwt_pcoe:string32"/>
+				<element name="serviceDate" type="xsd:dateTime"/>
+				<element name="family" type="cwt_pcoe:string32"/>
+				<element name="category" type="cwt_pcoe:string32"/>
+				<element name="contextString" type="xsd:string"/>
+				<element name="maxRows" type="xsd:integer"/>
+			</sequence>
+		</complexType>
+
+</schema>

@@ -273,7 +273,7 @@
 			<input message="tns:queryCatalogHierarchyRequest"/>
 			<output message="tns:queryCatalogHierarchyResponse"/>
 		</operation>
-		<operation name="queryEligibleOffers">
+		<operation name="getEligibleOffers">
 			<input message="tns:getEligibleOffersRequest"/>
 			<output message="tns:getEligibleOffersResponse"/>
 		</operation>
@@ -307,8 +307,8 @@
 				<soap:body use="literal"/>
 			</output>
 		</operation>
-		<operation name="queryEligibleOffers">
-			<soap:operation soapAction="queryEligibleOffers"/>
+		<operation name="getEligibleOffers">
+			<soap:operation soapAction="getEligibleOffers"/>
 			<input>
 				<soap:body use="literal"/>
 			</input>

@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema targetNamespace="http://www.conceptwave.com/products/cwt_do"	
+	xmlns="http://www.w3.org/2001/XMLSchema"	
+	xmlns:cwt_do="http://www.conceptwave.com/products/cwt_do"	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"	
+	xmlns:cwf="http://www.conceptwave.com/system"	
+	xmlns:cwf_up="http://www.conceptwave.com/products/up"	
+	xmlns:cwt_pcoe="http://www.conceptwave.com/templates/pcoe"	
+	xmlns:cwt_pc="http://www.conceptwave.com/templates/catalog"	
+	xmlns:cwt_pcdd="http://www.conceptwave.com/templates/pcdd"	
+	xmlns:security="security"	
+	xmlns:cwt_dict="http://www.conceptwave.com/template/cwt_dict"	
+	xmlns:cwt_common="http://www.conceptwave.com/templates/common">
+
+
+
+	<import namespace="http://www.conceptwave.com/system" schemaLocation="cwf.xsd"/>
+	<import namespace="http://www.conceptwave.com/products/up" schemaLocation="cwf_up.xsd"/>
+	<import namespace="http://www.conceptwave.com/templates/pcoe" schemaLocation="cwt_pcoe.xsd"/>
+	<import namespace="http://www.conceptwave.com/templates/catalog" schemaLocation="cwt_pc.xsd"/>
+	<import namespace="http://www.conceptwave.com/templates/pcdd" schemaLocation="cwt_pcdd.xsd"/>
+	<import namespace="security" schemaLocation="security.xsd"/>
+	<import namespace="http://www.conceptwave.com/template/cwt_dict" schemaLocation="cwt_dict.xsd"/>
+	<import namespace="http://www.conceptwave.com/templates/common" schemaLocation="cwt_common.xsd"/>
+
+	<annotation>
+		<documentation>CWT - Data Order</documentation>
+		<appinfo>
+			<metadata>AVM Metadata</metadata>
+			<created>Tue Aug 12 11:02:19 CST 2014</created>
+		</appinfo>
+	</annotation>
+
+	<!-- Data types and elements -->
+
+	<simpleType name="accountId">
+		<annotation>
+			<documentation>Account ID</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="32"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="addressId">
+		<annotation>
+			<documentation>Address ID</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="32"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="charge">
+		<annotation>
+			<documentation>Charge</documentation>
+		</annotation>
+		<restriction base="xsd:decimal">
+			<totalDigits value="14"/>
+			<fractionDigits value="4"/>
+			<minInclusive value="0.0"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="customerId">
+		<annotation>
+			<documentation>Customer ID</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="32"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="doComponentTypes">
+		<annotation>
+			<documentation>doComponentTypes</documentation>
+		</annotation>
+		<restriction base="cwf:sReference">
+			<maxLength value="32"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="doOfferTypes">
+		<annotation>
+			<documentation>doOfferTypes</documentation>
+		</annotation>
+		<restriction base="cwf:sReference">
+			<maxLength value="32"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="doProductTypes">
+		<annotation>
+			<documentation>doProductTypes</documentation>
+		</annotation>
+		<restriction base="cwf:sReference">
+			<maxLength value="32"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="doSubscriptionTypes">
+		<annotation>
+			<documentation>doSubscriptionTypes</documentation>
+		</annotation>
+		<restriction base="cwf:sReference">
+			<maxLength value="32"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="groupSequence">
+		<annotation>
+			<documentation>Group Sequence</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="20"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="guid">
+		<annotation>
+			<documentation>GUID</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="16"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="isCompleted">
+		<annotation>
+			<documentation>Is Completed</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="1"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="itemNotes">
+		<annotation>
+			<documentation>Item Notes</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="3200"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="oState">
+		<annotation>
+			<documentation>Order State</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="16"/>
+			<enumeration value="O_NR_DRA">
+				<annotation>
+					<documentation>Draft</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="O_NR_PRE">
+				<annotation>
+					<documentation>Presented</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="O_NR_HLD">
+				<annotation>
+					<documentation>Payment Hold</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="O_R_CON">
+				<annotation>
+					<documentation>Configuration(R)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="O_R_PRO">
+				<annotation>
+					<documentation>Provisioning</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="O_R_ERR">
+				<annotation>
+					<documentation>Error</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="C_C">
+				<annotation>
+					<documentation>Completed</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="C_X">
+				<annotation>
+					<documentation>Cancelled</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="O_R_SUB">
+				<annotation>
+					<documentation>Submitted(R)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="O_NR_SUB">
+				<annotation>
+					<documentation>Submitted</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="C_E">
+				<annotation>
+					<documentation>Expired</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="O_NR_CON">
+				<annotation>
+					<documentation>Configuration</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="O_NR_ACC">
+				<annotation>
+					<documentation>Accepted</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="C_REV">
+				<annotation>
+					<documentation>Revise-Cancelled</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="C_A">
+				<annotation>
+					<documentation>Abandoned</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="O_NR_P">
+				<annotation>
+					<documentation>Parked</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="O_NR_ERR">
+				<annotation>
+					<documentation>Error - Not Running</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="O_NR_CON_CAD">
+				<annotation>
+					<documentation>CAD Configuration</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="opSubType">
+		<annotation>
+			<documentation>opSubType</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="16"/>
+			<enumeration value="CANCEL">
+				<annotation>
+					<documentation>Cancel</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="REVISE">
+				<annotation>
+					<documentation>Revise</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="opType">
+		<annotation>
+			<documentation>opType</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="16"/>
+			<enumeration value="ADD">
+				<annotation>
+					<documentation>Add</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="MOVE">
+				<annotation>
+					<documentation>Move</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CHANGE">
+				<annotation>
+					<documentation>Change</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="DISCONNECT">
+				<annotation>
+					<documentation>Disconnect</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="MD">
+				<annotation>
+					<documentation>Move-Disconnect</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="MA">
+				<annotation>
+					<documentation>Move-Add</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="TRANSFER">
+				<annotation>
+					<documentation>Transfer</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="MIGRATE">
+				<annotation>
+					<documentation>Migrate</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="ordVer">
+		<annotation>
+			<documentation>Order Version</documentation>
+		</annotation>
+		<restriction base="xsd:integer">
+			<totalDigits value="16"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="orderItemSource">
+		<annotation>
+			<documentation>Order Item Source</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="3"/>
+			<enumeration value="NEW">
+				<annotation>
+					<documentation>New</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="EXT">
+				<annotation>
+					<documentation>Existing</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="orderItemStatus">
+		<annotation>
+			<documentation>Order Item Status</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="8"/>
+			<enumeration value="ADD">
+				<annotation>
+					<documentation>Added</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="DEL">
+				<annotation>
+					<documentation>Removed</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CHA">
+				<annotation>
+					<documentation>Changed</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="KEEP">
+				<annotation>
+					<documentation>Active</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="DEL_TRAN">
+				<annotation>
+					<documentation>Del(Trans)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ADD_TRAN">
+				<annotation>
+					<documentation>Add(Trans)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="DEL_MOVE">
+				<annotation>
+					<documentation>Del(Move)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ADD_MOVE">
+				<annotation>
+					<documentation>Add(Move)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="DEL_MIG">
+				<annotation>
+					<documentation>Del(Mig)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ADD_MIG">
+				<annotation>
+					<documentation>Add(Mig)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="TRANS">
+				<annotation>
+					<documentation>Transferred</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="orderNum">
+		<annotation>
+			<documentation>orderNum</documentation>
+		</annotation>
+		<restriction base="cwf_up:Integer9">
+			<totalDigits value="9"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="percentage">
+		<annotation>
+			<documentation>percentage</documentation>
+		</annotation>
+		<restriction base="cwf_up:Integer3">
+			<minInclusive value="0"/>
+			<maxInclusive value="100"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="refDataOrder">
+		<annotation>
+			<documentation>refDataOrder</documentation>
+		</annotation>
+		<restriction base="cwf:sReference">
+			<maxLength value="16"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="relationType">
+		<annotation>
+			<documentation>Relation Type</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="10"/>
+			<enumeration value="g">
+				<annotation>
+					<documentation>General</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="1">
+				<annotation>
+					<documentation>Offer to Offer</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<documentation>Offer to Product</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="3">
+				<annotation>
+					<documentation>Product to Product</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="4">
+				<annotation>
+					<documentation>Item to Term</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="5">
+				<annotation>
+					<documentation>Product to Component</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="scope">
+				<annotation>
+					<documentation>SCOPE</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="include">
+				<annotation>
+					<documentation>Included from Offer</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="site2item">
+				<annotation>
+					<documentation>Site to Item</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="transfer">
+				<annotation>
+					<documentation>Transfer</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="migration">
+				<annotation>
+					<documentation>Migration</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="relationTypeRef">
+		<annotation>
+			<documentation>relationTypeRef</documentation>
+		</annotation>
+		<restriction base="cwf:sReference">
+			<maxLength value="32"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="siteId">
+		<annotation>
+			<documentation>Site ID</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="32"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="siteType">
+		<annotation>
+			<documentation>siteType</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="16"/>
+			<enumeration value="MD">
+				<annotation>
+					<documentation>Move-Disconnect</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="MA">
+				<annotation>
+					<documentation>Move-Add</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="string16">
+		<annotation>
+			<documentation>string16 - DO</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="16"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="termUnit">
+		<annotation>
+			<documentation>Term Unit</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="3"/>
+			<enumeration value="M">
+				<annotation>
+					<documentation>Month</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="termValue">
+		<annotation>
+			<documentation>Term Value</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="8"/>
+		</restriction>
+	</simpleType>
+
+	<!-- Structures -->
+
+	<complexType name="nameValuePair">
+		<annotation>
+			<documentation>nameValuePair</documentation>
+		</annotation>
+			<sequence>
+				<element name="name" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="value" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+			</sequence>
+		</complexType>
+
+	<!-- Documents -->
+
+	<complexType name="accountDoc">
+		<annotation>
+			<documentation>Account Doc</documentation>
+		</annotation>
+			<sequence>
+				<element name="id" type="cwf:cwDocId"/>
+				<element name="cwDocStamp" type="cwf:cwDocStamp"/>
+				<element name="cwOrderCreationDate" type="cwf:cwOrderCreationDate"/>
+				<element name="lastUpdatedDate" type="cwf:lastUpdatedDate"/>
+				<element name="cwParentId" type="cwf:cwParentId"/>
+				<element name="cwOrderId" type="cwf:cwOrderId"/>
+				<element name="updatedBy" type="cwf:updatedBy"/>
+				<element name="accountId" type="cwt_do:accountId"/>
+				<element name="guid" type="cwf:guid"/>
+				<element name="source" type="cwt_do:orderItemSource"/>
+				<element name="status" type="cwt_do:orderItemStatus"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="basketItemEx">
+		<annotation>
+			<documentation>basketItemEx</documentation>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_pcoe:basketItem">
+					<sequence>
+						<element name="guid" type="cwt_do:guid"/>
+						<element name="prevstate" type="cwf:state"/>
+						<element name="source" type="cwt_do:orderItemSource"/>
+						<element name="effectivedate" type="xsd:dateTime"/>
+						<element name="servicestartdate" type="xsd:dateTime"/>
+						<element name="itemNotes" type="cwt_do:itemNotes"/>
+						<element name="isCompleted" type="cwt_do:isCompleted"/>
+					</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+
+	<complexType name="basketItemRelation">
+		<annotation>
+			<documentation>basketItemRelation</documentation>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_pcoe:basketItemRelation">
+					<sequence>
+						<element name="effectivedate" type="xsd:dateTime"/>
+						<element name="status" type="cwt_do:orderItemStatus"/>
+						<element name="source" type="cwt_do:orderItemSource"/>
+						<element name="guid" type="cwt_do:guid"/>
+						<element name="percentage" type="cwt_do:percentage"/>
+					</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+
+	<complexType name="cwt_itemRelation">
+		<annotation>
+			<documentation>cwt_itemRelation</documentation>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_pc:cwt_itemRelation">
+					<sequence>
+						<element name="groupSequence" type="cwt_do:groupSequence"/>
+					</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+
+	<complexType name="doConfig">
+		<annotation>
+			<documentation>DO Config</documentation>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_common:templateConfig">
+					<sequence>
+						<element name="hierarchy" type="cwt_dict:string64"/>
+						<element name="CON_TYPE_SUBSCRIPTION" type="cwt_do:doSubscriptionTypes"/>
+						<element name="CON_TYPE_OFFER" type="cwt_do:doOfferTypes"/>
+						<element name="CON_TYPE_PRODUCT" type="cwt_do:doProductTypes"/>
+						<element name="CON_TYPE_COMPONENT" type="cwt_do:doComponentTypes"/>
+						<element name="CON_RELATION_SCOPE" type="cwt_do:relationTypeRef"/>
+					</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+
+	<complexType name="orderInstance">
+		<annotation>
+			<documentation>Order Instance</documentation>
+		</annotation>
+			<complexContent>
+				<extension base="cwf:orderInstance">
+					<sequence>
+						<element name="basketId" type="cwf:cwDocId64"/>
+						<element name="oState" type="cwt_do:oState"/>
+						<element name="customerId" type="cwt_do:customerId"/>
+						<element name="accountId" type="cwt_do:accountId"/>
+						<element name="orderType" type="cwt_do:opType"/>
+						<element name="orderSubType" type="cwt_do:opSubType"/>
+						<element name="relatedOrder" type="cwt_do:refDataOrder"/>
+						<element name="orderNum" type="cwt_do:orderNum"/>
+						<element name="ordVer" type="cwt_do:ordVer"/>
+						<element name="effectiveDate" type="xsd:dateTime"/>
+						<element name="submittedBy" type="cwf_up:UserId"/>
+						<element name="submittedDate" type="xsd:dateTime"/>
+						<element name="price" type="cwt_do:charge"/>
+						<element name="onetimePrice" type="cwt_do:charge"/>
+						<element name="pricedOn" type="xsd:dateTime"/>
+					</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+
+	<complexType name="orderInstanceSearch">
+		<annotation>
+			<documentation>orderInstanceSearch</documentation>
+		</annotation>
+			<sequence>
+				<element name="orderId" type="cwt_do:string16"/>
+				<element name="ordVer" type="cwt_do:ordVer"/>
+				<element name="orderNum" type="cwf_up:Integer9"/>
+				<element name="customerId" type="cwt_do:customerId"/>
+				<element name="siteId" type="cwt_do:siteId"/>
+				<element name="accountId" type="cwt_do:accountId"/>
+				<element name="orderType" type="cwt_do:opType"/>
+				<element name="oState" type="cwt_do:oState"/>
+				<element name="pid" type="cwt_do:string16"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="siteDoc">
+		<annotation>
+			<documentation>Site</documentation>
+		</annotation>
+			<sequence>
+				<element name="id" type="cwf:cwDocId"/>
+				<element name="cwDocStamp" type="cwf:cwDocStamp"/>
+				<element name="lastUpdatedDate" type="cwf:lastUpdatedDate"/>
+				<element name="cwOrderCreationDate" type="cwf:cwOrderCreationDate"/>
+				<element name="cwOrderId" type="cwf:cwOrderId"/>
+				<element name="cwParentId" type="cwf:cwParentId"/>
+				<element name="updatedBy" type="cwf:updatedBy"/>
+				<element name="guid" type="cwf:guid"/>
+				<element name="siteId" type="cwt_do:siteId"/>
+				<element name="siteType" type="cwt_do:siteType"/>
+				<element name="siteMoveTo" type="cwt_do:siteId"/>
+				<element name="siteMoveFrom" type="cwt_do:siteId"/>
+				<element name="status" type="cwt_do:orderItemStatus"/>
+				<element name="source" type="cwt_do:orderItemSource"/>
+				<element name="addressId" type="cwt_do:addressId"/>
+			</sequence>
+		</complexType>
+
+</schema>
