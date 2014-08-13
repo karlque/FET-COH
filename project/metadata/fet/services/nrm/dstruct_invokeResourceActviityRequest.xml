@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataStructure name="fet.services.nrm.invokeResourceActviityRequest">
+  <container>true</container>
+  <group>dataStructure</group>
+  <jsonMap type="jmap">
+    <exclude>1</exclude>
+  </jsonMap>
+  <label>invokeResourceActviityRequest</label>
+  <metaVersion>24</metaVersion>
+  <childList>
+    <child name="userId" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>userId</label>
+    </child>
+    <child name="channel" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>channel</label>
+    </child>
+    <child name="passwd" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>passwd</label>
+    </child>
+    <child name="processId" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>processId</label>
+    </child>
+    <child name="resourceType" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>resourceType</label>
+    </child>
+    <child name="resourceValue" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>resourceValue</label>
+    </child>
+    <child name="activityName" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>activityName</label>
+    </child>
+    <child name="parameters" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>parameters</label>
+    </child>
+  </childList>
+</dataStructure>

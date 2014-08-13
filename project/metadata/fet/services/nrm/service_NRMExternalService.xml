@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<externalService name="fet.services.nrm.NRMExternalService">
+  <group>client</group>
+  <label>NRMExternalService</label>
+  <metaVersion>24</metaVersion>
+  <portList>
+    <port name="NRMPort" type="port">
+      <binding>bind_fet.services.nrm.NRMBinding</binding>
+      <label>NRMPort</label>
+      <recover>5</recover>
+    </port>
+  </portList>
+</externalService>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<participant name="fet.test.NRMParticipant">
+  <group>testNRMProcess</group>
+  <label>NRMParticipant</label>
+  <metaVersion>24</metaVersion>
+  <participant>iface_fet.dummyServer.nrm.NRMInterface</participant>
+</participant>

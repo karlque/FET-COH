@@ -19,7 +19,7 @@
     var createOrderResponse = new DataStructure('fet_on_api.createOrderResponse');
 
     try {
-        var orderHelper = new fet_common.ClsDataOrderHelper();
+        var orderHelper = new fet.common.ClsDataOrderHelper();
         orderHelper.createOrderAndBasket();
         var orderInstance = orderHelper.order.orderInstance;
         orderInstance.customerId = createOrderRequest.customerId;

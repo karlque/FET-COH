@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet.test.NRM_testScript">
+  <group>testNRMProcess</group>
+  <label>NRM_testScript</label>
+  <metaVersion>24</metaVersion>
+  <script><![CDATA[
+    var run = Process.startProcess("fet.test.NRMProcess");
+
+    return run;
+  ]]></script>
+</script>

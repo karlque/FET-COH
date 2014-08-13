@@ -15,16 +15,10 @@
     </child>
     <child name="offerCodes" type="dstruct">
       <array>true</array>
-      <container>true</container>
+      <datatype>true</datatype>
+      <element>dtype_fet.common.dataType.string100</element>
       <label>offerCodes</label>
       <maxInstance>-1</maxInstance>
-      <childList>
-        <child name="code" type="dstruct">
-          <datatype>true</datatype>
-          <element>dtype_fet.common.dataType.string100</element>
-          <label>code</label>
-        </child>
-      </childList>
     </child>
   </childList>
 </dataStructure>
