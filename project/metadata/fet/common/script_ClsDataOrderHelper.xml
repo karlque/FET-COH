@@ -59,8 +59,8 @@
     };
 
     this.getOrderById = function(orderid) {
-       return Order.getOrderById(''+orderid+'');
-        //this.order.getOrderById(orderid);
+       this.order = Order.getOrderById(orderid);
+       this.basket = this.order.ShoppingBasket;
     };
 
     this.remapGUIDs = function() {
