@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<process name="fet.test.test_MDMProcess">
+  <activity name="start" type="seqActivity">
+    <label>start</label>
+    <x>108.66667</x>
+    <y>30.0</y>
+    <childList>
+      <child name="testOperation_ClientandServer" type="opActivity">
+        <element>iface_fet.services.MDM.MDMInterface/oper_UpdateTx</element>
+        <label>testOperation_ClientandServer</label>
+        <participant>part_fet.test.MDMParticipant</participant>
+        <x>86.64421</x>
+        <y>122.0</y>
+        <methodList>
+          <method name="cwOnProcActBefore" type="action">
+            <category>before</category>
+            <system>true</system>
+            <script><![CDATA[
+              var UpdateTxRequest = this.activityData;
+              UpdateTxRequest.TxID = "123";
+              UpdateTxRequest.Channelinformation = "456";
+              UpdateTxRequest.TxDataObject = "789";
+              Global.logDebug("xml>>>>>>"+UpdateTxRequest.toXML());
+            ]]></script>
+          </method>
+          <method name="cwOnProcActAfter" type="action">
+            <category>script</category>
+            <system>true</system>
+            <script><![CDATA[
+              var UpdateTxResponse = this.activityData;
+              Global.logDebug(UpdateTxResponse.toXML());
+            ]]></script>
+          </method>
+        </methodList>
+      </child>
+      <child name="end" type="seqActivity">
+        <label>end</label>
+        <x>196.0</x>
+        <y>250.75293</y>
+      </child>
+      <child name="MDMParticipant" type="participantActivity">
+        <label>MDMParticipant</label>
+        <participant>part_fet.test.MDMParticipant</participant>
+        <x>30.0</x>
+        <y>248.40234</y>
+      </child>
+    </childList>
+  </activity>
+  <curRevision>true</curRevision>
+  <group>testProcess</group>
+  <label>test_MDMProcess</label>
+  <metaVersion>24</metaVersion>
+  <priority>8</priority>
+  <type>User</type>
+</process>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<binding name="fet.dummyServer.MDM.MDMBinding">
+  <extensionList>
+    <extension name="UpdateTx" type="ext">
+      <element>Operation</element>
+      <elementItemMap>
+        <elementItem key="soapAction">UpdateTx</elementItem>
+      </elementItemMap>
+    </extension>
+  </extensionList>
+  <group>server</group>
+  <interface>iface_fet.dummyServer.MDM.MDMInterface</interface>
+  <label>MDMBinding</label>
+  <metaVersion>24</metaVersion>
+  <provider>prov_cwf.soapprov</provider>
+</binding>
