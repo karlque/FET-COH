@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet.test.MDM_testScript">
+  <group>testProcess</group>
+  <label>MDM_testScript</label>
+  <metaVersion>24</metaVersion>
+  <script><![CDATA[
+    /*
+     * author: Tim.chen
+     */
+    var run = Process.startProcess('fet.test.test_MDMProcess');
+    return run;
+  ]]></script>
+</script>

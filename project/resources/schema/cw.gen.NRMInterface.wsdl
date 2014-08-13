@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<definitions name="fet.dummyServer.nrm" targetNamespace="fet.dummyServer.nrm"
-	xmlns:tns="fet.dummyServer.nrm"
+<definitions name="fet.dummyServer.NRM" targetNamespace="fet.dummyServer.NRM"
+	xmlns:tns="fet.dummyServer.NRM"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
 	xmlns="http://schemas.xmlsoap.org/wsdl/"
-	xmlns:fet.services.nrm="fet.services.nrm">
+	xmlns:fet.services.NRM="fet.services.NRM">
 
 	<types>
 		<schema xmlns="http://www.w3.org/2001/XMLSchema">
-			<import namespace="fet.services.nrm" schemaLocation="fet.services.nrm.xsd"/>
+			<import namespace="fet.services.NRM" schemaLocation="fet.services.NRM.xsd"/>
 		</schema>
 	</types>
 
-	<message name="invokeResourceActviityRequest">
-		<part name="invokeResourceActviityRequest" type="fet.services.nrm:invokeResourceActviityRequest"/>
+	<message name="invokeResourceActivityRequest">
+		<part name="invokeResourceActivityRequest" type="fet.services.NRM:invokeResourceActivityRequest"/>
 	</message>
 
-	<message name="invokeResourceActviityResponse">
-		<part name="invokeResourceActviityResponse" type="fet.services.nrm:invokeResourceActviityResponse"/>
+	<message name="invokeResourceActivityResponse">
+		<part name="invokeResourceActivityResponse" type="fet.services.NRM:invokeResourceActivityResponse"/>
 	</message>
 
 	<portType name="NRMInterface">
-		<operation name="invokeResourceActviity">
-			<input message="tns:invokeResourceActviityRequest"/>
-			<output message="tns:invokeResourceActviityResponse"/>
+		<operation name="invokeResourceActivity">
+			<input message="tns:invokeResourceActivityRequest"/>
+			<output message="tns:invokeResourceActivityResponse"/>
 		</operation>
 	</portType>
 
 	<binding name="NRMBinding" type="tns:NRMInterface">
 		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
-		<operation name="invokeResourceActviity">
-			<soap:operation soapAction="invokeResourceActviity"/>
+		<operation name="invokeResourceActivity">
+			<soap:operation soapAction="invokeResourceActivity"/>
 			<input>
 				<soap:body use="literal"/>
 			</input>

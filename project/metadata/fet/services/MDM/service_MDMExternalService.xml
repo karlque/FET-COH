@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<externalService name="fet.services.MDM.MDMExternalService">
+  <group>client</group>
+  <label>MDMExternalService</label>
+  <metaVersion>24</metaVersion>
+  <portList>
+    <port name="MDMPort" type="port">
+      <binding>bind_fet.services.MDM.MDMBinding</binding>
+      <label>MDMPort</label>
+      <recover>5</recover>
+    </port>
+  </portList>
+</externalService>

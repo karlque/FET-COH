@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataStructure name="fet.services.MDM.UpdateTxRequest">
+  <container>true</container>
+  <group>dataStructure</group>
+  <jsonMap type="jmap">
+    <exclude>1</exclude>
+  </jsonMap>
+  <label>UpdateTxRequest</label>
+  <metaVersion>24</metaVersion>
+  <childList>
+    <child name="TxID" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>TxID</label>
+    </child>
+    <child name="Channelinformation" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>Channelinformation</label>
+    </child>
+    <child name="TxDataObject" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>TxDataObject</label>
+    </child>
+  </childList>
+</dataStructure>

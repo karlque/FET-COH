@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet.common.ClsDataOrderHelper">
+  <group>script</group>
+  <label>ClsDataOrderHelper</label>
+  <metaVersion>24</metaVersion>
+  <script><![CDATA[
+    /**
+    * @description This class provides a warper and a link to Data Order & Catalog Basket
+    * @param      {order} order instance of Data Order
+    * @returns
+    * @author     Karl Que
+    * @version
+    */
+    this.order = null;
+    this.basket = null;
+    this.objectsGUID = null;
+
+    this.initial = function() {
+        this.createOrderAndBasket();
+        this.remapGUIDs();
+    };
+
+    this.getObjectByGUID = function(guid) {
+        return this.objectsGUID[guid];
+    }
+
+    this.addItem = function(itemCode, siteId, parentItem, termValue, accountId, newStatus, effectiveDate, isUpgrade) {
+        var basketItems = this.basket.add(itemCode);
+        if (basketItems instanceof ErrorList) {
+            Global.throwException(basketItems.message());
+        }
+
+        var source;
+        for (var i = 0 ; i < basketItems.length ; i ++) {
+            if (basketItems[i].catalogItem.getItemCode() == itemCode) {
+                source = basketItems[i];
+            }
+            basketItems[i].guid = basketItems[i].basketitemid + '-';
+            this.objectsGUID[basketItems[i].guid] = basketItems[i];
+        }
+
+        //Add relationship by catalog definded
+        for (var i = 0 ; i < this.basket.length ; i ++) {
+            var basketItem = this.basket[i];
+            var catalogItemItem = basketItem.catalogItem.findAssociation(source.code);
+            if (catalogItemItem) {
+                var relationType = catalogItemItem.getAssociationType();
+                var basketItemRelationDoc = this.basket.createRelation(basketItem._id, source._id, relationType);
+            }
+        }
+
+        this.save();
+        return source;
+    };
+
+    this.createOrderAndBasket = function() {
+        this.order = new fet_order.fetOrder();
+        this.basket = this.order.ShoppingBasket;
+    };
+
+    this.remapGUIDs = function() {
+        this.objectsGUID = new Array();
+        var basketItems = this.getAllItemsInBasket();
+        for (var i = 0 ; basketItems && i < basketItems.length ; i ++) {
+            this.objectsGUID[basketItems[i].guid] = basketItems[i];
+        }
+    };
+
+    this.addRelation = function(itemGUID, relatedItemGUID, relationType, skipSave, percentage, effectiveDate) {
+        var basketItemRelationDoc = this.basket.createRelation(itemGUID, relatedItemGUID, relationType);
+        //basketItemRelationDoc.status = this.clsInterface.getInitialStatus();
+        //basketItemRelationDoc.source = this.clsInterface.getInitialSource();
+        basketItemRelationDoc.effectivedate = effectiveDate;
+        basketItemRelationDoc.percentage = percentage;
+        basketItemRelationDoc.guid = basketItemRelationDoc._id;
+        if (null != basketItemRelationDoc && !skipSave) {
+            this.save();
+        }
+
+        return basketItemRelationDoc;
+    };
+
+    this.getAllItemsInBasket = function() {
+        return this.basket.toArrayOfItems();
+    };
+
+    this.save = function() {
+        this.order.save();
+    };
+
+    this.CON_RELATION_SCOPE = 'scope';
+
+    this.initial();
+  ]]></script>
+</script>
