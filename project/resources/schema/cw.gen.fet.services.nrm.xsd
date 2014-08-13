@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema targetNamespace="fet.services.NRM"	
+	xmlns="http://www.w3.org/2001/XMLSchema"	
+	xmlns:fet.services.NRM="fet.services.NRM"	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+
+
+
+	<annotation>
+		<documentation>NRM</documentation>
+		<appinfo>
+			<metadata>AVM Metadata</metadata>
+			<created>Tue Aug 12 11:02:19 CST 2014</created>
+		</appinfo>
+	</annotation>
+
+	<!-- Data types and elements -->
+
+	<!-- Structures -->
+
+	<complexType name="invokeResourceActivityRequest">
+		<annotation>
+			<documentation>invokeResourceActivityRequest</documentation>
+		</annotation>
+			<sequence>
+				<element name="userId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="passwd" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="processId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="resourceType" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="resourceValue" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="parameters" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="activityName" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="channel" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="invokeResourceActivityResponse">
+		<annotation>
+			<documentation>invokeResourceActivityResponse</documentation>
+		</annotation>
+			<sequence>
+				<element name="message" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="processId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+			</sequence>
+		</complexType>
+
+	<!-- Documents -->
+
+</schema>

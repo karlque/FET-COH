@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<binding name="fet.dummyServer.nrm.NRMBinding">
+  <group>server</group>
+  <interface>iface_fet.dummyServer.nrm.NRMInterface</interface>
+  <label>NRMBinding</label>
+  <metaVersion>24</metaVersion>
+  <provider>prov_cwf.soapprov</provider>
+</binding>
