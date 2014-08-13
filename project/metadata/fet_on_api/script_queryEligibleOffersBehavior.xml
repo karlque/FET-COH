@@ -16,30 +16,60 @@
 
     Global.logDebug(input);
     var queryEligibleOffersRequest = input;
-    var queryEligibleOffersResponse = new DataStructure('fet_on_api.getEligibleOffersResponse');
+    var queryEligibleOffersResponse = new DataStructure('fet_on_api.queryEligibleOffersResponse');
     var hierarchyCode = queryEligibleOffersRequest.hierarchyCode;
-    var itemType = queryEligibleOffersRequest.itemType;
+    var type = queryEligibleOffersRequest.type;
     var date = queryEligibleOffersRequest.date;
 
     try {
         var catalogHelper = new fet.common.ClsCatalogHelper();
+        var catalogItems = catalogHelper.listItems(hierarchyCode, null, date);
 
-
-
-        var catalogItems = catalogHelper.listItems(hierarchyCode, itemType, date);
-
+        var allCatalogItems = new Array();
         for (var i = 0 ; catalogItems && i < catalogItems.length ; i ++) {
             var catalogItem = catalogItems[i];
-
-
-            //queryEligibleOffersResponse.item[i].code = catalogItems[i].code;
-            //queryEligibleOffersResponse.item[i].label = catalogItems[i].getLabel();
+            var childrens = catalogHelper.getAllChildren(catalogItem.code, type);
+            allCatalogItems = allCatalogItems.concat(childrens);
         }
+
+        setResponseData(allCatalogItems, queryEligibleOffersResponse);
 
     } catch (e) {
         queryEligibleOffersResponse.errorMessage = e;
     }
 
     return queryEligibleOffersResponse;
+
+    function setResponseData(allCatalogItems, queryEligibleOffersResponse) {
+        for (var i = 0 ; allCatalogItems && i < allCatalogItems.length ; i ++) {
+            var catalogItem = allCatalogItems[i];
+            queryEligibleOffersResponse.catalogItem[i].code = catalogItem.code;
+            queryEligibleOffersResponse.catalogItem[i].label = catalogItem.getLabel();
+            var attributes = queryEligibleOffersResponse.catalogItem[i].attributes;
+            setAttributeData(catalogItem, attributes);
+        }
+    }
+
+    function setAttributeData(catalogItem, attributes) {
+        var catalogItemAttributes = catalogItem.getItemAttributes();
+        for (var i = 0 ; catalogItemAttributes && i < catalogItemAttributes.length ; i ++) {
+            var catalogItemAttribute = catalogItemAttributes[i];
+            var attribute = attributes[i];
+
+            attribute.code = catalogItemAttribute.code;
+            //attribute.name = catalogItemAttribute.getName();
+            //attribute.associationType = catalogItemAttribute.getAssociationType();
+            attribute.defaultValue = catalogItemAttribute.getDefaultValue();
+            //attribute.itemAttributeLabel = catalogItemAttribute.getItemAttributeLabel();
+            attribute.label = catalogItemAttribute.getLabel();
+            //attribute.restrictions = catalogItemAttribute.getRestrictions();
+            attribute.typeCode = catalogItemAttribute.getTypeCode();
+            attribute.typeCodeTable = catalogItemAttribute.getTypeCodeTable();
+            //attribute.typeLength = catalogItemAttribute.getTypeLength();
+            //attribute.typePrecision = catalogItemAttribute.getTypePrecision();
+            //attribute.typeType = catalogItemAttribute.getTypeType();
+            attribute.isProperty = catalogItemAttribute.isProperty();
+        }
+    }
   ]]></script>
 </script>

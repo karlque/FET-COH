@@ -101,7 +101,7 @@
         return relations;
     };
 
-    this.getAllChildren = function(itemCode) {
+    this.getAllChildren = function(itemCode, type) {
         if (itemCode ==  null) {
             return;
         }
@@ -111,19 +111,23 @@
             var relations = item.getItemAssociations() ;
             for (var i = 0 ; i < relations.length ; i++) {
                 var child = this.getCatalogItemByCode(relations[i].getTarget(), null);
-                children.push(child);
-                this.getChildren(child, children);
+                if (type == null || type == child.type) {
+                    children.push(child);
+                }
+                this.getChildren(child, children, type);
             }
         }
         return children;
     };
 
-    this.getChildren = function(item, children) {
+    this.getChildren = function(item, children, type) {
         var relations = item.getItemAssociations();
         for (var i = 0 ; i < relations.length ; i++) {
             var child = this.getCatalogItemByCode(relations[i].getTarget(), null);
-            children.push(child);
-            this.getChildren(child, children);
+            if (type == null || type == child.type) {
+                children.push(child);
+            }
+            this.getChildren(child, children, type);
         }
     };
 
