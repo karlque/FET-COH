@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<participant name="fet.test.MDMParticipant">
-  <group>testProcess</group>
-  <label>MDMParticipant</label>
-  <metaVersion>24</metaVersion>
-  <participant>iface_fet.services.MDM.MDMInterface</participant>
-</participant>
