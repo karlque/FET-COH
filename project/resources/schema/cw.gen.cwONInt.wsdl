@@ -150,14 +150,29 @@
 					<documentation>queryEligibleOffersResponse</documentation>
 				</annotation>
 					<sequence>
-						<element name="item" minOccurs="0" maxOccurs="unbounded">
+						<element name="catalogItem" minOccurs="0" maxOccurs="unbounded">
 							<annotation>
-								<documentation>item</documentation>
+								<documentation>catalogItem</documentation>
 							</annotation>
 							<complexType>
 								<sequence>
 									<element name="code" minOccurs="0" maxOccurs="1" type="xsd:string"/>
 									<element name="label" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+									<element name="attributes" minOccurs="0" maxOccurs="unbounded">
+										<annotation>
+											<documentation>attributes</documentation>
+										</annotation>
+										<complexType>
+											<sequence>
+												<element name="code" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+												<element name="label" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+												<element name="defaultValue" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+												<element name="typeCode" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+												<element name="typeCodeTable" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+												<element name="isProperty" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+											</sequence>
+										</complexType>
+									</element>
 								</sequence>
 							</complexType>
 						</element>
