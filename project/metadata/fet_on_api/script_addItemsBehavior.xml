@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet_on_api.addItemsBehavior">
+  <group>behaviorScript</group>
+  <label>addItemsBehavior</label>
+  <metaVersion>24</metaVersion>
+  <parameterList>
+    <parameter name="input" type="rifp">
+      <type>nmeta_com.conceptwave.system.Object</type>
+    </parameter>
+  </parameterList>
+  <script><![CDATA[
+    /*
+    * auther:ben
+    */
+
+    Global.logDebug(input);
+    var addItemsRequest = input;
+    var addItemsResponse = new DataStructure('fet_on_api.addItemsResponse');
+
+    try {
+        var orderHelper = new fet.ClsDataOrderHelper();
+       var orderId = addItemsRequest.orderId;
+        orderHelper.addItems(orderId);
+
+        addItemsResponse.order= orderHelper.order._id;
+    } catch (e) {
+        addItemsResponse.errorMessage = e;
+    }
+
+    return addItemsResponse;
+  ]]></script>
+</script>

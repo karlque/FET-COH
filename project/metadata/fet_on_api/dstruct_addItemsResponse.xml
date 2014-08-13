@@ -8,10 +8,10 @@
   <label>addItemsResponse</label>
   <metaVersion>24</metaVersion>
   <childList>
-    <child name="order" type="dstruct">
+    <child name="orderId" type="dstruct">
       <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.String</element>
-      <label>order</label>
+      <element>dtype_fet.common.dataType.string100</element>
+      <label>orderId</label>
     </child>
     <child name="errorMessage" type="dstruct">
       <datatype>true</datatype>
