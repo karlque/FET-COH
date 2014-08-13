@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <participant name="fet.services.MDM.MDMParticipant">
+HEAD:project/metadata/fet/services/MDM/part_MDMParticipant.xml
   <group>client</group>
+MDMotherService:project/metadata/fet/services/MDM/part_MDMParticipant.xml
   <label>MDMParticipant</label>
   <metaVersion>24</metaVersion>
   <participant>iface_fet.services.MDM.MDMInterface</participant>
