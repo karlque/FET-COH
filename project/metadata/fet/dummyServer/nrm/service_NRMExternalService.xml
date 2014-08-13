@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<externalService name="fet.dummyServer.nrm.NRMExternalService">
+  <group>server</group>
+  <label>NRMExternalService</label>
+  <metaVersion>24</metaVersion>
+  <portList>
+    <port name="NRMPort" type="port">
+      <binding>bind_fet.dummyServer.nrm.NRMBinding</binding>
+      <label>NRMPort</label>
+      <listener>true</listener>
+      <recover>5</recover>
+    </port>
+    <port name="NRMPort_JS" type="port">
+      <binding>bind_fet.dummyServer.nrm.NRMBinding_JS</binding>
+      <label>NRMPort_JS</label>
+      <recover>5</recover>
+    </port>
+  </portList>
+</externalService>
