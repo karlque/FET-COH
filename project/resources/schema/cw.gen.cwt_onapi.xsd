@@ -1,0 +1,1420 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema targetNamespace="http://www.conceptwave.com/products/cwt_on/cwt_onapi"	
+	xmlns="http://www.w3.org/2001/XMLSchema"	
+	xmlns:cwt_onapi="http://www.conceptwave.com/products/cwt_on/cwt_onapi"	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"	
+	xmlns:cwt_dict="http://www.conceptwave.com/template/cwt_dict"	
+	xmlns:cwf="http://www.conceptwave.com/system"	
+	xmlns:cwt_do="http://www.conceptwave.com/products/cwt_do">
+
+
+
+	<import namespace="http://www.conceptwave.com/template/cwt_dict" schemaLocation="cwt_dict.xsd"/>
+	<import namespace="http://www.conceptwave.com/system" schemaLocation="cwf.xsd"/>
+	<import namespace="http://www.conceptwave.com/products/cwt_do" schemaLocation="cwt_do.xsd"/>
+
+	<annotation>
+		<documentation>CWT - Order Negotiations API</documentation>
+		<appinfo>
+			<metadata>AVM Metadata</metadata>
+			<created>Tue Aug 12 11:02:19 CST 2014</created>
+		</appinfo>
+	</annotation>
+
+	<!-- Data types and elements -->
+
+	<simpleType name="dataType">
+		<annotation>
+			<documentation>dataType</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<enumeration value="string">
+				<annotation>
+					<documentation>string</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="datetime">
+				<annotation>
+					<documentation>datetime</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="operation">
+		<annotation>
+			<documentation>operation</documentation>
+		</annotation>
+		<restriction base="cwt_dict:string16">
+			<enumeration value="C">
+				<annotation>
+					<documentation>Create</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="U">
+				<annotation>
+					<documentation>Update</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="D">
+				<annotation>
+					<documentation>Delete</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="orderItemSource">
+		<annotation>
+			<documentation>Order Item Source</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="3"/>
+			<enumeration value="NEW">
+				<annotation>
+					<documentation>New</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="EXT">
+				<annotation>
+					<documentation>Existing</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="orderItemStatus">
+		<annotation>
+			<documentation>Order Item Status</documentation>
+		</annotation>
+		<restriction base="xsd:string">
+			<maxLength value="8"/>
+			<enumeration value="ADD">
+				<annotation>
+					<documentation>Added</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="DEL">
+				<annotation>
+					<documentation>Deleted</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CHA">
+				<annotation>
+					<documentation>Changed</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="KEEP">
+				<annotation>
+					<documentation>Active</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+
+	<!-- Structures -->
+
+	<complexType name="ETLData">
+		<annotation>
+			<documentation>ETLData</documentation>
+		</annotation>
+			<sequence>
+				<element name="customerId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="accountId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="offerCode" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="macAddress" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="startDate" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="ETLDataList">
+		<annotation>
+			<documentation>ETLDataList</documentation>
+		</annotation>
+			<sequence>
+				<element name="ETLData" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:ETLData"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="RequestHeader">
+		<annotation>
+			<documentation>RequestHeader</documentation>
+		</annotation>
+			<sequence>
+				<element name="user" minOccurs="0" maxOccurs="1" type="cwt_dict:string64"/>
+				<element name="passwordKey" minOccurs="0" maxOccurs="1" type="cwt_dict:string64"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="accountDetail">
+		<annotation>
+			<documentation>accountDetail</documentation>
+		</annotation>
+			<sequence>
+				<element name="accountId" minOccurs="1" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="guid" minOccurs="1" maxOccurs="1" type="cwf:guid"/>
+				<element name="visualKey" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+				<element name="offerList" minOccurs="0" maxOccurs="1" type="cwt_onapi:offerList"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="accountList">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  TBD
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>accountList</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="accounts" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:accountDetail"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="addOfferToQuoteRequest">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains data about the order and the item to be added to it.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>addOfferToQuoteRequest</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="dataOrderId" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="ordVer" minOccurs="0" maxOccurs="1" type="cwt_do:ordVer"/>
+				<element name="orderNum" minOccurs="0" maxOccurs="1" type="cwt_do:orderNum"/>
+				<element name="offerCode" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="accountId" minOccurs="0" maxOccurs="1" type="cwf:docId"/>
+				<element name="siteId" minOccurs="0" maxOccurs="1" type="cwf:docId"/>
+				<element name="parentId" minOccurs="0" maxOccurs="1" type="cwf:docId"/>
+				<element name="parentGUID" minOccurs="0" maxOccurs="1" type="cwf:guid"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+				<element name="contextVariables" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:contextVariable"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="addOfferToQuoteResponse">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains the response for the addOfferToQuote request.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>addOfferToQuoteResponse</label>
+			</appinfo>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+						<element name="offerId" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+						<element name="offerGUID" minOccurs="0" maxOccurs="1" type="cwf:guid"/>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<complexType name="browseOrdersRequest">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains the criteria based on which the orders are browsed.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>browseOrdersRequest</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="customerId" minOccurs="1" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="accountId" minOccurs="1" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="orderNum" minOccurs="0" maxOccurs="1" type="xsd:integer"/>
+				<element name="orderType" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="oState" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="includeAccess" minOccurs="0" maxOccurs="1" type="xsd:boolean"/>
+				<element name="includeOffers" minOccurs="0" maxOccurs="1" type="xsd:boolean"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="browseOrdersResponse">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains the response for the browseOrders request.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>browseOrdersResponse</label>
+			</appinfo>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+						<element name="orders" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:orderInstance"/>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<complexType name="compInstance">
+		<annotation>
+			<documentation>compInstance</documentation>
+		</annotation>
+			<sequence>
+				<element name="id" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="basketId" minOccurs="0" maxOccurs="1" type="cwt_dict:string10"/>
+				<element name="compName" minOccurs="1" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="catalogID" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="visualKey" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="effectiveDate" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+				<element name="serviceStartDate" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+				<element name="productId" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="status" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderItemStatus"/>
+				<element name="prevStatus" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderItemStatus"/>
+				<element name="source" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderItemSource"/>
+				<element name="guid" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="attributes" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="compList">
+		<annotation>
+			<documentation>compList</documentation>
+		</annotation>
+			<sequence>
+				<element name="comps" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:compInstance"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="configDetail">
+		<annotation>
+			<documentation>configDetail</documentation>
+		</annotation>
+			<sequence>
+				<element name="id" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="productName" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="compMT" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="attrName" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="attrLabel" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="attrValue" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="configList">
+		<annotation>
+			<documentation>configList</documentation>
+		</annotation>
+			<sequence>
+				<element name="configs" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:configDetail"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="contextVariable">
+		<annotation>
+			<documentation>contextVariable</documentation>
+		</annotation>
+			<sequence>
+				<element name="key" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="value" minOccurs="0" maxOccurs="1" type="cwt_dict:string256"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="createQuoteRequest">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains the data to create a new order.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>createQuoteRequest</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="customerId" minOccurs="1" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="accountIds" minOccurs="0" maxOccurs="unbounded" type="cwt_dict:string32"/>
+				<element name="siteIds" minOccurs="0" maxOccurs="unbounded" type="cwt_dict:string32"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="createQuoteResponse">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains the response for the createQuote request.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>createQuoteResponse</label>
+			</appinfo>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+						<element name="dataOrderId" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+						<element name="description" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="orderNum" minOccurs="0" maxOccurs="1" type="cwt_do:orderNum"/>
+						<element name="ordVer" minOccurs="0" maxOccurs="1" type="cwt_do:ordVer"/>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<complexType name="dataOrderDS">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  This is the DS struture of the dataOrder
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>dataOrderDS</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="orderInstance" minOccurs="1" maxOccurs="1" type="cwt_onapi:orderInstance"/>
+				<element name="accountList" minOccurs="0" maxOccurs="1" type="cwt_onapi:accountList"/>
+				<element name="siteList" minOccurs="0" maxOccurs="1" type="cwt_onapi:siteList"/>
+				<element name="offerInstanceList" minOccurs="0" maxOccurs="1" type="cwt_onapi:offerInstanceList"/>
+				<element name="productInstanceList" minOccurs="0" maxOccurs="1" type="cwt_onapi:productInstanceList"/>
+				<element name="relationList" minOccurs="0" maxOccurs="1" type="cwt_onapi:relationList"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="genericResponse">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  The is a base response type for different types of Order Negotiation
+  responses.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>genericResponse</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="isCompleted" minOccurs="1" maxOccurs="1" type="xsd:boolean"/>
+				<element name="messages" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="getAccountServicesRequest">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains data about the customer and accounts whose services will be
+  retrieved.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>getAccountServicesRequest</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="customerId" minOccurs="1" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="accountIds" minOccurs="0" maxOccurs="unbounded" type="cwt_dict:string32"/>
+				<element name="siteIds" minOccurs="0" maxOccurs="unbounded" type="cwt_dict:string32"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="getAccountServicesResponse">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains the response for getAccountServices request.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>getAccountServicesResponse</label>
+			</appinfo>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+						<element name="offerInstanceList" minOccurs="0" maxOccurs="1" type="cwt_onapi:offerInstanceList"/>
+						<element name="productInstanceList" minOccurs="0" maxOccurs="1" type="cwt_onapi:productInstanceList"/>
+						<element name="relationList" minOccurs="0" maxOccurs="1" type="cwt_onapi:relationList"/>
+						<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<complexType name="getDataOrderRequest">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains data about the order that will be retrieved from the database.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>getDataOrderRequest</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="dataOrderId" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="ordVer" minOccurs="0" maxOccurs="1" type="cwt_do:ordVer"/>
+				<element name="orderNum" minOccurs="1" maxOccurs="1" type="cwt_do:orderNum"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="getDataOrderResponse">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains the response for getDataOrder request.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>getDataOrderResponse</label>
+			</appinfo>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+						<element name="dataOrderDS" minOccurs="0" maxOccurs="1" type="cwt_onapi:dataOrderDS"/>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<complexType name="getQuoteRequest">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains data about the order that will be retrieved from the database.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>getQuoteRequest</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="dataOrderId" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="orderNum" minOccurs="0" maxOccurs="1" type="cwt_do:orderNum"/>
+				<element name="ordVer" minOccurs="0" maxOccurs="1" type="cwt_do:ordVer"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="getQuoteResponse">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains the response for getQuote request.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>getQuoteResponse</label>
+			</appinfo>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+						<element name="orderDS" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderDS"/>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<complexType name="migrateOfferRequest">
+		<annotation>
+			<documentation>migrateOfferRequest</documentation>
+		</annotation>
+			<sequence>
+				<element name="dataOrderId" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="orderNum" minOccurs="0" maxOccurs="1" type="cwt_do:orderNum"/>
+				<element name="ordVer" minOccurs="0" maxOccurs="1" type="cwt_do:ordVer"/>
+				<element name="srcOfferId" minOccurs="1" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="srcOfferGUID" minOccurs="1" maxOccurs="1" type="cwf:guid"/>
+				<element name="targetOfferCode" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="toSiteId" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="accountId" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="toAccessId" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="toAccessGUID" minOccurs="0" maxOccurs="1" type="cwf:guid"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="migrateOfferResponse">
+		<annotation>
+			<documentation>migrateOfferResponse</documentation>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+						<element name="offerGUID" minOccurs="0" maxOccurs="1" type="cwf:guid"/>
+						<element name="offerId" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<complexType name="moveFrom">
+		<annotation>
+			<documentation>moveFrom</documentation>
+		</annotation>
+			<sequence>
+				<element name="siteId" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="accessId" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="accessGUID" minOccurs="0" maxOccurs="1" type="cwf:guid"/>
+				<element name="offerIds" minOccurs="0" maxOccurs="unbounded" type="cwt_dict:string16"/>
+				<element name="offerGUIDs" minOccurs="0" maxOccurs="unbounded" type="cwf:guid"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="moveOffersRequest">
+		<annotation>
+			<documentation>moveOffersRequest</documentation>
+		</annotation>
+			<sequence>
+				<element name="dataOrderId" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="fromSiteId" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="toSiteId" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="orderNum" minOccurs="0" maxOccurs="1" type="cwt_do:orderNum"/>
+				<element name="ordVer" minOccurs="0" maxOccurs="1" type="cwt_do:ordVer"/>
+				<element name="effectiveDate" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+				<element name="from" minOccurs="1" maxOccurs="1" type="cwt_onapi:moveFrom"/>
+				<element name="to" minOccurs="1" maxOccurs="1" type="cwt_onapi:moveTo"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="moveOffersResponse">
+		<annotation>
+			<documentation>moveOffersResponse</documentation>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<complexType name="moveTo">
+		<annotation>
+			<documentation>moveTo</documentation>
+		</annotation>
+			<sequence>
+				<element name="siteId" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="accountId" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="accessId" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="accessGUID" minOccurs="0" maxOccurs="1" type="cwf:guid"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="nameValuePairs">
+		<annotation>
+			<documentation>nameValuePairs</documentation>
+		</annotation>
+			<sequence>
+				<element name="pairs" minOccurs="0" maxOccurs="unbounded">
+					<annotation>
+						<documentation>pairs</documentation>
+					</annotation>
+					<complexType>
+						<sequence>
+							<element name="name" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+							<element name="value" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+							<element name="type" minOccurs="0" maxOccurs="1" type="cwt_onapi:dataType"/>
+						</sequence>
+					</complexType>
+				</element>
+			</sequence>
+		</complexType>
+
+	<complexType name="offerCodeList">
+		<annotation>
+			<documentation>offerCodeList</documentation>
+		</annotation>
+			<sequence>
+				<element name="offerCodes" minOccurs="0" maxOccurs="unbounded" type="cwt_dict:string16"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="offerDetail">
+		<annotation>
+			<documentation>offerDetail</documentation>
+		</annotation>
+			<sequence>
+				<element name="id" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="code" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="family" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="category" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="opType" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="opSubType" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="source" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderItemSource"/>
+				<element name="status" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderItemStatus"/>
+				<element name="description" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="info" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="url" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="price" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="yourPrice" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="priceFreq" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="onetimePrice" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="pricedOn" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+				<element name="term" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="effectiveDate" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+				<element name="serviceStartDate" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+				<element name="siteId" minOccurs="0" maxOccurs="1" type="cwt_dict:string128"/>
+				<element name="accountId" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="accessId" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+				<element name="product" minOccurs="0" maxOccurs="1" type="cwt_onapi:productDetail"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="offerInstance">
+		<annotation>
+			<documentation>offerInstance</documentation>
+		</annotation>
+			<sequence>
+				<element name="id" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="basketId" minOccurs="0" maxOccurs="1" type="cwt_dict:string10"/>
+				<element name="offerCode" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="family" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="category" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="opType" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="opSubType" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="source" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderItemSource"/>
+				<element name="status" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderItemStatus"/>
+				<element name="prevStatus" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderItemStatus"/>
+				<element name="guid" minOccurs="0" maxOccurs="1" type="cwf:guid"/>
+				<element name="price" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="yourPrice" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="priceFreq" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="onetimePrice" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="term" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="effectiveDate" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+				<element name="serviceStartDate" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+				<element name="siteId" minOccurs="0" maxOccurs="1" type="cwt_dict:string128"/>
+				<element name="accountId" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="catalogID" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="accessId" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="visualKey" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="offerInstanceList">
+		<annotation>
+			<documentation>offerInstanceList</documentation>
+		</annotation>
+			<sequence>
+				<element name="offers" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:offerInstance"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="offerList">
+		<annotation>
+			<documentation>offerList</documentation>
+		</annotation>
+			<sequence>
+				<element name="offers" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:offerDetail"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="orderDS">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  This is the UI order DS structure.
+&lt;/p&gt;
+&lt;p style=&#34;margin-top: 0&#34;&gt;
+
+&lt;/p&gt;
+&lt;p style=&#34;margin-top: 0&#34;&gt;
+  TODO:
+&lt;/p&gt;
+&lt;p style=&#34;margin-top: 0&#34;&gt;
+  get context variables, offers list, configurations + relationships
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>orderDS</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="orderInstance" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderInstance"/>
+				<element name="accountList" minOccurs="0" maxOccurs="1" type="cwt_onapi:accountList"/>
+				<element name="siteList" minOccurs="0" maxOccurs="1" type="cwt_onapi:siteList"/>
+				<element name="term" minOccurs="0" maxOccurs="1" type="cwt_onapi:term"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="orderInstance">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains the meta information about the order.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>orderInstance</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="id" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="basketId" minOccurs="1" maxOccurs="1" type="cwt_dict:string10"/>
+				<element name="visualKey" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="orderNum" minOccurs="1" maxOccurs="1" type="xsd:integer"/>
+				<element name="ordVer" minOccurs="0" maxOccurs="1" type="xsd:integer"/>
+				<element name="oState" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="orderType" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="orderSubType" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="relatedOrder" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="createdBy" minOccurs="0" maxOccurs="1" type="cwt_dict:string64"/>
+				<element name="creationDate" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+				<element name="updatedBy" minOccurs="0" maxOccurs="1" type="cwt_dict:string64"/>
+				<element name="updatedDate" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+				<element name="originalOrderId" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="sourceOrderId" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="dueDate" minOccurs="0" maxOccurs="1" type="xsd:date"/>
+				<element name="srcSiteId" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="desSiteId" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="customerId" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="accountId" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="effectiveDate" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+				<element name="submittedBy" minOccurs="0" maxOccurs="1" type="cwt_dict:string64"/>
+				<element name="submittedDate" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+				<element name="processId" minOccurs="0" maxOccurs="1" type="xsd:integer"/>
+				<element name="price" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+				<element name="onetimePrice" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+				<element name="pricedOn" minOccurs="0" maxOccurs="1" type="cwf:dateTimeSec"/>
+				<element name="accessList" minOccurs="0" maxOccurs="1" type="cwt_onapi:offerList"/>
+				<element name="offerInstanceList" minOccurs="0" maxOccurs="1" type="cwt_onapi:offerInstanceList"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="productDetail">
+		<annotation>
+			<documentation>productDetail</documentation>
+		</annotation>
+			<sequence>
+				<element name="id" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="basketId" minOccurs="0" maxOccurs="1" type="cwt_dict:string10"/>
+				<element name="code" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="family" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="category" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="description" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="status" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderItemStatus"/>
+				<element name="prevStatus" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderItemStatus"/>
+				<element name="source" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderItemSource"/>
+				<element name="offerCode" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="effectiveDate" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+				<element name="serviceStartDate" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+				<element name="compList" minOccurs="0" maxOccurs="1" type="cwt_onapi:compList"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="productInstance">
+		<annotation>
+			<documentation>productInstance</documentation>
+		</annotation>
+			<sequence>
+				<element name="id" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="basketId" minOccurs="0" maxOccurs="1" type="cwt_dict:string10"/>
+				<element name="productCode" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="family" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="category" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="status" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderItemStatus"/>
+				<element name="prevStatus" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderItemStatus"/>
+				<element name="guid" minOccurs="0" maxOccurs="1" type="cwf:guid"/>
+				<element name="source" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderItemSource"/>
+				<element name="offerCode" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="compName" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="effectiveDate" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+				<element name="serviceStartDate" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+				<element name="catalogID" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="offerId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="visualKey" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+				<element name="compList" minOccurs="0" maxOccurs="1" type="cwt_onapi:compList"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="productInstanceList">
+		<annotation>
+			<documentation>productInstanceList</documentation>
+		</annotation>
+			<sequence>
+				<element name="products" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:productInstance"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="productList">
+		<annotation>
+			<documentation>productList</documentation>
+		</annotation>
+			<sequence>
+				<element name="products" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:productDetail"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="queryCatalogRequest">
+		<annotation>
+			<documentation>queryCatalogRequest</documentation>
+		</annotation>
+			<sequence>
+				<element name="hierarchyCode" minOccurs="1" maxOccurs="1" type="xsd:string"/>
+				<element name="accessCode" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="family" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="category" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="catalogDate" minOccurs="0" maxOccurs="1" type="cwf:dateTimeSec"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+				<element name="contextVariables" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:contextVariable"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="queryCatalogResponse">
+		<annotation>
+			<documentation>queryCatalogResponse</documentation>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+						<element name="offerList" minOccurs="0" maxOccurs="1" type="cwt_onapi:offerList"/>
+						<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<complexType name="relationDetail">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  The association between two items&#39; GUID
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>relationDetail</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="id" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="basketId" minOccurs="0" maxOccurs="1" type="cwt_dict:string10"/>
+				<element name="status" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderItemStatus"/>
+				<element name="source" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderItemSource"/>
+				<element name="guid" minOccurs="1" maxOccurs="1" type="cwf:guid"/>
+				<element name="relationType" minOccurs="1" maxOccurs="1" type="cwt_dict:string10"/>
+				<element name="orderItemGUID" minOccurs="1" maxOccurs="1" type="cwf:guid"/>
+				<element name="relatedOrderItemGUID" minOccurs="1" maxOccurs="1" type="cwf:guid"/>
+				<element name="visualKey" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="relationList">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Association lists
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>relationList</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="relations" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:relationDetail"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="removeOfferFromQuoteRequest">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains data about the order and the item to be removed.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>removeOfferFromQuoteRequest</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="dataOrderId" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="orderNum" minOccurs="0" maxOccurs="1" type="cwt_do:orderNum"/>
+				<element name="ordVer" minOccurs="0" maxOccurs="1" type="cwt_do:ordVer"/>
+				<element name="offerId" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="offerGUID" minOccurs="0" maxOccurs="1" type="cwf:guid"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+				<element name="contextVariables" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:contextVariable"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="removeOfferFromQuoteResponse">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains the response for removeOfferFromQuote request.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>removeOfferFromQuoteResponse</label>
+			</appinfo>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<complexType name="removeQuoteRequest">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains data to remove an order from database.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>removeQuoteRequest</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="dataOrderId" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="orderNum" minOccurs="0" maxOccurs="1" type="cwt_do:orderNum"/>
+				<element name="ordVer" minOccurs="0" maxOccurs="1" type="cwt_do:ordVer"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="removeQuoteResponse">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains the response for removeQuote request.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>removeQuoteResponse</label>
+			</appinfo>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<complexType name="reviseOrderRequest">
+		<annotation>
+			<documentation>reviseOrderRequest</documentation>
+		</annotation>
+			<sequence>
+				<element name="srcOrderId" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="orderNum" minOccurs="0" maxOccurs="1" type="cwt_do:orderNum"/>
+				<element name="ordVer" minOccurs="0" maxOccurs="1" type="cwt_do:ordVer"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="reviseOrderResponse">
+		<annotation>
+			<documentation>reviseOrderResponse</documentation>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+						<element name="revisedOrderId" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+						<element name="orderNum" minOccurs="0" maxOccurs="1" type="cwt_do:orderNum"/>
+						<element name="ordVer" minOccurs="0" maxOccurs="1" type="cwt_do:ordVer"/>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<complexType name="setDataOrderRequest">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Create the dataorder by value, NO VALIDATION would be provided&#033;
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>setDataOrderRequest</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="includeExistingServices" minOccurs="0" maxOccurs="1" type="xsd:boolean"/>
+				<element name="customerId" minOccurs="1" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="accountIds" minOccurs="0" maxOccurs="unbounded" type="cwt_dict:string32"/>
+				<element name="siteIds" minOccurs="0" maxOccurs="unbounded" type="cwt_dict:string32"/>
+				<element name="dataOrderDS" minOccurs="0" maxOccurs="1" type="cwt_onapi:dataOrderDS"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+				<element name="contextVariables" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:contextVariable"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="setDataOrderResponse">
+		<annotation>
+			<documentation>setDataOrderResponse</documentation>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+						<element name="dataOrderId" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+						<element name="description" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="ordVer" minOccurs="0" maxOccurs="1" type="cwt_do:ordVer"/>
+						<element name="orderNum" minOccurs="1" maxOccurs="1" type="cwt_do:orderNum"/>
+						<element name="dataOrderDS" minOccurs="0" maxOccurs="1" type="cwt_onapi:dataOrderDS"/>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<complexType name="setQuoteByValueRequest">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Not Implemented
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>setQuoteByValueRequest</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="dataOrderId" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="orderDS" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderDS"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="setQuoteByValueResponse">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  not implemented
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>setQuoteByValueResponse</label>
+			</appinfo>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+						<element name="orderDS" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderDS"/>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<complexType name="siteDetail">
+		<annotation>
+			<documentation>siteDetail</documentation>
+		</annotation>
+			<sequence>
+				<element name="siteId" minOccurs="1" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="guid" minOccurs="1" maxOccurs="1" type="cwf:guid"/>
+				<element name="addressId" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="siteType" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="siteMoveFrom" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="siteMoveTo" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="visualKey" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+				<element name="offerList" minOccurs="0" maxOccurs="1" type="cwt_onapi:offerList"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="siteList">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  TBD
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>siteList</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="sites" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:siteDetail"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="submitQuoteRequest">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains data about the order to be submitted.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>submitQuoteRequest</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="dataOrderId" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="processMT" minOccurs="0" maxOccurs="1" type="cwt_dict:string256"/>
+				<element name="orderNum" minOccurs="1" maxOccurs="1" type="cwt_do:orderNum"/>
+				<element name="ordVer" minOccurs="0" maxOccurs="1" type="cwt_do:ordVer"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="submitQuoteResponse">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains the response for the submitQuote request.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>submitQuoteResponse</label>
+			</appinfo>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+						<element name="processId" minOccurs="0" maxOccurs="1" type="xsd:integer"/>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<complexType name="term">
+		<annotation>
+			<documentation>term</documentation>
+		</annotation>
+			<sequence>
+				<element name="id" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="status" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="source" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="unit" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="value" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="startDate" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+				<element name="endDate" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="testCaseObject">
+		<annotation>
+			<documentation>Test Case Object</documentation>
+		</annotation>
+			<sequence>
+				<element name="orderId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="customerId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="accountId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="sites" minOccurs="0" maxOccurs="unbounded" type="xsd:string"/>
+				<element name="offerCode" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="includeAccess" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="includeOffers" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="fromSiteId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="toSiteId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="accessCode" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="contextVariables" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:contextVariable"/>
+				<element name="srcOrderId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="includeServices" minOccurs="0" maxOccurs="1" type="xsd:boolean"/>
+				<element name="orderDS" minOccurs="0" maxOccurs="1" type="cwt_onapi:dataOrderDS"/>
+				<element name="processMT" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="stage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="family" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="category" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="catalogDate" minOccurs="0" maxOccurs="1" type="cwf:dateTimeSec"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="transferItemsRequest">
+		<annotation>
+			<documentation>transferItemsRequest</documentation>
+		</annotation>
+			<sequence>
+				<element name="dataOrderId" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="orderNum" minOccurs="0" maxOccurs="1" type="cwt_do:orderNum"/>
+				<element name="ordVer" minOccurs="0" maxOccurs="1" type="cwt_do:ordVer"/>
+				<element name="fromAccountId" minOccurs="1" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="toAccountId" minOccurs="1" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="offerIds" minOccurs="0" maxOccurs="unbounded" type="cwt_dict:string16"/>
+				<element name="offerGUIDs" minOccurs="0" maxOccurs="unbounded" type="cwf:guid"/>
+				<element name="percentage" minOccurs="0" maxOccurs="1" type="xsd:integer"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="transferItemsResponse">
+		<annotation>
+			<documentation>transferItemsResponse</documentation>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<complexType name="undeleteOfferFromQuoteRequest">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains data about the order and the item to be undeleted.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>undeleteOfferFromQuoteRequest</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="dataOrderId" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="orderNum" minOccurs="1" maxOccurs="1" type="cwt_do:orderNum"/>
+				<element name="ordVer" minOccurs="0" maxOccurs="1" type="cwt_do:ordVer"/>
+				<element name="offerId" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="offerGUID" minOccurs="0" maxOccurs="1" type="cwf:guid"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+				<element name="contextVariables" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:contextVariable"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="undeleteOfferFromQuoteResponse">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains the response for the undeleteOfferFromQuote request.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>undeleteOfferFromQuoteResponse</label>
+			</appinfo>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<complexType name="updateDataOrderRequest">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains data to update an order.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>updateDataOrderRequest</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="dataOrderId" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="orderNum" minOccurs="1" maxOccurs="1" type="cwt_do:orderNum"/>
+				<element name="ordVer" minOccurs="0" maxOccurs="1" type="cwt_do:ordVer"/>
+				<element name="dataOrderDS" minOccurs="0" maxOccurs="1" type="cwt_onapi:dataOrderDS"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+				<element name="contextVariables" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:contextVariable"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="updateDataOrderResponse">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains the response for updateDataOrder request.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>updateDataOrderResponse</label>
+			</appinfo>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+						<element name="dataOrderId" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+						<element name="description" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="ordVer" minOccurs="0" maxOccurs="1" type="xsd:integer"/>
+						<element name="orderNum" minOccurs="1" maxOccurs="1" type="xsd:integer"/>
+						<element name="dataOrderDS" minOccurs="0" maxOccurs="1" type="cwt_onapi:dataOrderDS"/>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<complexType name="updateQuoteOffersRequest">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains data for updating an existing order.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label></label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="dataOrderId" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="customerId" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="accountId" minOccurs="0" maxOccurs="1" type="cwt_dict:string32"/>
+				<element name="siteIds" minOccurs="0" maxOccurs="unbounded" type="cwt_dict:string32"/>
+				<element name="operation" minOccurs="1" maxOccurs="1" type="cwt_onapi:operation"/>
+				<element name="orderNum" minOccurs="1" maxOccurs="1" type="cwt_do:orderNum"/>
+				<element name="ordVer" minOccurs="0" maxOccurs="1" type="cwt_do:ordVer"/>
+				<element name="accesses" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:uqoOffer"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+				<element name="contextVariables" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:contextVariable"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="updateQuoteOffersResponse">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains the response for updateQuoteOffers request.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label></label>
+			</appinfo>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+						<element name="dataOrderId" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+						<element name="description" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="ordVer" minOccurs="0" maxOccurs="1" type="xsd:integer"/>
+						<element name="orderNum" minOccurs="1" maxOccurs="1" type="xsd:integer"/>
+						<element name="accesses" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:uqoOffer"/>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<complexType name="updateQuoteRequest">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains data about the order and the details about the changed items.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>updateQuoteRequest</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="dataOrderId" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="orderNum" minOccurs="1" maxOccurs="1" type="cwt_do:orderNum"/>
+				<element name="ordVer" minOccurs="0" maxOccurs="1" type="cwt_do:ordVer"/>
+				<element name="orderDS" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderDS"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+				<element name="contextVariables" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:contextVariable"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="updateQuoteResponse">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains the response for updateQuote request.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>updateQuoteResponse</label>
+			</appinfo>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<complexType name="uqoOffer">
+		<annotation>
+			<documentation></documentation>
+		</annotation>
+			<sequence>
+				<element name="extOrderItemId" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="offerCode" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="offerId" minOccurs="0" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="offerGUID" minOccurs="0" maxOccurs="1" type="cwf:guid"/>
+				<element name="siteId" minOccurs="0" maxOccurs="1" type="cwf:docId"/>
+				<element name="status" minOccurs="0" maxOccurs="1" type="cwt_onapi:orderItemStatus"/>
+				<element name="offers" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:uqoOffer"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="validateQuoteRequest">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains the data about the order to validate.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>validateQuoteRequest</label>
+			</appinfo>
+		</annotation>
+			<sequence>
+				<element name="dataOrderId" minOccurs="1" maxOccurs="1" type="cwt_dict:string16"/>
+				<element name="orderNum" minOccurs="1" maxOccurs="1" type="cwt_do:orderNum"/>
+				<element name="ordVer" minOccurs="0" maxOccurs="1" type="cwt_do:ordVer"/>
+				<element name="stage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="extensions" minOccurs="0" maxOccurs="1" type="cwt_onapi:nameValuePairs"/>
+				<element name="contextVariables" minOccurs="0" maxOccurs="unbounded" type="cwt_onapi:contextVariable"/>
+			</sequence>
+		</complexType>
+
+	<complexType name="validateQuoteResponse">
+		<annotation>
+			<documentation>&lt;p style=&#34;margin-top: 0&#34;&gt;
+  Contains the response for validateQuote request.
+&lt;/p&gt;</documentation>
+			<appinfo>
+				<label>validateQuoteResponse</label>
+			</appinfo>
+		</annotation>
+			<complexContent>
+				<extension base="cwt_onapi:genericResponse">
+					<sequence>
+						<element name="cwDocStamp" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+
+	<!-- Documents -->
+
+</schema>

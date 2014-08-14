@@ -54,8 +54,13 @@
     };
 
     this.createOrderAndBasket = function() {
-        this.order = new fet_order.fetOrder();
+        this.order = new fet.on.order.order();
         this.basket = this.order.ShoppingBasket;
+    };
+
+    this.getOrderById = function(orderid) {
+       this.order = Order.getOrderById(orderid);
+       this.basket = this.order.ShoppingBasket;
     };
 
     this.remapGUIDs = function() {

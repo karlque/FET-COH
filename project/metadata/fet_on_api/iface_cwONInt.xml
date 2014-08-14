@@ -16,12 +16,6 @@
       <output>dstruct_fet_on_api.queryCatalogHierarchyResponse</output>
       <type>Request-Response</type>
     </operation>
-    <operation name="getEligibleOffers" type="oper">
-      <input>dstruct_fet_on_api.getEligibleOffersRequest</input>
-      <label>getEligibleOffers</label>
-      <output>dstruct_fet_on_api.getEligibleOffersResponse</output>
-      <type>Request-Response</type>
-    </operation>
     <operation name="submitPreActivateOrder" type="oper">
       <input>dstruct_fet_on_api.submitPreActivateOrderRequest</input>
       <label>submitPreActivateOrder</label>
@@ -40,6 +34,18 @@
       <output>dstruct_fet_on_api.removeItemsResponse</output>
       <type>Request-Response</type>
     </operation>
+    <operation name="addItems" type="oper">
+      <input>dstruct_fet_on_api.addItemsRequest</input>
+      <label>addItems</label>
+      <output>dstruct_fet_on_api.addItemsResponse</output>
+      <type>Request-Response</type>
+    </operation>
+    <operation name="queryEligibleOffers" type="oper">
+      <input>dstruct_fet_on_api.queryEligibleOffersRequest</input>
+      <label>queryEligibleOffers</label>
+      <output>dstruct_fet_on_api.queryEligibleOffersResponse</output>
+      <type>Request-Response</type>
+    </operation>
   </operationList>
-  <revision>7</revision>
+  <revision>8</revision>
 </interface>

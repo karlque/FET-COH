@@ -28,12 +28,23 @@
     <extension name="removeItems" type="ext">
       <element>Operation</element>
       <elementItemMap>
-        <elementItem key="script"><![CDATA[
+        <elementItem key="script">
           /*
            *
            */
           return fet_on_api.removeItemBehavior(input);
-        ]]></elementItem>
+        </elementItem>
+	</extension>
+    <extension name="addItems" type="ext">
+      <element>Operation</element>
+      <elementItemMap>
+        <elementItem key="script">return fet_on_api.addItemsBehavior(input);</elementItem>
+	  </elementItemMap>
+	</extension>
+    <extension name="queryEligibleOffers" type="ext">
+      <element>Operation</element>
+      <elementItemMap>
+        <elementItem key="script">return fet_on_api.queryEligibleOffersBehavior(input);</elementItem>
       </elementItemMap>
     </extension>
   </extensionList>
