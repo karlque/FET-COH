@@ -25,10 +25,22 @@
         <elementItem key="script">return fet_on_api.queryParingDataBehavior(input);</elementItem>
       </elementItemMap>
     </extension>
+
     <extension name="getOfferDetails" type="ext">
       <element>Operation</element>
       <elementItemMap>
         <elementItem key="script">return fet_on_api.getOfferDetailsBehavior(input);</elementItem>
+	  </elementItemMap>
+	</extension>
+    <extension name="removeItems" type="ext">
+      <element>Operation</element>
+      <elementItemMap>
+        <elementItem key="script">
+          /*
+           *
+           */
+          return fet_on_api.removeItemBehavior(input);
+        </elementItem>
 	  </elementItemMap>
 	</extension>
     <extension name="addItems" type="ext">
