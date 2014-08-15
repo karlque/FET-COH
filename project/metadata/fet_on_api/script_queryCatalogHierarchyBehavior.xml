@@ -17,10 +17,11 @@
     Global.logDebug(input);
     var queryCatalogHierarchyRequest = input;
     var queryCatalogHierarchyResponse = new DataStructure('fet_on_api.queryCatalogHierarchyResponse');
+    var hierarchyNodeCode = queryCatalogHierarchyRequest.startingNodeCode;
 
     try {
-        var catalogHelper = new fet_common.ClsCatalogHelper();
-        var hierarchyChildren = catalogHelper.getHierarchyChildren(queryCatalogHierarchyRequest.startingNodeCode);
+        var catalogHelper = new fet.common.ClsCatalogHelper();
+        var hierarchyChildren = catalogHelper.getHierarchyChildren(hierarchyNodeCode);
 
         for (var i = 0 ; hierarchyChildren && i < hierarchyChildren.length ; i ++) {
             queryCatalogHierarchyResponse.hierarchyChildrenNode[i].code = hierarchyChildren[i];

@@ -10,26 +10,15 @@
   <childList>
     <child name="orderId" type="dstruct">
       <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.String</element>
+      <element>dtype_fet.common.dataType.string100</element>
       <label>orderId</label>
     </child>
-    <child name="itemCodes" type="dstruct">
-      <container>true</container>
-      <label>itemCodes</label>
-      <childList>
-        <child name="code" type="dstruct">
-          <array>true</array>
-          <datatype>true</datatype>
-          <element>dtype_com.conceptwave.system.String</element>
-          <label>code</label>
-          <maxInstance>-1</maxInstance>
-        </child>
-      </childList>
-    </child>
-    <child name="parentItemId" type="dstruct">
+    <child name="offerCodes" type="dstruct">
+      <array>true</array>
       <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.String</element>
-      <label>parentItemId</label>
+      <element>dtype_fet.common.dataType.string100</element>
+      <label>offerCodes</label>
+      <maxInstance>-1</maxInstance>
     </child>
   </childList>
 </dataStructure>

@@ -38,6 +38,16 @@
 					</sequence>
 				</complexType>
 
+			<complexType name="addItemsRequest">
+				<annotation>
+					<documentation>addItemsRequest</documentation>
+				</annotation>
+					<sequence>
+						<element name="orderId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+						<element name="offerCodes" minOccurs="0" maxOccurs="unbounded" type="fet.common.dataType:string100"/>
+					</sequence>
+				</complexType>
+
 			<complexType name="queryCatalogHierarchyResponse">
 				<annotation>
 					<documentation>queryCatalogHierarchyResponse</documentation>
@@ -123,26 +133,6 @@
 					</sequence>
 				</complexType>
 
-			<complexType name="getEligibleOffersResponse">
-				<annotation>
-					<documentation>getEligibleOffersResponse</documentation>
-				</annotation>
-					<sequence>
-						<element name="item" minOccurs="0" maxOccurs="unbounded">
-							<annotation>
-								<documentation>item</documentation>
-							</annotation>
-							<complexType>
-								<sequence>
-									<element name="code" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-									<element name="label" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-								</sequence>
-							</complexType>
-						</element>
-						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-					</sequence>
-				</complexType>
-
 			<complexType name="submitPreActivateOrderRequest">
 				<annotation>
 					<documentation>submitPreActivateOrderRequest</documentation>
@@ -175,13 +165,58 @@
 					</sequence>
 				</complexType>
 
-			<complexType name="getEligibleOffersRequest">
+			<complexType name="queryEligibleOffersResponse">
 				<annotation>
-					<documentation>getEligibleOffersRequest</documentation>
+					<documentation>queryEligibleOffersResponse</documentation>
+				</annotation>
+					<sequence>
+						<element name="catalogItem" minOccurs="0" maxOccurs="unbounded">
+							<annotation>
+								<documentation>catalogItem</documentation>
+							</annotation>
+							<complexType>
+								<sequence>
+									<element name="code" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+									<element name="label" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+									<element name="attributes" minOccurs="0" maxOccurs="unbounded">
+										<annotation>
+											<documentation>attributes</documentation>
+										</annotation>
+										<complexType>
+											<sequence>
+												<element name="code" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+												<element name="label" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+												<element name="defaultValue" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+												<element name="typeCode" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+												<element name="typeCodeTable" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+												<element name="isProperty" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+											</sequence>
+										</complexType>
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+					</sequence>
+				</complexType>
+
+			<complexType name="addItemsResponse">
+				<annotation>
+					<documentation>addItemsResponse</documentation>
+				</annotation>
+					<sequence>
+						<element name="orderId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+					</sequence>
+				</complexType>
+
+			<complexType name="queryEligibleOffersRequest">
+				<annotation>
+					<documentation>queryEligibleOffersRequest</documentation>
 				</annotation>
 					<sequence>
 						<element name="hierarchyCode" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-						<element name="itemType" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="type" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
 						<element name="date" minOccurs="0" maxOccurs="1" type="xsd:date"/>
 					</sequence>
 				</complexType>
@@ -268,14 +303,6 @@
 		<part name="queryCatalogHierarchyResponse" type="fet_on_api:queryCatalogHierarchyResponse"/>
 	</message>
 
-	<message name="getEligibleOffersRequest">
-		<part name="getEligibleOffersRequest" type="fet_on_api:getEligibleOffersRequest"/>
-	</message>
-
-	<message name="getEligibleOffersResponse">
-		<part name="getEligibleOffersResponse" type="fet_on_api:getEligibleOffersResponse"/>
-	</message>
-
 	<message name="submitPreActivateOrderRequest">
 		<part name="submitPreActivateOrderRequest" type="fet_on_api:submitPreActivateOrderRequest"/>
 	</message>
@@ -300,6 +327,22 @@
 		<part name="getOfferDetailsResponse" type="fet_on_api:getOfferDetailsResponse"/>
 	</message>
 
+	<message name="addItemsRequest">
+		<part name="addItemsRequest" type="fet_on_api:addItemsRequest"/>
+	</message>
+
+	<message name="addItemsResponse">
+		<part name="addItemsResponse" type="fet_on_api:addItemsResponse"/>
+	</message>
+
+	<message name="queryEligibleOffersRequest">
+		<part name="queryEligibleOffersRequest" type="fet_on_api:queryEligibleOffersRequest"/>
+	</message>
+
+	<message name="queryEligibleOffersResponse">
+		<part name="queryEligibleOffersResponse" type="fet_on_api:queryEligibleOffersResponse"/>
+	</message>
+
 	<portType name="cwONInt">
 		<operation name="createOrder">
 			<input message="tns:createOrderRequest"/>
@@ -308,10 +351,6 @@
 		<operation name="queryCatalogHierarchy">
 			<input message="tns:queryCatalogHierarchyRequest"/>
 			<output message="tns:queryCatalogHierarchyResponse"/>
-		</operation>
-		<operation name="getEligibleOffers">
-			<input message="tns:getEligibleOffersRequest"/>
-			<output message="tns:getEligibleOffersResponse"/>
 		</operation>
 		<operation name="submitPreActivateOrder">
 			<input message="tns:submitPreActivateOrderRequest"/>
@@ -324,6 +363,14 @@
 		<operation name="getOfferDetails">
 			<input message="tns:getOfferDetailsRequest"/>
 			<output message="tns:getOfferDetailsResponse"/>
+		</operation>
+		<operation name="addItems">
+			<input message="tns:addItemsRequest"/>
+			<output message="tns:addItemsResponse"/>
+		</operation>
+		<operation name="queryEligibleOffers">
+			<input message="tns:queryEligibleOffersRequest"/>
+			<output message="tns:queryEligibleOffersResponse"/>
 		</operation>
 	</portType>
 
@@ -340,15 +387,6 @@
 		</operation>
 		<operation name="queryCatalogHierarchy">
 			<soap:operation soapAction="queryCatalogHierarchy"/>
-			<input>
-				<soap:body use="literal"/>
-			</input>
-			<output>
-				<soap:body use="literal"/>
-			</output>
-		</operation>
-		<operation name="getEligibleOffers">
-			<soap:operation soapAction="getEligibleOffers"/>
 			<input>
 				<soap:body use="literal"/>
 			</input>
@@ -376,6 +414,24 @@
 		</operation>
 		<operation name="getOfferDetails">
 			<soap:operation soapAction="getOfferDetails"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="addItems">
+			<soap:operation soapAction="addItems"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="queryEligibleOffers">
+			<soap:operation soapAction="queryEligibleOffers"/>
 			<input>
 				<soap:body use="literal"/>
 			</input>
