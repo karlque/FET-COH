@@ -31,243 +31,285 @@
 				<annotation>
 					<documentation>paringData</documentation>
 				</annotation>
-				<sequence>
-					<element name="MSISDN" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-					<element name="IMSI" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-					<element name="ProductId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-				</sequence>
-			</complexType>
+					<sequence>
+						<element name="MSISDN" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="IMSI" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="ProductId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+					</sequence>
+				</complexType>
 
 			<complexType name="addItemsRequest">
 				<annotation>
 					<documentation>addItemsRequest</documentation>
 				</annotation>
-				<sequence>
-					<element name="orderId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
-					<element name="offerCodes" minOccurs="0" maxOccurs="unbounded" type="fet.common.dataType:string100"/>
-				</sequence>
-			</complexType>
+					<sequence>
+						<element name="orderId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+						<element name="offerCodes" minOccurs="0" maxOccurs="unbounded" type="fet.common.dataType:string100"/>
+					</sequence>
+				</complexType>
 
 			<complexType name="removeItemsRequset">
 				<annotation>
 					<documentation>removeItemsRequset</documentation>
 				</annotation>
-				<sequence>
-					<element name="orderId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
-					<element name="offerCodes" minOccurs="0" maxOccurs="unbounded" type="fet.common.dataType:string100"/>
-				</sequence>
-			</complexType>
+					<sequence>
+						<element name="orderId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+						<element name="offerCodes" minOccurs="0" maxOccurs="unbounded" type="fet.common.dataType:string100"/>
+					</sequence>
+				</complexType>
 
 			<complexType name="queryCatalogHierarchyResponse">
 				<annotation>
 					<documentation>queryCatalogHierarchyResponse</documentation>
 				</annotation>
-				<sequence>
-					<element name="hierarchyChildrenNode" minOccurs="0" maxOccurs="unbounded">
-						<annotation>
-							<documentation>hierarchyChildrenNode</documentation>
-						</annotation>
-						<complexType>
-							<sequence>
-								<element name="code" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-							</sequence>
-						</complexType>
-					</element>
-					<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-				</sequence>
-			</complexType>
+					<sequence>
+						<element name="hierarchyChildrenNode" minOccurs="0" maxOccurs="unbounded">
+							<annotation>
+								<documentation>hierarchyChildrenNode</documentation>
+							</annotation>
+							<complexType>
+								<sequence>
+									<element name="code" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+								</sequence>
+							</complexType>
+						</element>
+						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+					</sequence>
+				</complexType>
 
 			<complexType name="queryCatalogHierarchyRequest">
 				<annotation>
 					<documentation>queryCatalogHierarchyRequest</documentation>
 				</annotation>
-				<sequence>
-					<element name="startingNodeCode" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-					<element name="depth" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-				</sequence>
-			</complexType>
+					<sequence>
+						<element name="startingNodeCode" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="depth" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+					</sequence>
+				</complexType>
 
 			<complexType name="queryParingDataResponse">
 				<annotation>
 					<documentation>queryParingDataResponse</documentation>
 				</annotation>
-				<sequence>
-					<element name="processId" minOccurs="1" maxOccurs="1" type="xsd:integer"/>
-					<element name="paringData" minOccurs="0" maxOccurs="unbounded">
-						<annotation>
-							<documentation>paringData</documentation>
-						</annotation>
-						<complexType>
-							<complexContent>
-								<extension base="fet_on_api:paringData">
-									<sequence>
-									</sequence>
-								</extension>
-							</complexContent>
-						</complexType>
-					</element>
-					<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-				</sequence>
-			</complexType>
+					<sequence>
+						<element name="processId" minOccurs="1" maxOccurs="1" type="xsd:integer"/>
+						<element name="paringData" minOccurs="0" maxOccurs="unbounded">
+							<annotation>
+								<documentation>paringData</documentation>
+							</annotation>
+							<complexType>
+								<complexContent>
+									<extension base="fet_on_api:paringData">
+										<sequence>
+										</sequence>
+									</extension>
+								</complexContent>
+							</complexType>
+						</element>
+						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+					</sequence>
+				</complexType>
 
 			<complexType name="submitPreActivateOrderResponse">
 				<annotation>
 					<documentation>submitPreActivateOrderResponse</documentation>
 				</annotation>
-				<sequence>
-					<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-					<element name="processId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-				</sequence>
-			</complexType>
+					<sequence>
+						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="processId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+					</sequence>
+				</complexType>
 
 			<complexType name="createOrderRequest">
 				<annotation>
 					<documentation>createOrderRequest</documentation>
 				</annotation>
-				<sequence>
-					<element name="channel" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-					<element name="customerId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-					<element name="accountId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-					<element name="siteId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-					<element name="orderType" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-				</sequence>
-			</complexType>
+					<sequence>
+						<element name="channel" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="customerId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="accountId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="siteId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="orderType" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+					</sequence>
+				</complexType>
 
 			<complexType name="getOfferDetailsRequest">
 				<annotation>
 					<documentation>getOfferDetailsRequest</documentation>
 				</annotation>
-				<sequence>
-					<element name="itemCode" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-					<element name="date" minOccurs="0" maxOccurs="1" type="xsd:date"/>
-				</sequence>
-			</complexType>
+					<sequence>
+						<element name="itemCode" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="date" minOccurs="0" maxOccurs="1" type="xsd:date"/>
+					</sequence>
+				</complexType>
 
 			<complexType name="submitPreActivateOrderRequest">
 				<annotation>
 					<documentation>submitPreActivateOrderRequest</documentation>
 				</annotation>
-				<sequence>
-					<element name="orderType" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-					<element name="paringData" minOccurs="0" maxOccurs="unbounded">
-						<annotation>
-							<documentation>paringData</documentation>
-						</annotation>
-						<complexType>
-							<complexContent>
-								<extension base="fet_on_api:paringData">
-									<sequence>
-									</sequence>
-								</extension>
-							</complexContent>
-						</complexType>
-					</element>
-				</sequence>
-			</complexType>
+					<sequence>
+						<element name="orderType" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="paringData" minOccurs="0" maxOccurs="unbounded">
+							<annotation>
+								<documentation>paringData</documentation>
+							</annotation>
+							<complexType>
+								<complexContent>
+									<extension base="fet_on_api:paringData">
+										<sequence>
+										</sequence>
+									</extension>
+								</complexContent>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
 
 			<complexType name="createOrderResponse">
 				<annotation>
 					<documentation>createOrderResponse</documentation>
 				</annotation>
-				<sequence>
-					<element name="order" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-					<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-				</sequence>
-			</complexType>
+					<sequence>
+						<element name="order" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+					</sequence>
+				</complexType>
 
 			<complexType name="queryEligibleOffersResponse">
 				<annotation>
 					<documentation>queryEligibleOffersResponse</documentation>
 				</annotation>
-				<sequence>
-					<element name="catalogItem" minOccurs="0" maxOccurs="unbounded">
-						<annotation>
-							<documentation>catalogItem</documentation>
-						</annotation>
-						<complexType>
-							<sequence>
-								<element name="code" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-								<element name="label" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-								<element name="attributes" minOccurs="0" maxOccurs="unbounded">
-									<annotation>
-										<documentation>attributes</documentation>
-									</annotation>
-									<complexType>
-										<sequence>
-											<element name="code" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
-											<element name="label" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
-											<element name="defaultValue" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
-											<element name="typeCode" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
-											<element name="typeCodeTable" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
-											<element name="isProperty" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
-										</sequence>
-									</complexType>
-								</element>
-							</sequence>
-						</complexType>
-					</element>
-					<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-				</sequence>
-			</complexType>
+					<sequence>
+						<element name="catalogItem" minOccurs="0" maxOccurs="unbounded">
+							<annotation>
+								<documentation>catalogItem</documentation>
+							</annotation>
+							<complexType>
+								<sequence>
+									<element name="code" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+									<element name="label" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+									<element name="attributes" minOccurs="0" maxOccurs="unbounded">
+										<annotation>
+											<documentation>attributes</documentation>
+										</annotation>
+										<complexType>
+											<sequence>
+												<element name="code" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+												<element name="label" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+												<element name="defaultValue" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+												<element name="typeCode" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+												<element name="typeCodeTable" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+												<element name="isProperty" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+											</sequence>
+										</complexType>
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+					</sequence>
+				</complexType>
 
 			<complexType name="addItemsResponse">
 				<annotation>
 					<documentation>addItemsResponse</documentation>
 				</annotation>
-				<sequence>
-					<element name="orderId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
-					<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-				</sequence>
-			</complexType>
+					<sequence>
+						<element name="orderId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="basketItem" minOccurs="0" maxOccurs="unbounded">
+							<annotation>
+								<documentation>basketItem</documentation>
+							</annotation>
+							<complexType>
+								<sequence>
+									<element name="id" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+
 			<complexType name="removeItemsResponse">
 				<annotation>
 					<documentation>removeItemsResponse</documentation>
 				</annotation>
-				<sequence>
-					<element name="orderId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
-					<element name="errorMessage" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
-				</sequence>
-			</complexType>
+					<sequence>
+						<element name="orderId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+						<element name="basketItem" minOccurs="0" maxOccurs="unbounded">
+							<annotation>
+								<documentation>basketItem</documentation>
+							</annotation>
+							<complexType>
+								<sequence>
+									<element name="id" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+
 			<complexType name="queryEligibleOffersRequest">
 				<annotation>
 					<documentation>queryEligibleOffersRequest</documentation>
 				</annotation>
-				<sequence>
-					<element name="hierarchyCode" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-					<element name="type" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
-					<element name="date" minOccurs="0" maxOccurs="1" type="xsd:date"/>
-				</sequence>
-			</complexType>
+					<sequence>
+						<element name="hierarchyCode" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="type" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+						<element name="date" minOccurs="0" maxOccurs="1" type="xsd:date"/>
+						<element name="contextVariables" minOccurs="0" maxOccurs="1">
+							<annotation>
+								<documentation>contextVariables</documentation>
+							</annotation>
+							<complexType>
+								<sequence>
+									<element name="contextVariable" minOccurs="0" maxOccurs="unbounded">
+										<annotation>
+											<documentation>contextVariable</documentation>
+										</annotation>
+										<complexType>
+											<sequence>
+												<element name="key" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+												<element name="value" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+											</sequence>
+										</complexType>
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
 
 			<complexType name="queryParingDataRequest">
 				<annotation>
 					<documentation>queryParingDataRequest</documentation>
 				</annotation>
-				<sequence>
-					<element name="processId" minOccurs="0" maxOccurs="1" type="xsd:integer"/>
-					<element name="MSISDN" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
-					<element name="IMSI" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
-					<element name="ProductId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
-				</sequence>
-			</complexType>
+					<sequence>
+						<element name="processId" minOccurs="0" maxOccurs="1" type="xsd:integer"/>
+						<element name="MSISDN" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+						<element name="IMSI" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+						<element name="ProductId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+					</sequence>
+				</complexType>
 
 			<complexType name="getOfferDetailsResponse">
 				<annotation>
 					<documentation>getOfferDetailsResponse</documentation>
 				</annotation>
-				<sequence>
-					<element name="catalogOfferDetail" minOccurs="0" maxOccurs="1">
-						<annotation>
-							<documentation>catalogOfferDetail</documentation>
-						</annotation>
-						<complexType>
-							<sequence>
-								<element name="code" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
-							</sequence>
-						</complexType>
-					</element>
-				</sequence>
-			</complexType>
+					<sequence>
+						<element name="catalogOfferDetail" minOccurs="0" maxOccurs="1">
+							<annotation>
+								<documentation>catalogOfferDetail</documentation>
+							</annotation>
+							<complexType>
+								<sequence>
+									<element name="code" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
 
 			<!-- Documents -->
 
@@ -336,6 +378,7 @@
 	<message name="queryParingDataResponse">
 		<part name="queryParingDataResponse" type="fet_on_api:queryParingDataResponse"/>
 	</message>
+
 	<message name="getOfferDetailsRequest">
 		<part name="getOfferDetailsRequest" type="fet_on_api:getOfferDetailsRequest"/>
 	</message>
@@ -343,6 +386,7 @@
 	<message name="getOfferDetailsResponse">
 		<part name="getOfferDetailsResponse" type="fet_on_api:getOfferDetailsResponse"/>
 	</message>
+
 	<message name="removeItemsRequset">
 		<part name="removeItemsRequset" type="fet_on_api:removeItemsRequset"/>
 	</message>
@@ -384,7 +428,6 @@
 			<input message="tns:queryParingDataRequest"/>
 			<output message="tns:queryParingDataResponse"/>
 		</operation>
-
 		<operation name="getOfferDetails">
 			<input message="tns:getOfferDetailsRequest"/>
 			<output message="tns:getOfferDetailsResponse"/>
