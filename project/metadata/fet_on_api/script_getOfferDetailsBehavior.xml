@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet_on_api.getOfferDetailsBehavior">
+  <group>behaviorScript</group>
+  <label>getOfferDetailsBehavior</label>
+  <metaVersion>24</metaVersion>
+  <parameterList>
+    <parameter name="input" type="rifp">
+      <type>nmeta_com.conceptwave.system.Object</type>
+    </parameter>
+  </parameterList>
+  <script><![CDATA[
+    /*
+    * author:Tim.chen
+    */
+    var getOfferDetailsRequest = input;
+    var getOfferDetailsResponse = new DataStructure('fet_on_api.getOfferDetailsResponse');
+    var itemCode  = getOfferDetailsRequest.itemCode;
+    var catalogHelper = new fet.common.ClsCatalogHelper();
+    var catalogItem = catalogHelper.getCatalogItemByCode(itemCode);
+    var catalogItemAttribute = catalogHelper.getItemAttributes(catalogItem,"prodOffSubType");
+    var itemDefaultValue = catalogHelper.getAttributeDefaultValue(catalogItemAttribute);
+    getOfferDetailsResponse.catalogOfferDetail.code = catalogHelper.getCatalogItemByCode(itemDefaultValue).code;
+
+    return getOfferDetailsResponse ;
+  ]]></script>
+</script>

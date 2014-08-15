@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataStructure name="fet_on_api.getOfferDetailsResponse">
+  <container>true</container>
+  <group>dataStructure</group>
+  <jsonMap type="jmap">
+    <exclude>1</exclude>
+  </jsonMap>
+  <label>getOfferDetailsResponse</label>
+  <metaVersion>24</metaVersion>
+  <childList>
+    <child name="catalogOfferDetail" type="dstruct">
+      <container>true</container>
+      <label>catalogOfferDetail</label>
+      <childList>
+        <child name="code" type="dstruct">
+          <datatype>true</datatype>
+          <element>dtype_fet.common.dataType.string100</element>
+          <label>code</label>
+        </child>
+      </childList>
+    </child>
+  </childList>
+</dataStructure>

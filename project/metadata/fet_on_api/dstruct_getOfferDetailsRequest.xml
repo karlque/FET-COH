@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataStructure name="fet_on_api.getOfferDetailsRequest">
+  <container>true</container>
+  <group>dataStructure</group>
+  <jsonMap type="jmap">
+    <exclude>1</exclude>
+  </jsonMap>
+  <label>getOfferDetailsRequest</label>
+  <metaVersion>24</metaVersion>
+  <childList>
+    <child name="itemCode" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>itemCode</label>
+    </child>
+    <child name="date" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.Date</element>
+      <label>date</label>
+    </child>
+  </childList>
+</dataStructure>

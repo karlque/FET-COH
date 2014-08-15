@@ -123,6 +123,16 @@
 					</sequence>
 				</complexType>
 
+			<complexType name="getOfferDetailsRequest">
+				<annotation>
+					<documentation>getOfferDetailsRequest</documentation>
+				</annotation>
+					<sequence>
+						<element name="itemCode" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="date" minOccurs="0" maxOccurs="1" type="xsd:date"/>
+					</sequence>
+				</complexType>
+
 			<complexType name="submitPreActivateOrderRequest">
 				<annotation>
 					<documentation>submitPreActivateOrderRequest</documentation>
@@ -189,6 +199,7 @@
 						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
 					</sequence>
 				</complexType>
+
 			<complexType name="addItemsResponse">
 				<annotation>
 					<documentation>addItemsResponse</documentation>
@@ -197,7 +208,8 @@
 						<element name="orderId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
 						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
 					</sequence>
-			</complexType>
+				</complexType>
+
 			<complexType name="queryEligibleOffersRequest">
 				<annotation>
 					<documentation>queryEligibleOffersRequest</documentation>
@@ -218,6 +230,24 @@
 						<element name="MSISDN" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
 						<element name="IMSI" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
 						<element name="ProductId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+					</sequence>
+				</complexType>
+
+			<complexType name="getOfferDetailsResponse">
+				<annotation>
+					<documentation>getOfferDetailsResponse</documentation>
+				</annotation>
+					<sequence>
+						<element name="catalogOfferDetail" minOccurs="0" maxOccurs="1">
+							<annotation>
+								<documentation>catalogOfferDetail</documentation>
+							</annotation>
+							<complexType>
+								<sequence>
+									<element name="code" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+								</sequence>
+							</complexType>
+						</element>
 					</sequence>
 				</complexType>
 
@@ -288,7 +318,15 @@
 	<message name="queryParingDataResponse">
 		<part name="queryParingDataResponse" type="fet_on_api:queryParingDataResponse"/>
 	</message>
-	
+
+	<message name="getOfferDetailsRequest">
+		<part name="getOfferDetailsRequest" type="fet_on_api:getOfferDetailsRequest"/>
+	</message>
+
+	<message name="getOfferDetailsResponse">
+		<part name="getOfferDetailsResponse" type="fet_on_api:getOfferDetailsResponse"/>
+	</message>
+
 	<message name="addItemsRequest">
 		<part name="addItemsRequest" type="fet_on_api:addItemsRequest"/>
 	</message>
@@ -296,7 +334,7 @@
 	<message name="addItemsResponse">
 		<part name="addItemsResponse" type="fet_on_api:addItemsResponse"/>
 	</message>
-	
+
 	<message name="queryEligibleOffersRequest">
 		<part name="queryEligibleOffersRequest" type="fet_on_api:queryEligibleOffersRequest"/>
 	</message>
@@ -321,6 +359,10 @@
 		<operation name="queryParingData">
 			<input message="tns:queryParingDataRequest"/>
 			<output message="tns:queryParingDataResponse"/>
+		</operation>
+		<operation name="getOfferDetails">
+			<input message="tns:getOfferDetailsRequest"/>
+			<output message="tns:getOfferDetailsResponse"/>
 		</operation>
 		<operation name="addItems">
 			<input message="tns:addItemsRequest"/>
@@ -363,6 +405,15 @@
 		</operation>
 		<operation name="queryParingData">
 			<soap:operation soapAction="queryParingData"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="getOfferDetails">
+			<soap:operation soapAction="getOfferDetails"/>
 			<input>
 				<soap:body use="literal"/>
 			</input>

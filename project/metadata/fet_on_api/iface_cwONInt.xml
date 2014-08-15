@@ -28,6 +28,18 @@
       <output>dstruct_fet_on_api.queryParingDataResponse</output>
       <type>Request-Response</type>
     </operation>
+    <operation name="getOfferDetails" type="oper">
+      <input>dstruct_fet_on_api.getOfferDetailsRequest</input>
+      <label>getOfferDetails</label>
+      <output>dstruct_fet_on_api.getOfferDetailsResponse</output>
+      <type>Request-Response</type>
+    </operation>
+    <operation name="addItems" type="oper">
+      <input>dstruct_fet_on_api.addItemsRequest</input>
+      <label>addItems</label>
+      <output>dstruct_fet_on_api.addItemsResponse</output>
+      <type>Request-Response</type>
+    </operation>
     <operation name="queryEligibleOffers" type="oper">
       <input>dstruct_fet_on_api.queryEligibleOffersRequest</input>
       <label>queryEligibleOffers</label>
