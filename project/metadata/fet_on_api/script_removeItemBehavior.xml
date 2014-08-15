@@ -18,9 +18,21 @@
     var removeItemsResponse = new DataStructure('fet_on_api.removeItemsResponse');
 
     try{
+        var orderHelper = new fet.common.ClsDataOrderHelper();
+        var orderId = removeItemsRequset.orderId;
+        orderHelper.getOrderById(orderId);
+        var offerCodes = removeItemsRequset.offerCodes;
 
+         for (var i = 0 ; offerCodes && i < offerCodes.length ; i ++) {
+            var offerCode = offerCodes[i];
+            orderHelper.removeItem(offerCode);
+        }
 
+        for (var i=0 ; i < orderHelper.basket.length ; i ++) {
+            removeItemsResponse.basketItem[i].id = orderHelper.basket[i].id;
+        }
 
+        removeItemsResponse.orderId = orderHelper.order._id;
     }catch(e){
         removeItemsResponse.errorMessage = e;
     }

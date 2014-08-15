@@ -48,6 +48,16 @@
 					</sequence>
 				</complexType>
 
+			<complexType name="removeItemsRequset">
+				<annotation>
+					<documentation>removeItemsRequset</documentation>
+				</annotation>
+					<sequence>
+						<element name="orderId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+						<element name="offerCodes" minOccurs="0" maxOccurs="unbounded" type="fet.common.dataType:string100"/>
+					</sequence>
+				</complexType>
+
 			<complexType name="queryCatalogHierarchyResponse">
 				<annotation>
 					<documentation>queryCatalogHierarchyResponse</documentation>
@@ -189,6 +199,7 @@
 						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
 					</sequence>
 				</complexType>
+
 			<complexType name="addItemsResponse">
 				<annotation>
 					<documentation>addItemsResponse</documentation>
@@ -197,7 +208,18 @@
 						<element name="orderId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
 						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
 					</sequence>
-			</complexType>
+				</complexType>
+
+			<complexType name="removeItemsResponse">
+				<annotation>
+					<documentation>removeItemsResponse</documentation>
+				</annotation>
+					<sequence>
+						<element name="orderId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+					</sequence>
+				</complexType>
+
 			<complexType name="queryEligibleOffersRequest">
 				<annotation>
 					<documentation>queryEligibleOffersRequest</documentation>
@@ -288,7 +310,15 @@
 	<message name="queryParingDataResponse">
 		<part name="queryParingDataResponse" type="fet_on_api:queryParingDataResponse"/>
 	</message>
-	
+
+	<message name="removeItemsRequset">
+		<part name="removeItemsRequset" type="fet_on_api:removeItemsRequset"/>
+	</message>
+
+	<message name="removeItemsResponse">
+		<part name="removeItemsResponse" type="fet_on_api:removeItemsResponse"/>
+	</message>
+
 	<message name="addItemsRequest">
 		<part name="addItemsRequest" type="fet_on_api:addItemsRequest"/>
 	</message>
@@ -296,7 +326,7 @@
 	<message name="addItemsResponse">
 		<part name="addItemsResponse" type="fet_on_api:addItemsResponse"/>
 	</message>
-	
+
 	<message name="queryEligibleOffersRequest">
 		<part name="queryEligibleOffersRequest" type="fet_on_api:queryEligibleOffersRequest"/>
 	</message>
@@ -314,10 +344,6 @@
 			<input message="tns:queryCatalogHierarchyRequest"/>
 			<output message="tns:queryCatalogHierarchyResponse"/>
 		</operation>
-		<operation name="getEligibleOffers">
-			<input message="tns:getEligibleOffersRequest"/>
-			<output message="tns:getEligibleOffersResponse"/>
-		</operation>
 		<operation name="submitPreActivateOrder">
 			<input message="tns:submitPreActivateOrderRequest"/>
 			<output message="tns:submitPreActivateOrderResponse"/>
@@ -325,6 +351,10 @@
 		<operation name="queryParingData">
 			<input message="tns:queryParingDataRequest"/>
 			<output message="tns:queryParingDataResponse"/>
+		</operation>
+		<operation name="removeItems">
+			<input message="tns:removeItemsRequset"/>
+			<output message="tns:removeItemsResponse"/>
 		</operation>
 		<operation name="addItems">
 			<input message="tns:addItemsRequest"/>
@@ -356,10 +386,8 @@
 				<soap:body use="literal"/>
 			</output>
 		</operation>
-
 		<operation name="submitPreActivateOrder">
 			<soap:operation soapAction="submitPreActivateOrder"/>
-
 			<input>
 				<soap:body use="literal"/>
 			</input>
@@ -369,6 +397,15 @@
 		</operation>
 		<operation name="queryParingData">
 			<soap:operation soapAction="queryParingData"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="removeItems">
+			<soap:operation soapAction="removeItems"/>
 			<input>
 				<soap:body use="literal"/>
 			</input>

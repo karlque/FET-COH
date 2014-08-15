@@ -34,6 +34,7 @@
            */
           return fet_on_api.removeItemBehavior(input);
         </elementItem>
+	  </elementItemMap>
 	</extension>
     <extension name="addItems" type="ext">
       <element>Operation</element>

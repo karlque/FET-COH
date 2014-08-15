@@ -18,5 +18,18 @@
       <element>dtype_fet.common.dataType.string100</element>
       <label>errorMessage</label>
     </child>
+    <child name="basketItem" type="dstruct">
+      <array>true</array>
+      <container>true</container>
+      <label>basketItem</label>
+      <maxInstance>-1</maxInstance>
+      <childList>
+        <child name="id" type="dstruct">
+          <datatype>true</datatype>
+          <element>dtype_fet.common.dataType.string100</element>
+          <label>id</label>
+        </child>
+      </childList>
+    </child>
   </childList>
 </dataStructure>
