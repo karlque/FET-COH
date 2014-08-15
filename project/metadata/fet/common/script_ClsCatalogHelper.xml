@@ -108,14 +108,7 @@
         var children = new Array();
         var item = this.getCatalogItemByCode(itemCode, null);
         if (item) {
-            var relations = item.getItemAssociations() ;
-            for (var i = 0 ; i < relations.length ; i++) {
-                var child = this.getCatalogItemByCode(relations[i].getTarget(), null);
-                if (type == null || type == child.type) {
-                    children.push(child);
-                }
-                this.getChildren(child, children, type);
-            }
+            this.getChildren(item, children, type);
         }
         return children;
     };
@@ -124,7 +117,7 @@
         var relations = item.getItemAssociations();
         for (var i = 0 ; i < relations.length ; i++) {
             var child = this.getCatalogItemByCode(relations[i].getTarget(), null);
-            if (type == null || type == child.type) {
+            if ((type == null || type == child.type) && this.checkItemRules(child)) {
                 children.push(child);
             }
             this.getChildren(child, children, type);
@@ -138,6 +131,43 @@
                 return true;
         }
         return false;
+    };
+
+    this.getCatalogContext = function (){
+        theCatalog.setCatalogContext(new Context());
+        return theContext;
+    };
+
+    this.checkItemRules = function (catalogItem, ignoreRules){
+        Global.logDebug('=====check rules=====');
+        var checkResult = true;
+        for (var i = 0 ; catalogItem && i < catalogItem.getItemRulesLength() ; i ++) {
+            var ruleName = catalogItem.getItemRuleName(i);
+            Global.logDebug('ruleName = ' + ruleName);
+            if (ignoreRules && this.arrayContainObject(ignoreRules, ruleName)) {
+                continue;
+            }
+            checkResult = theCatalog.runGlobalCatalogRule(ruleName);
+            Global.logDebug('checkResult = ' + checkResult);
+            if (!checkResult) {
+                return checkResult;
+            }
+        }
+        return checkResult;
+    };
+
+    this.arrayContainObject = function (array, object){
+        for (var i = 0 ; array && i < array.length ; i ++) {
+            var value = array[i];
+            if (value === object) {
+                return true;
+            }
+        }
+        return false;
+    };
+
+    this.arrayNotContainObject = function (array, object){
+        return !this.arrayContainObject(array, object);
     };
   ]]></script>
 </script>

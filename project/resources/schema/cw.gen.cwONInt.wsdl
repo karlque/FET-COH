@@ -189,6 +189,7 @@
 						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
 					</sequence>
 				</complexType>
+
 			<complexType name="addItemsResponse">
 				<annotation>
 					<documentation>addItemsResponse</documentation>
@@ -197,7 +198,8 @@
 						<element name="orderId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
 						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
 					</sequence>
-			</complexType>
+				</complexType>
+
 			<complexType name="queryEligibleOffersRequest">
 				<annotation>
 					<documentation>queryEligibleOffersRequest</documentation>
@@ -206,6 +208,26 @@
 						<element name="hierarchyCode" minOccurs="0" maxOccurs="1" type="xsd:string"/>
 						<element name="type" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
 						<element name="date" minOccurs="0" maxOccurs="1" type="xsd:date"/>
+						<element name="contextVariables" minOccurs="0" maxOccurs="1">
+							<annotation>
+								<documentation>contextVariables</documentation>
+							</annotation>
+							<complexType>
+								<sequence>
+									<element name="contextVariable" minOccurs="0" maxOccurs="unbounded">
+										<annotation>
+											<documentation>contextVariable</documentation>
+										</annotation>
+										<complexType>
+											<sequence>
+												<element name="key" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+												<element name="value" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+											</sequence>
+										</complexType>
+									</element>
+								</sequence>
+							</complexType>
+						</element>
 					</sequence>
 				</complexType>
 
@@ -288,7 +310,7 @@
 	<message name="queryParingDataResponse">
 		<part name="queryParingDataResponse" type="fet_on_api:queryParingDataResponse"/>
 	</message>
-	
+
 	<message name="addItemsRequest">
 		<part name="addItemsRequest" type="fet_on_api:addItemsRequest"/>
 	</message>
@@ -296,7 +318,7 @@
 	<message name="addItemsResponse">
 		<part name="addItemsResponse" type="fet_on_api:addItemsResponse"/>
 	</message>
-	
+
 	<message name="queryEligibleOffersRequest">
 		<part name="queryEligibleOffersRequest" type="fet_on_api:queryEligibleOffersRequest"/>
 	</message>

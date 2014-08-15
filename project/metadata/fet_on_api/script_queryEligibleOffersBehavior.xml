@@ -23,6 +23,10 @@
 
     try {
         var catalogHelper = new fet.common.ClsCatalogHelper();
+        var catalogContext = catalogHelper.getCatalogContext();
+        var contextVariables = queryEligibleOffersRequest.contextVariables.contextVariable;
+        setCatalogContextVariables(catalogContext, contextVariables);
+
         var catalogItems = catalogHelper.listItems(hierarchyCode, null, date);
 
         var allCatalogItems = new Array();
@@ -69,6 +73,13 @@
             //attribute.typePrecision = catalogItemAttribute.getTypePrecision();
             //attribute.typeType = catalogItemAttribute.getTypeType();
             attribute.isProperty = catalogItemAttribute.isProperty();
+        }
+    }
+
+    function setCatalogContextVariables(catalogContext, contextVariables) {
+        for (var i = 0 ; contextVariables && i < contextVariables.length ; i ++) {
+            var contextVariable = contextVariables[i];
+            catalogContext.setContextAttributeValue(contextVariable.key, contextVariable.value);
         }
     }
   ]]></script>
