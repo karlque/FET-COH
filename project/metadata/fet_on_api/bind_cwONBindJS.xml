@@ -25,6 +25,12 @@
         <elementItem key="script">return fet_on_api.queryParingDataBehavior(input);</elementItem>
       </elementItemMap>
     </extension>
+    <extension name="getOfferDetails" type="ext">
+      <element>Operation</element>
+      <elementItemMap>
+        <elementItem key="script">return fet_on_api.getOfferDetailsBehavior(input);</elementItem>
+      </elementItemMap>
+    </extension>
   </extensionList>
   <group>server</group>
   <interface>iface_fet_on_api.cwONInt</interface>

@@ -34,6 +34,12 @@
       <output>dstruct_fet_on_api.queryParingDataResponse</output>
       <type>Request-Response</type>
     </operation>
+    <operation name="getOfferDetails" type="oper">
+      <input>dstruct_fet_on_api.getOfferDetailsRequest</input>
+      <label>getOfferDetails</label>
+      <output>dstruct_fet_on_api.getOfferDetailsResponse</output>
+      <type>Request-Response</type>
+    </operation>
   </operationList>
-  <revision>6</revision>
+  <revision>7</revision>
 </interface>

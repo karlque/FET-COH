@@ -45,6 +45,26 @@
         return item;
     };
 
+    this.getItemAttributes = function(catalogItem,attributeCode) {
+        var itemAttributes = catalogItem.getItemAttributes();
+        var itemAttribute = itemAttributes;
+        if (attributeCode != null) {
+        for (var i in itemAttributes) {
+            var itemAttribute = itemAttributes[i];
+                if(itemAttribute.code != attributeCode) {
+                    continue;
+                }
+                itemAttribute = itemAttribute;
+            }
+        }
+        return itemAttribute;
+    };
+
+    this.getAttributeDefaultValue = function(itemAttribute) {
+        return itemAttribute.getDefaultValue();
+    };
+
+
     this.listItems = function(hierarchyCode, type, timeStamp) {
         if (hierarchyCode == null) {
             return null;
