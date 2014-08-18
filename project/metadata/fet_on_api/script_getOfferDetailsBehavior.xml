@@ -12,15 +12,22 @@
     /*
     * author:Tim.chen
     */
+
     var getOfferDetailsRequest = input;
     var getOfferDetailsResponse = new DataStructure('fet_on_api.getOfferDetailsResponse');
     var itemCode  = getOfferDetailsRequest.itemCode;
-    var catalogHelper = new fet.common.ClsCatalogHelper();
-    var catalogItem = catalogHelper.getCatalogItemByCode(itemCode);
-    var catalogItemAttribute = catalogHelper.getItemAttributes(catalogItem,"prodOffSubType");
-    var itemDefaultValue = catalogHelper.getAttributeDefaultValue(catalogItemAttribute);
-    getOfferDetailsResponse.catalogOfferDetail.code = catalogHelper.getCatalogItemByCode(itemDefaultValue).code;
 
-    return getOfferDetailsResponse ;
+    try {
+        var catalogHelper = new fet.common.ClsCatalogHelper();
+        var catalogItem = catalogHelper.getCatalogItemByCode(itemCode);
+        var catalogItemAttribute = catalogHelper.getItemAttributes(catalogItem, 'prodOffSubType');
+        var itemDefaultValue = catalogHelper.getAttributeDefaultValue(catalogItemAttribute);
+        getOfferDetailsResponse.catalogOfferDetail.code = catalogHelper.getCatalogItemByCode(itemDefaultValue).code;
+
+    } catch (e) {
+        getOfferDetailsResponse.errorMessage = e.toString();
+    }
+
+    return getOfferDetailsResponse;
   ]]></script>
 </script>

@@ -19,5 +19,10 @@
         </child>
       </childList>
     </child>
+    <child name="errorMessage" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.String</element>
+      <label>errorMessage</label>
+    </child>
   </childList>
 </dataStructure>

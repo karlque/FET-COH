@@ -13,11 +13,11 @@
       <element>dtype_fet.common.dataType.string100</element>
       <label>orderId</label>
     </child>
-    <child name="offerCodes" type="dstruct">
+    <child name="basketItemId" type="dstruct">
       <array>true</array>
       <datatype>true</datatype>
       <element>dtype_fet.common.dataType.string100</element>
-      <label>offerCodes</label>
+      <label>basketItemId</label>
       <maxInstance>-1</maxInstance>
     </child>
   </childList>

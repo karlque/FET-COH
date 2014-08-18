@@ -24,7 +24,7 @@
         submitPreActivateOrderResponse.processId = processId;
 
     } catch (e) {
-        submitPreActivateOrderResponse.errorMessage = e;
+        submitPreActivateOrderResponse.errorMessage = e.toString();
     }
 
     return submitPreActivateOrderResponse;

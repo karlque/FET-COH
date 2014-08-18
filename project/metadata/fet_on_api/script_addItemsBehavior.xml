@@ -16,12 +16,12 @@
     Global.logDebug(input);
     var addItemsRequest = input;
     var addItemsResponse = new DataStructure('fet_on_api.addItemsResponse');
+    var offerCodes = addItemsRequest.offerCode;
 
     try {
         var orderHelper = new fet.common.ClsDataOrderHelper();
         var orderId = addItemsRequest.orderId;
         orderHelper.getOrderById(orderId);
-        var offerCodes = addItemsRequest.offerCodes;
 
         for (var i = 0 ; offerCodes && i < offerCodes.length ; i ++) {
             var offerCode = offerCodes[i];
@@ -29,8 +29,10 @@
         }
 
         addItemsResponse.orderId= orderHelper.order._id;
+        fet_on_api.setBasketDS(orderHelper.basket, addItemsResponse.basket);
+
     } catch (e) {
-        addItemsResponse.errorMessage = e;
+        addItemsResponse.errorMessage = e.toString();
     }
 
     return addItemsResponse;

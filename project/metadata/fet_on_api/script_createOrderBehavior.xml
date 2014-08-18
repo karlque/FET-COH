@@ -29,7 +29,7 @@
         orderHelper.save();
         createOrderResponse.order = orderHelper.order._id;
     } catch (e) {
-        createOrderResponse.errorMessage = e;
+        createOrderResponse.errorMessage = e.toString();
     }
 
     return createOrderResponse;
