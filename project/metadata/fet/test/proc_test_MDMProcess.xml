@@ -9,7 +9,7 @@
         <element>iface_fet.services.mdm.MDMInterface/oper_UpdateTx</element>
         <label>testOperation_ClientandServer</label>
         <participant>part_fet.services.mdm.MDMParticipant</participant>
-        <x>86.64421</x>
+        <x>87.64421</x>
         <y>122.0</y>
         <methodList>
           <method name="cwOnProcActBefore" type="action">

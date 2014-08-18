@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<schema targetNamespace="fet.services.MDM"	
+<schema targetNamespace="fet.services.mdm"	
 	xmlns="http://www.w3.org/2001/XMLSchema"	
-	xmlns:fet.services.MDM="fet.services.MDM"	
+	xmlns:fet.services.mdm="fet.services.mdm"	
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
 
 
 
 	<annotation>
-		<documentation>MDM</documentation>
+		<documentation>mdm</documentation>
 		<appinfo>
 			<metadata>AVM Metadata</metadata>
 			<created>Tue Aug 12 11:02:19 CST 2014</created>
