@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet.common.addCharacteristics">
+  <group>sr</group>
+  <label>item,basketItem</label>
+  <metaVersion>24</metaVersion>
+  <parameterList>
+    <parameter name="item" type="rifp">
+      <mandatory>true</mandatory>
+      <type>dstruct_cwt_sr.ArrayOfInventoryValue</type>
+    </parameter>
+    <parameter name="basketItem" type="rifp">
+      <mandatory>true</mandatory>
+      <type>nmeta_com.conceptwave.system.Object</type>
+    </parameter>
+  </parameterList>
+  <script><![CDATA[
+    /*
+     * auther:karl
+     */
+    var exclude = {
+        // system
+        "id":1,"cwDocId":1,"cwDocStamp":1,"cwOrderCreationDate":1,"lastUpdatedDate":1,"cwOrderId":1,"cwParentId":1,"updatedBy":1,
+        "basketId":1,"basketitemid":1,"basketid":1,"parentbasketitemid":1,
+        //common
+        "status":1,"source":1,"effectivedate":1,"servicestartdate":1,
+        //offer
+        "pricedOn":1,"mrc":1,"otc":1,"parentOffer":1,"siteId":1,
+        //product
+        "parentProduct":1,"offerId":1,            // TODO - offerID is documentId, so should not be stored, but we have to store the corresponding offer GUID, so we can re-create the offerId when we map back to order.
+        //term
+        "termStartDate":1,"termEndDate":1,
+        //relationship
+        "orderItemGUID":1,"relatedOrderItemGUID":1,"relationType":1,
+        //applicationDN
+        "guid":1,
+    };
+
+    var leafNamesArr = basketItem.getLeafNames(false, true);
+    for (var i = 0 ; i < leafNamesArr.length ; i ++) {
+        var leaf = leafNamesArr[i];
+        var value = basketItem[leaf];
+
+        if (1 == exclude[leaf] || null == value) {
+            continue;
+        }
+
+        var character  = item.characterizedBy.item[item.characterizedBy.item.length];
+        character.name = leaf;
+        character.type = typeof value;
+
+        var describe = item.describedBy.item[item.describedBy.item.length];
+        describe.characteristic = leaf;
+        describe.value = value;
+
+    }
+
+    return;
+  ]]></script>
+</script>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<interface name="fet.services.MDM.MDMInterface">
+<interface name="fet.services.mdm.MDMInterface">
   <group>client</group>
   <label>MDMInterface</label>
   <metaVersion>24</metaVersion>
   <operationList>
     <operation name="UpdateTx" type="oper">
-      <input>dstruct_fet.services.MDM.UpdateTxRequest</input>
+      <input>dstruct_fet.services.mdm.UpdateTxRequest</input>
       <label>UpdateTx</label>
-      <output>dstruct_fet.services.MDM.UpdateTxResponse</output>
+      <output>dstruct_fet.services.mdm.UpdateTxResponse</output>
       <type>Request-Response</type>
     </operation>
   </operationList>

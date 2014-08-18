@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet.common.addAssociation">
+  <group>sr</group>
+  <label>requestDS,basket</label>
+  <metaVersion>24</metaVersion>
+  <parameterList>
+    <parameter name="requestDS" type="rifp">
+      <type>nmeta_com.conceptwave.system.Object</type>
+    </parameter>
+    <parameter name="basket" type="rifp">
+      <type>nmeta_com.conceptwave.system.Object</type>
+    </parameter>
+  </parameterList>
+  <script><![CDATA[
+    /*
+     * auther:Karl
+     */
+
+    var basketItemRelations = basket.getAllRelations();
+    for (var i = 0 ; basketItemRelations && i < basketItemRelations.length ; i ++) {
+        var relation = basketItemRelations[i];
+        var association = requestDS.associations.item[requestDS.associations.item.length];
+
+        // item key
+        var key = association.key;
+        key.applicationContext.URL = 'FET-CATALOG';
+        key.type = relation.relationName;
+        key.applicationDN = relation.basketItemRelationId;
+
+        // AKey
+        var parentItem = theCatalog.getTheBasket().getItemById(relation.basketItemIdFrom);
+        var aEndKey = association.AEndKey;
+
+        aEndKey.applicationContext.URL = 'FET-CATALOG';
+        aEndKey.type = parentItem.type;
+        aEndKey.applicationDN = parentItem._id;
+        aEndKey.isExternal = false;
+
+        // ZKey
+        var childItem = theCatalog.getTheBasket().getItemById(relation.basketItemIdTo);
+        var zEndKey = association.ZEndKey;
+
+        zEndKey.applicationContext.URL = 'FET-CATALOG';
+        zEndKey.type = childItem.type;
+        zEndKey.applicationDN = childItem._id;
+        zEndKey.isExternal = false;
+
+        // Characteristics // TODO - do we need these?
+        //fet_common.addCharacteristics(association, relation);
+    }
+
+
+    return;
+  ]]></script>
+</script>

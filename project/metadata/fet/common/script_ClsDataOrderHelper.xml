@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <script name="fet.common.ClsDataOrderHelper">
-  <group>script</group>
+  <group>on</group>
   <label>ClsDataOrderHelper</label>
   <metaVersion>24</metaVersion>
   <script><![CDATA[
