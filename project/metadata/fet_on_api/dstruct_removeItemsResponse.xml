@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dataStructure name="fet_on_api.addItemsResponse">
+<dataStructure name="fet_on_api.removeItemsResponse">
   <container>true</container>
   <group>dataStructure</group>
   <jsonMap type="jmap">
     <exclude>1</exclude>
   </jsonMap>
-  <label>addItemsResponse</label>
+  <label>removeItemsResponse</label>
   <metaVersion>24</metaVersion>
   <childList>
     <child name="orderId" type="dstruct">
@@ -15,7 +15,7 @@
     </child>
     <child name="errorMessage" type="dstruct">
       <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.String</element>
+      <element>dtype_fet.common.dataType.string100</element>
       <label>errorMessage</label>
     </child>
     <child name="basketItem" type="dstruct">

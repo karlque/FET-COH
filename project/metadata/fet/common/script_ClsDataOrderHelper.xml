@@ -53,6 +53,17 @@
         return source;
     };
 
+    this.removeItem = function(itemCode){
+        var id = this.basket.getItemByCode(itemCode)[0].id;
+        var basketItem = this.basket.getItemById(id);
+        var errorList = this.basket.forcedRemove(basketItem,true);
+      //var basketItems = this.basket.remove(  this.basket.getItemByCode(itemCode)[0].id , false, true);
+
+        this.save();
+        return errorList;
+    }
+
+
     this.createOrderAndBasket = function() {
         this.order = new fet.on.order.order();
         this.basket = this.order.ShoppingBasket;
@@ -90,6 +101,7 @@
     };
 
     this.save = function() {
+        this.basket.storeInDB();
         this.order.save();
     };
 

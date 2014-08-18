@@ -48,6 +48,16 @@
 					</sequence>
 				</complexType>
 
+			<complexType name="removeItemsRequset">
+				<annotation>
+					<documentation>removeItemsRequset</documentation>
+				</annotation>
+					<sequence>
+						<element name="orderId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+						<element name="offerCodes" minOccurs="0" maxOccurs="unbounded" type="fet.common.dataType:string100"/>
+					</sequence>
+				</complexType>
+
 			<complexType name="queryCatalogHierarchyResponse">
 				<annotation>
 					<documentation>queryCatalogHierarchyResponse</documentation>
@@ -207,6 +217,36 @@
 					<sequence>
 						<element name="orderId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
 						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+						<element name="basketItem" minOccurs="0" maxOccurs="unbounded">
+							<annotation>
+								<documentation>basketItem</documentation>
+							</annotation>
+							<complexType>
+								<sequence>
+									<element name="id" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+
+			<complexType name="removeItemsResponse">
+				<annotation>
+					<documentation>removeItemsResponse</documentation>
+				</annotation>
+					<sequence>
+						<element name="orderId" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+						<element name="errorMessage" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+						<element name="basketItem" minOccurs="0" maxOccurs="unbounded">
+							<annotation>
+								<documentation>basketItem</documentation>
+							</annotation>
+							<complexType>
+								<sequence>
+									<element name="id" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+								</sequence>
+							</complexType>
+						</element>
 					</sequence>
 				</complexType>
 
@@ -218,6 +258,26 @@
 						<element name="hierarchyCode" minOccurs="0" maxOccurs="1" type="xsd:string"/>
 						<element name="type" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
 						<element name="date" minOccurs="0" maxOccurs="1" type="xsd:date"/>
+						<element name="contextVariables" minOccurs="0" maxOccurs="1">
+							<annotation>
+								<documentation>contextVariables</documentation>
+							</annotation>
+							<complexType>
+								<sequence>
+									<element name="contextVariable" minOccurs="0" maxOccurs="unbounded">
+										<annotation>
+											<documentation>contextVariable</documentation>
+										</annotation>
+										<complexType>
+											<sequence>
+												<element name="key" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+												<element name="value" minOccurs="0" maxOccurs="1" type="fet.common.dataType:string100"/>
+											</sequence>
+										</complexType>
+									</element>
+								</sequence>
+							</complexType>
+						</element>
 					</sequence>
 				</complexType>
 
@@ -327,6 +387,14 @@
 		<part name="getOfferDetailsResponse" type="fet_on_api:getOfferDetailsResponse"/>
 	</message>
 
+	<message name="removeItemsRequset">
+		<part name="removeItemsRequset" type="fet_on_api:removeItemsRequset"/>
+	</message>
+
+	<message name="removeItemsResponse">
+		<part name="removeItemsResponse" type="fet_on_api:removeItemsResponse"/>
+	</message>
+
 	<message name="addItemsRequest">
 		<part name="addItemsRequest" type="fet_on_api:addItemsRequest"/>
 	</message>
@@ -363,6 +431,10 @@
 		<operation name="getOfferDetails">
 			<input message="tns:getOfferDetailsRequest"/>
 			<output message="tns:getOfferDetailsResponse"/>
+		</operation>
+		<operation name="removeItems">
+			<input message="tns:removeItemsRequset"/>
+			<output message="tns:removeItemsResponse"/>
 		</operation>
 		<operation name="addItems">
 			<input message="tns:addItemsRequest"/>
@@ -414,6 +486,15 @@
 		</operation>
 		<operation name="getOfferDetails">
 			<soap:operation soapAction="getOfferDetails"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="removeItems">
+			<soap:operation soapAction="removeItems"/>
 			<input>
 				<soap:body use="literal"/>
 			</input>

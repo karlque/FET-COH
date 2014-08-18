@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet_on_api.removeItemBehavior">
+  <group>behaviorScript</group>
+  <label>removeItemBehavior</label>
+  <metaVersion>24</metaVersion>
+  <parameterList>
+    <parameter name="input" type="rifp">
+      <type>nmeta_com.conceptwave.system.Object</type>
+    </parameter>
+  </parameterList>
+  <script><![CDATA[
+    /*
+     * auther:kevin
+     */
+
+     Global.logDebug(input);
+    var removeItemsRequset = input;
+    var removeItemsResponse = new DataStructure('fet_on_api.removeItemsResponse');
+
+    try{
+        var orderHelper = new fet.common.ClsDataOrderHelper();
+        var orderId = removeItemsRequset.orderId;
+        orderHelper.getOrderById(orderId);
+        var offerCodes = removeItemsRequset.offerCodes;
+
+         for (var i = 0 ; offerCodes && i < offerCodes.length ; i ++) {
+            var offerCode = offerCodes[i];
+            orderHelper.removeItem(offerCode);
+        }
+
+        for (var i=0 ; i < orderHelper.basket.length ; i ++) {
+            removeItemsResponse.basketItem[i].id = orderHelper.basket[i].id;
+        }
+
+        removeItemsResponse.orderId = orderHelper.order._id;
+    }catch(e){
+        removeItemsResponse.errorMessage = e;
+    }
+
+    return removeItemsResponse;
+  ]]></script>
+</script>

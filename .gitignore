@@ -4,4 +4,4 @@
 /project/cwf.war
 /project/.settings
 /project/header_AVMMetadata.xml
-/project/resources/schema/cw.gen.cwONInt.wsdl
+/project/resources/schema/*
