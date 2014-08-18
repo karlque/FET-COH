@@ -28,7 +28,7 @@
         }
 
     } catch (e) {
-        queryCatalogHierarchyResponse.errorMessage = e;
+        queryCatalogHierarchyResponse.errorMessage = e.toString();
     }
 
     return queryCatalogHierarchyResponse;

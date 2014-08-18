@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataStructure name="fet_on_api.basket">
+  <container>true</container>
+  <group>dataStructure</group>
+  <jsonMap type="jmap">
+    <exclude>1</exclude>
+  </jsonMap>
+  <label>basket</label>
+  <metaVersion>24</metaVersion>
+  <childList>
+    <child name="basketItems" type="dstruct">
+      <container>true</container>
+      <extends>dstruct_fet_on_api.basketItems</extends>
+      <label>basketItems</label>
+    </child>
+  </childList>
+</dataStructure>

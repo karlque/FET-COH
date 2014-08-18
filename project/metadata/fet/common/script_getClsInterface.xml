@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet.common.getClsInterface">
+  <group>on</group>
+  <highlight>18</highlight>
+  <label>getClsInterface()</label>
+  <metaVersion>24</metaVersion>
+  <script><![CDATA[
+    // Override this script to provide extended interfaces
+    var clsInterface = new fet.common.ClsInterface();
+
+    /* discard
+    if (isCallableFunction(ON$dataOrderClsInterface)) {
+          clsInterface = new ON$dataOrderClsInterface();
+    } else {
+          Global.logError("Warning: External script ON$dataOrderClsInterface was not found in the system, please make sure to import all necessary external scripts in ONImports under Resources!\nUsing default ClsInterface for DataOrder...");
+          clsInterface = new cwt_do.ClsInterface();
+    }*/
+
+    return clsInterface;
+  ]]></script>
+</script>

@@ -10,10 +10,10 @@
   </parameterList>
   <script><![CDATA[
     /*
-     * auther:kevin
-     */
+    * auther:kevin
+    */
 
-     Global.logDebug(input);
+    Global.logDebug(input);
     var removeItemsRequset = input;
     var removeItemsResponse = new DataStructure('fet_on_api.removeItemsResponse');
 
@@ -21,20 +21,18 @@
         var orderHelper = new fet.common.ClsDataOrderHelper();
         var orderId = removeItemsRequset.orderId;
         orderHelper.getOrderById(orderId);
-        var offerCodes = removeItemsRequset.offerCodes;
+        var basketItemIdList = removeItemsRequset.basketItemId;
 
-         for (var i = 0 ; offerCodes && i < offerCodes.length ; i ++) {
-            var offerCode = offerCodes[i];
-            orderHelper.removeItem(offerCode);
-        }
-
-        for (var i=0 ; i < orderHelper.basket.length ; i ++) {
-            removeItemsResponse.basketItem[i].id = orderHelper.basket[i].id;
+        for (var i = 0 ; basketItemIdList && i < basketItemIdList.length ; i ++) {
+            var basketItemId = basketItemIdList[i];
+            orderHelper.removeItem(basketItemId);
         }
 
         removeItemsResponse.orderId = orderHelper.order._id;
-    }catch(e){
-        removeItemsResponse.errorMessage = e;
+        fet_on_api.setBasketDS(orderHelper.basket, removeItemsResponse.basket);
+
+    } catch(e) {
+        removeItemsResponse.errorMessage = e.toString();
     }
 
     return removeItemsResponse;

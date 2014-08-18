@@ -18,18 +18,10 @@
       <element>dtype_com.conceptwave.system.String</element>
       <label>errorMessage</label>
     </child>
-    <child name="basketItem" type="dstruct">
-      <array>true</array>
+    <child name="basket" type="dstruct">
       <container>true</container>
-      <label>basketItem</label>
-      <maxInstance>-1</maxInstance>
-      <childList>
-        <child name="id" type="dstruct">
-          <datatype>true</datatype>
-          <element>dtype_fet.common.dataType.string100</element>
-          <label>id</label>
-        </child>
-      </childList>
+      <extends>dstruct_fet_on_api.basket</extends>
+      <label>basket</label>
     </child>
   </childList>
 </dataStructure>

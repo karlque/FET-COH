@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet.common.ClsInterface">
+  <group>on</group>
+  <label>ClsInterface</label>
+  <metaVersion>24</metaVersion>
+  <script><![CDATA[
+    this.config = Global.getTemplateConfigDocument("cwt_do.doConfig");
+
+    // relation type
+    this.Relation = {
+        "O2O" : {"code" : "1", }, // offer to offer
+        "O2P" : {"code" : "2", }, // offer to product
+        "P2P" : {"code" : "3", }, // product to product
+        "I2T" : {"code" : "4", }, // item(offer/product) to term
+        "P2C" : {"code" : "5", }, // product to component
+        "SCOPE" : {"code" : "scope", },
+        "INCLUDE" : {"code" : "include", },
+        "SITE2ITEM" : {"code" : "site2item", },
+        "ACCOUNT2ITEM" : {"code" : "account2item"},
+        "MIGRATION" : {"code" : "migration", },
+        "TRANSFER" : {"code" : "transfer", },
+    };
+    this.CON_ITEM_OFFER_CATEGORY_ACCESS = "ROOT";
+    this.CON_ACCESS_INITIALOPTYPE = "ADD";
+    this.CON_TYPE_OFFER = "OFF";
+    this.CON_TYPE_PRODUCT = "PROD";
+    this.CON_TYPE_COMPONENT = "COMP";
+    // deprecated, use this.Relation object
+    this.CON_RELATION_O2O = this.Relation.O2O.code;
+    this.CON_RELATION_O2P = this.Relation.O2P.code;
+    this.CON_RELATION_P2P = this.Relation.P2P.code;
+    this.CON_RELATION_I2T = this.Relation.I2T.code;
+    this.CON_RELATION_P2C = this.Relation.P2C.code;
+    this.CON_RELATION_SCOPE = this.Relation.SCOPE.code;
+    this.CON_RELATION_INCLUDE = this.Relation.INCLUDE.code;
+    this.CON_RELATION_SITE2ITEM = this.Relation.SITE2ITEM.code;
+    this.CON_RELATION_ACCOUNT2ITEM = this.Relation.ACCOUNT2ITEM.code;
+    this.CON_RELATION_MIGRATION = this.Relation.MIGRATION.code;
+    this.CON_RELATION_TRANSFER = this.Relation.TRANSFER.code;
+    this.CON_MESSAGE_ERROR_DEFAULT = "Error";
+
+    // define mapping info for classes here
+    this.classes = new Array(); // hash: key(type) -> value({"type" : string, "metaType" : string, "metadataType" : string})
+    this.classes["ITEM"] = {"type" : "ITEM", "metaType" : "CLS.ITEM", "metadataType" : "cwt_do.ClsItem"};
+    this.classes["OFFER"] = {"type" : "OFFER", "metaType" : "CLS.ITEM.OFFER", "metadataType" : "cwt_do.ClsItemOffer", "originalMDT" : "cwt_catalog:offer"};
+    this.classes["PRODUCT"] = {"type" : "PRODUCT", "metaType" : "CLS.ITEM.PRODUCT", "metadataType" : "cwt_do.ClsItemProduct", "originalMDT" : "cwt_catalog:product"};
+    this.classes["COMPONENT"] = {"type" : "COMPONENT", "metaType" : "CLS.ITEM.COMPONENT", "metadataType" : "cwt_do.ClsItemComponent", "originalMDT" : "cwt_catalog:component"};
+    this.classes["TERM"] = {"type" : "TERM", "metaType" : "CLS.ITEM.TERM", "metadataType" : "cwt_do.ClsItemTerm", "orderPath" : "terms"};
+    this.classes["RELATION"] = {"type" : "RELATION", "metaType" : "CLS.RELATION", "metadataType" : "cwt_do.ClsRelation", "orderPath" : "relations"};
+    this.classes["CHARGE"] = {"type" : "CHARGE", "metaType" : "CLS.CHARGE", "metadataType" : "cwt_do.ClsCharge"};
+    this.classes["SITE"] = {"type" : "SITE", "metaType" : "CLS.ITEM.SITE", "metadataType" : "cwt_do.ClsItemSite", "orderPath" : "sites"};
+
+    this.statusLifeCycle = {
+        "ADD" : null,
+        "KEEP" : "DEL",
+        "CHA" : "DEL",
+        "DEL" : "KEEP",
+        "DEL_MOVE" : "KEEP",
+        "DEL_MIG" : "KEEP",
+        "DEL_UPG" : "KEEP",
+        "DEL_DNG" : "KEEP",
+        "DEL_TRN" : "KEEP",
+        "TRANS" : "KEEP",
+    };
+
+    this.getInfoByType = function(type) {
+        if (null == type) return this.classes["ITEM"]; // default return value
+        return this.classes[type];
+    };
+
+    this.getInfoByMetaType = function(metaType) {
+        if (null == metaType) return this.classes["ITEM"]; // default return value
+        for (var key in this.classes) {
+            if (metaType == this.classes[key].metaType) return this.classes[key];
+        }
+    };
+
+    this.getInitialSource = function() {
+        return "NEW";
+    };
+
+    this.getInitialStatus = function() {
+        return "ADD";
+    };
+
+    this.getRemovedStatus = function() {
+        return "DEL";
+    };
+
+    this.getNextStatus = function(status) {
+        if (null == status) return;
+        return this.statusLifeCycle[status];
+    };
+
+
+    this.getMoveSourceStatus = function() {
+        return "DEL_MOVE";
+    };
+
+    this.getMoveTargetStatus = function() {
+        return "ADD_MOVE";
+    };
+
+    // migration
+    this.getDelMigrateStatus = function() {
+        return "DEL_MIG";
+    };
+
+    this.getAddMigrateStatus = function() {
+        return "ADD_MIG";
+    };
+
+    this.getUpgradeSourceStatus = function() {
+        // return "DEL_UPG";
+        return "DEL_MIG";
+    };
+
+    this.getUpgradeTargetStatus = function() {
+        // return "ADD_UPG";
+        return "ADD_MIG";
+    };
+
+    this.getDowngradeSourceStatus = function() {
+        // return "DEL_DNG";
+        return "DEL_MIG";
+    };
+
+    this.getDowngradeTargetStatus = function() {
+        // return "ADD_DNG";
+        return "ADD_MIG";
+    };
+
+    this.getTransferSourceStatus = function() {
+        return "DEL_TRN";
+    };
+
+    this.getTransferTargetStatus = function() {
+        return "ADD_TRN";
+    };
+  ]]></script>
+</script>

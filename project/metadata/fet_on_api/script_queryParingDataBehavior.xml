@@ -31,7 +31,7 @@
             queryParingDataResponse.paringData[i].ProductId = paringDataDoc.ProductId;
         }
     } catch (e) {
-        queryParingDataResponse.errorMessage = e;
+        queryParingDataResponse.errorMessage = e.toString();
     }
 
     return queryParingDataResponse;

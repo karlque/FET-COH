@@ -39,7 +39,7 @@
         setResponseData(allCatalogItems, queryEligibleOffersResponse);
 
     } catch (e) {
-        queryEligibleOffersResponse.errorMessage = e;
+        queryEligibleOffersResponse.errorMessage = e.toString();
     }
 
     return queryEligibleOffersResponse;

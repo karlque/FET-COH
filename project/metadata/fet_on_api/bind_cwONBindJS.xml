@@ -25,34 +25,39 @@
         <elementItem key="script">return fet_on_api.queryParingDataBehavior(input);</elementItem>
       </elementItemMap>
     </extension>
-
     <extension name="getOfferDetails" type="ext">
       <element>Operation</element>
       <elementItemMap>
         <elementItem key="script">return fet_on_api.getOfferDetailsBehavior(input);</elementItem>
-	  </elementItemMap>
-	</extension>
+      </elementItemMap>
+    </extension>
     <extension name="removeItems" type="ext">
       <element>Operation</element>
       <elementItemMap>
-        <elementItem key="script">
+        <elementItem key="script"><![CDATA[
           /*
            *
            */
           return fet_on_api.removeItemBehavior(input);
-        </elementItem>
-	  </elementItemMap>
-	</extension>
+        ]]></elementItem>
+      </elementItemMap>
+    </extension>
     <extension name="addItems" type="ext">
       <element>Operation</element>
       <elementItemMap>
         <elementItem key="script">return fet_on_api.addItemsBehavior(input);</elementItem>
-	  </elementItemMap>
-	</extension>
+      </elementItemMap>
+    </extension>
     <extension name="queryEligibleOffers" type="ext">
       <element>Operation</element>
       <elementItemMap>
         <elementItem key="script">return fet_on_api.queryEligibleOffersBehavior(input);</elementItem>
+      </elementItemMap>
+    </extension>
+    <extension name="queryOrderDetails" type="ext">
+      <element>Operation</element>
+      <elementItemMap>
+        <elementItem key="script">return fet_on_api.queryOrderDetailsBehavior(input);</elementItem>
       </elementItemMap>
     </extension>
   </extensionList>

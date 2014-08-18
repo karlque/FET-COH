@@ -11,9 +11,11 @@
     * @author     Karl Que
     * @version
     */
+
     this.order = null;
     this.basket = null;
     this.objectsGUID = null;
+    this.clsInterface = fet.common.getClsInterface();
 
     this.initial = function() {
         this.createOrderAndBasket();
@@ -31,6 +33,7 @@
         }
 
         var source;
+        // set GUID
         for (var i = 0 ; i < basketItems.length ; i ++) {
             if (basketItems[i].catalogItem.getItemCode() == itemCode) {
                 source = basketItems[i];
@@ -45,7 +48,17 @@
             var catalogItemItem = basketItem.catalogItem.findAssociation(source.code);
             if (catalogItemItem) {
                 var relationType = catalogItemItem.getAssociationType();
-                var basketItemRelationDoc = this.basket.createRelation(basketItem._id, source._id, relationType);
+                this.basket.createRelation(basketItem._id, source._id, relationType);
+            }
+        }
+
+        //Add relationship (type:contain)
+        for (var i = 0 ; i < basketItems.length ; i ++) {
+            var basketItem = basketItems[i];
+            basketItem.state = newStatus ? newStatus : this.clsInterface.getInitialStatus();
+            var parentBasketItem = basketItem.parent;
+            if (basketItem.code != itemCode) {
+                this.basket.createRelation(parentBasketItem._id, basketItem._id, relationType);
             }
         }
 
@@ -53,16 +66,41 @@
         return source;
     };
 
-    this.removeItem = function(itemCode){
-        var id = this.basket.getItemByCode(itemCode)[0].id;
-        var basketItem = this.basket.getItemById(id);
-        var errorList = this.basket.forcedRemove(basketItem,true);
-      //var basketItems = this.basket.remove(  this.basket.getItemByCode(itemCode)[0].id , false, true);
+    this.removeItem = function(basketItemId){
+        var basketItem = this.basket.getItemById(basketItemId);
+        var sourceRelations = this.getSourceRelationsForItem(basketItem);
+        for (var i = 0 ; sourceRelations && i < sourceRelations.length ; i ++) {
+            this.removeRelationByValue(sourceRelations[i]);
+        }
+
+        var relations = this.getTargetRelationsForItem(basketItem);
+        for (var i = 0 ; relations && i < relations.length ; i ++) {
+            var child = this.basket.getItemById(relations[i].basketItemIdTo);
+            if (child != null) {
+                this.removeItem(child._id);
+            }
+            this.removeRelationByValue(relations[i]);
+        }
+
+        var errorList = this.basket.forcedRemove(basketItem, true);
 
         this.save();
         return errorList;
     }
 
+    this.removeRelationByValue= function(rel) {
+        this.basket.deleteRelation(rel);
+    };
+
+    this.getTargetRelationsForItem= function(basketItem) {
+        var rels = this.basket.getTargetRelations(basketItem);
+        return rels;
+    };
+
+    this.getSourceRelationsForItem = function(basketItem) {
+        var rels = this.basket.getSourceRelations(basketItem);
+        return rels;
+    };
 
     this.createOrderAndBasket = function() {
         this.order = new fet.on.order.order();
@@ -70,8 +108,8 @@
     };
 
     this.getOrderById = function(orderid) {
-       this.order = Order.getOrderById(orderid);
-       this.basket = this.order.ShoppingBasket;
+        this.order = Order.getOrderById(orderid);
+        this.basket = this.order.ShoppingBasket;
     };
 
     this.remapGUIDs = function() {
@@ -82,19 +120,7 @@
         }
     };
 
-    this.addRelation = function(itemGUID, relatedItemGUID, relationType, skipSave, percentage, effectiveDate) {
-        var basketItemRelationDoc = this.basket.createRelation(itemGUID, relatedItemGUID, relationType);
-        //basketItemRelationDoc.status = this.clsInterface.getInitialStatus();
-        //basketItemRelationDoc.source = this.clsInterface.getInitialSource();
-        basketItemRelationDoc.effectivedate = effectiveDate;
-        basketItemRelationDoc.percentage = percentage;
-        basketItemRelationDoc.guid = basketItemRelationDoc._id;
-        if (null != basketItemRelationDoc && !skipSave) {
-            this.save();
-        }
 
-        return basketItemRelationDoc;
-    };
 
     this.getAllItemsInBasket = function() {
         return this.basket.toArrayOfItems();

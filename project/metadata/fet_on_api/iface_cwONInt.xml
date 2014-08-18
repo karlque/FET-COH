@@ -28,13 +28,12 @@
       <output>dstruct_fet_on_api.queryParingDataResponse</output>
       <type>Request-Response</type>
     </operation>
-
     <operation name="getOfferDetails" type="oper">
       <input>dstruct_fet_on_api.getOfferDetailsRequest</input>
       <label>getOfferDetails</label>
       <output>dstruct_fet_on_api.getOfferDetailsResponse</output>
-	  <type>Request-Response</type>
-	</operation>
+      <type>Request-Response</type>
+    </operation>
     <operation name="removeItems" type="oper">
       <input>dstruct_fet_on_api.removeItemsRequset</input>
       <label>removeItems</label>
@@ -53,6 +52,12 @@
       <output>dstruct_fet_on_api.queryEligibleOffersResponse</output>
       <type>Request-Response</type>
     </operation>
+    <operation name="queryOrderDetails" type="oper">
+      <input>dstruct_fet_on_api.queryOrderDetailsRequest</input>
+      <label>queryOrderDetails</label>
+      <output>dstruct_fet_on_api.queryOrderDetailsResponse</output>
+      <type>Request-Response</type>
+    </operation>
   </operationList>
-  <revision>8</revision>
+  <revision>9</revision>
 </interface>
