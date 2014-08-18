@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <binding name="fet.dummyServer.nrm.NRMBinding">
+  <extensionList>
+    <extension name="invokeResourceActviity" type="ext">
+      <element>Operation</element>
+      <elementItemMap>
+        <elementItem key="soapAction">invokeResourceActviity</elementItem>
+      </elementItemMap>
+    </extension>
+  </extensionList>
   <group>server</group>
   <interface>iface_fet.dummyServer.nrm.NRMInterface</interface>
   <label>NRMBinding</label>

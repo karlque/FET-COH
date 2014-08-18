@@ -6,11 +6,11 @@
     <y>30.0</y>
     <childList>
       <child name="NRM_testOperation" type="opActivity">
-        <element>iface_fet.dummyServer.nrm.NRMInterface/oper_invokeResourceActviity</element>
+        <element>iface_fet.services.nrm.NRMInterface/oper_invokeResourceActviity</element>
         <label>NRM_testOperation</label>
-        <participant>part_fet.test.NRMParticipant</participant>
-        <x>92.646164</x>
-        <y>122.0</y>
+        <participant>part_fet.services.nrm.NRMParticipant</participant>
+        <x>91.646164</x>
+        <y>123.0</y>
         <methodList>
           <method name="cwOnProcActBefore" type="action">
             <category>before</category>
@@ -36,8 +36,8 @@
       </child>
       <child name="NRMParticipant" type="participantActivity">
         <label>NRMParticipant</label>
-        <participant>part_fet.test.NRMParticipant</participant>
-        <x>30.0</x>
+        <participant>part_fet.services.nrm.NRMParticipant</participant>
+        <x>29.0</x>
         <y>248.40234</y>
       </child>
     </childList>

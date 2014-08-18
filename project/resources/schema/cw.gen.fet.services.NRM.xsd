@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<schema targetNamespace="fet.services.NRM"	
+<schema targetNamespace="fet.services.nrm"	
 	xmlns="http://www.w3.org/2001/XMLSchema"	
-	xmlns:fet.services.NRM="fet.services.NRM"	
+	xmlns:fet.services.nrm="fet.services.nrm"	
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
 
 
 
 	<annotation>
-		<documentation>NRM</documentation>
+		<documentation>nrm</documentation>
 		<appinfo>
 			<metadata>AVM Metadata</metadata>
 			<created>Tue Aug 12 11:02:19 CST 2014</created>
@@ -19,29 +19,33 @@
 
 	<!-- Structures -->
 
-	<complexType name="invokeResourceActivityRequest">
+	<complexType name="invokeResourceActviityRequest">
 		<annotation>
-			<documentation>invokeResourceActivityRequest</documentation>
+			<documentation>invokeResourceActviityRequest</documentation>
 		</annotation>
 			<sequence>
 				<element name="userId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="channel" minOccurs="0" maxOccurs="1" type="xsd:string"/>
 				<element name="passwd" minOccurs="0" maxOccurs="1" type="xsd:string"/>
 				<element name="processId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
 				<element name="resourceType" minOccurs="0" maxOccurs="1" type="xsd:string"/>
 				<element name="resourceValue" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-				<element name="parameters" minOccurs="0" maxOccurs="1" type="xsd:string"/>
 				<element name="activityName" minOccurs="0" maxOccurs="1" type="xsd:string"/>
-				<element name="channel" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="parameters" minOccurs="0" maxOccurs="1" type="xsd:string"/>
 			</sequence>
 		</complexType>
 
-	<complexType name="invokeResourceActivityResponse">
+	<complexType name="invokeResourceActviityResponse">
 		<annotation>
-			<documentation>invokeResourceActivityResponse</documentation>
+			<documentation>invokeResourceActviityResponse</documentation>
 		</annotation>
 			<sequence>
+				<element name="code" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="currentTask" minOccurs="0" maxOccurs="1" type="xsd:string"/>
 				<element name="message" minOccurs="0" maxOccurs="1" type="xsd:string"/>
 				<element name="processId" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="processName" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+				<element name="status" minOccurs="0" maxOccurs="1" type="xsd:string"/>
 			</sequence>
 		</complexType>
 
