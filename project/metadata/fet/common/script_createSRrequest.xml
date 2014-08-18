@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet.common.createSRrequest">
+  <group>sr</group>
+  <label>basket,operation</label>
+  <metaVersion>24</metaVersion>
+  <parameterList>
+    <parameter name="basket" type="rifp">
+      <mandatory>true</mandatory>
+      <type>nmeta_com.conceptwave.system.Object</type>
+    </parameter>
+    <parameter name="operation" type="rifp">
+      <description>it can be &apos;create&apos;,&apos;update&apos;,&apos;delete&apos;</description>
+      <mandatory>true</mandatory>
+      <type>dtype_com.conceptwave.system.String</type>
+    </parameter>
+  </parameterList>
+  <script><![CDATA[
+    /*
+     * auther:karl
+     */
+
+    var metadataName = 'create' === operation ? 'cwt_sr:createRequest' : 'update' === operation ? 'cwt_sr:updateRequest' : 'delete' === operation ? 'cwt_sr:deleteRequest' : null;
+    if (!metadataName) {
+        return;
+    }
+    var requestDS = new DataStructure(metadataName);
+    fet_common.addEntity(requestDS, basket);
+    fet_common.addAssociation(requestDS, basket);
+
+    return requestDS;
+  ]]></script>
+</script>

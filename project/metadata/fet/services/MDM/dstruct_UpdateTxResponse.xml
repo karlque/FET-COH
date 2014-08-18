@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dataStructure name="fet.services.MDM.UpdateTxResponse">
+<dataStructure name="fet.services.mdm.UpdateTxResponse">
   <container>true</container>
   <group>dataStructure</group>
   <jsonMap type="jmap">

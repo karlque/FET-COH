@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<script name="fet.dummyServer.MDM.UpdateTxBehavior">
+<script name="fet.dummyServer.mdm.UpdateTxBehavior">
   <group>behaviorScript</group>
   <label>UpdateTxBehavior</label>
   <metaVersion>24</metaVersion>
@@ -11,7 +11,7 @@
   <script><![CDATA[
     Global.logDebug(input.toXML());
     var UpdateTxRequest = input;
-    var UpdateTxResponse = new DataStructure('fet.services.MDM.UpdateTxResponse');
+    var UpdateTxResponse = new DataStructure('fet.services.mdm.UpdateTxResponse');
     UpdateTxResponse.Result = "Finnish!!";
     return UpdateTxResponse;
   ]]></script>

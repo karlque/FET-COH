@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<binding name="fet.services.MDM.MDMBinding">
+<binding name="fet.services.mdm.MDMBinding">
   <group>client</group>
-  <interface>iface_fet.services.MDM.MDMInterface</interface>
+  <interface>iface_fet.services.mdm.MDMInterface</interface>
   <label>MDMBinding</label>
   <metaVersion>24</metaVersion>
   <provider>prov_cwf.soapprov</provider>
