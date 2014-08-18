@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface name="fet.dummyServer.mdm.MDMInterface">
+  <group>server</group>
+  <label>MDMInterface</label>
+  <metaVersion>24</metaVersion>
+  <operationList>
+    <operation name="UpdateTx" type="oper">
+      <input>dstruct_fet.services.mdm.UpdateTxRequest</input>
+      <label>UpdateTx</label>
+      <output>dstruct_fet.services.mdm.UpdateTxResponse</output>
+      <type>Request-Response</type>
+    </operation>
+  </operationList>
+  <revision>1</revision>
+</interface>
