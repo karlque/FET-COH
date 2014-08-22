@@ -27,7 +27,9 @@
         orderInstance.orderType = createOrderRequest.orderType;
 
         orderHelper.save();
-        createOrderResponse.order = orderHelper.order._id;
+
+        fet_on_api.setOrderDS(orderHelper.order, createOrderResponse.order);
+
     } catch (e) {
         createOrderResponse.errorMessage = e.toString();
     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <script name="fet_on_api.setBasketDS">
   <group>common</group>
-  <label>basket</label>
+  <label>basket,basketDS</label>
   <metaVersion>24</metaVersion>
   <parameterList>
     <parameter name="basket" type="rifp">

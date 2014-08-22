@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<userInterface name="fet_on_ui.createOrder">
+  <extends>ui_com.conceptwave.system.UserInterface</extends>
+  <label>createOrder</label>
+  <metaVersion>24</metaVersion>
+  <variableList>
+    <variable name="createOrderResponseDoc" type="leaf">
+      <flags enum-type="metadataFlag">ARRAY</flags>
+      <valueType>doc_fet_on_ui.createOrderResponseDoc</valueType>
+    </variable>
+    <variable name="createOrderRequest" type="leaf">
+      <valueType>dstruct_fet_on_api.createOrderRequest</valueType>
+    </variable>
+  </variableList>
+  <vformList>
+    <vform name="Forms" type="frmui">
+      <extends>ui_com.conceptwave.system.UserInterface/frmui_Forms</extends>
+      <overlayList>
+        <overlay name="Default" type="exov">
+          <base>ui_com.conceptwave.system.UserInterface/frmui_Forms/vform_Default</base>
+          <extends>ui_com.conceptwave.system.UserInterface/frmui_Forms/vform_Default</extends>
+          <label>Default</label>
+          <overrideList>
+            <override name="VerticalLayout" type="elvlt">
+              <elementList>
+                <element name="HorizontalLayout" type="elhlt">
+                  <elementList>
+                    <element name="customerId" type="elfld">
+                      <label>customer id</label>
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.createOrder/leaf_createOrderRequest</variablePath>
+                          <variablePath>dstruct_fet_on_api.createOrderRequest/dstruct_customerId</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                    <element name="orderType1" type="elfld">
+                      <label>order type</label>
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.createOrder/leaf_createOrderRequest</variablePath>
+                          <variablePath>dstruct_fet_on_api.createOrderRequest/dstruct_orderType</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                    <element name="Button" type="elbtn">
+                      <clickMethod type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.createOrder/uimthd_createOrder</variablePath>
+                        </variablePathList>
+                      </clickMethod>
+                      <label>create</label>
+                    </element>
+                  </elementList>
+                </element>
+                <element name="Table" type="eltabl">
+                  <height>300px</height>
+                  <onSelectChange type="varPath">
+                    <variablePathList>
+                      <variablePath>ui_fet_on_ui.createOrder/uimthd_onSelected</variablePath>
+                    </variablePathList>
+                  </onSelectChange>
+                  <variable type="varPath">
+                    <variablePathList>
+                      <variablePath>ui_fet_on_ui.createOrder/leaf_createOrderResponseDoc</variablePath>
+                    </variablePathList>
+                  </variable>
+                  <width>400px</width>
+                  <elementList>
+                    <element name="orderId" type="elfld">
+                      <label>order id</label>
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.createOrder/leaf_createOrderResponseDoc</variablePath>
+                          <variablePath>doc_fet_on_ui.createOrderResponseDoc/leaf_orderId</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                    <element name="orderType" type="elfld">
+                      <label>order type</label>
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.createOrder/leaf_createOrderResponseDoc</variablePath>
+                          <variablePath>doc_fet_on_ui.createOrderResponseDoc/leaf_orderType</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                    <element name="creationDate" type="elfld">
+                      <label>creation date</label>
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.createOrder/leaf_createOrderResponseDoc</variablePath>
+                          <variablePath>doc_fet_on_ui.createOrderResponseDoc/leaf_creationDate</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                    <element name="customerId1" type="elfld">
+                      <label>customer id</label>
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.createOrder/leaf_createOrderResponseDoc</variablePath>
+                          <variablePath>doc_fet_on_ui.createOrderResponseDoc/leaf_customerId</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                  </elementList>
+                </element>
+              </elementList>
+            </override>
+          </overrideList>
+        </overlay>
+      </overlayList>
+    </vform>
+  </vformList>
+  <methodList>
+    <method name="createOrder" type="uimthd">
+      <script><![CDATA[
+        /*
+         *
+         */
+
+        var createOrderResponse = fet_on_api.createOrderBehavior(this.createOrderRequest);
+        var result = createOrderResponse.mapTo(new Document('fet_on_ui.createOrderResponseDoc'), 'fet_on_ui.createOrderResponseDS2Doc');
+        var dataObjectList = new DataObjectList();
+        for (var i = 0 ; result && i < result.length ; i ++) {
+            dataObjectList.addLast(result[i]);
+        }
+
+        this.createOrderResponseDoc = dataObjectList;
+
+        return;
+      ]]></script>
+    </method>
+    <method name="onInit" type="action">
+      <valueType>nmeta_com.conceptwave.system.Object</valueType>
+      <script><![CDATA[
+        this.createOrderRequest = new DataStructure('fet_on_api.createOrderRequest');
+        this.createOrderResponseDoc = new DataObjectList();
+      ]]></script>
+    </method>
+    <method name="onSelected" type="uimthd">
+      <script><![CDATA[
+        /*
+         * auther:karl
+         */
+
+        var selectedList = this.createOrderResponseDoc.selected;
+
+        for (var i = 0 ; selectedList && i < selectedList.length ; i ++) {
+            var selected = selectedList[i];
+            this.parent.addItems.addItemsRequest.orderId = selected.orderId;
+        }
+
+        return;
+      ]]></script>
+    </method>
+  </methodList>
+</userInterface>

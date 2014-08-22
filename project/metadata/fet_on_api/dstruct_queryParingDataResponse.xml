@@ -8,12 +8,6 @@
   <label>queryParingDataResponse</label>
   <metaVersion>24</metaVersion>
   <childList>
-    <child name="processId" type="dstruct">
-      <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.Integer</element>
-      <label>processId</label>
-      <mandatory>true</mandatory>
-    </child>
     <child name="paringData" type="dstruct">
       <array>true</array>
       <container>true</container>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<conversionMap name="fet_on_ui.addItemsResponseDS2Doc">
+  <itemMapList>
+    <itemMap name="label-1159361746" type="mapItem">
+      <sourcePath name="source" type="mapPath">
+        <pathList>
+          <path>dstruct_fet_on_api.addItemsResponse</path>
+          <path>dstruct_fet_on_api.addItemsResponse/dstruct_order</path>
+          <path>dstruct_fet_on_api.order/dstruct_basket</path>
+          <path>dstruct_fet_on_api.basket/dstruct_basketItems</path>
+          <path>dstruct_fet_on_api.basketItems/dstruct_basketItem</path>
+          <path>dstruct_fet_on_api.basketItem/dstruct_label</path>
+        </pathList>
+      </sourcePath>
+      <targetPath name="target" type="mapPath">
+        <pathList>
+          <path>doc_fet_on_ui.addItemsResponseDoc</path>
+          <path>doc_fet_on_ui.addItemsResponseDoc/leaf_label</path>
+        </pathList>
+      </targetPath>
+    </itemMap>
+    <itemMap name="state-789134816" type="mapItem">
+      <sourcePath name="source" type="mapPath">
+        <pathList>
+          <path>dstruct_fet_on_api.addItemsResponse</path>
+          <path>dstruct_fet_on_api.addItemsResponse/dstruct_order</path>
+          <path>dstruct_fet_on_api.order/dstruct_basket</path>
+          <path>dstruct_fet_on_api.basket/dstruct_basketItems</path>
+          <path>dstruct_fet_on_api.basketItems/dstruct_basketItem</path>
+          <path>dstruct_fet_on_api.basketItem/dstruct_state</path>
+        </pathList>
+      </sourcePath>
+      <targetPath name="target" type="mapPath">
+        <pathList>
+          <path>doc_fet_on_ui.addItemsResponseDoc</path>
+          <path>doc_fet_on_ui.addItemsResponseDoc/leaf_state</path>
+        </pathList>
+      </targetPath>
+    </itemMap>
+    <itemMap name="itemCode-1979397603" type="mapItem">
+      <sourcePath name="source" type="mapPath">
+        <pathList>
+          <path>dstruct_fet_on_api.addItemsResponse</path>
+          <path>dstruct_fet_on_api.addItemsResponse/dstruct_order</path>
+          <path>dstruct_fet_on_api.order/dstruct_basket</path>
+          <path>dstruct_fet_on_api.basket/dstruct_basketItems</path>
+          <path>dstruct_fet_on_api.basketItems/dstruct_basketItem</path>
+          <path>dstruct_fet_on_api.basketItem/dstruct_code</path>
+        </pathList>
+      </sourcePath>
+      <targetPath name="target" type="mapPath">
+        <pathList>
+          <path>doc_fet_on_ui.addItemsResponseDoc</path>
+          <path>doc_fet_on_ui.addItemsResponseDoc/leaf_itemCode</path>
+        </pathList>
+      </targetPath>
+    </itemMap>
+    <itemMap name="basketId-867458885" type="mapItem">
+      <sourcePath name="source" type="mapPath">
+        <pathList>
+          <path>dstruct_fet_on_api.addItemsResponse</path>
+          <path>dstruct_fet_on_api.addItemsResponse/dstruct_order</path>
+          <path>dstruct_fet_on_api.order/dstruct_basket</path>
+          <path>dstruct_fet_on_api.basket/dstruct_basketItems</path>
+          <path>dstruct_fet_on_api.basketItems/dstruct_basketItem</path>
+          <path>dstruct_fet_on_api.basketItem/dstruct_id</path>
+        </pathList>
+      </sourcePath>
+      <targetPath name="target" type="mapPath">
+        <pathList>
+          <path>doc_fet_on_ui.addItemsResponseDoc</path>
+          <path>doc_fet_on_ui.addItemsResponseDoc/leaf_basketId</path>
+        </pathList>
+      </targetPath>
+    </itemMap>
+    <itemMap name="basketType-1649143187" type="mapItem">
+      <sourcePath name="source" type="mapPath">
+        <pathList>
+          <path>dstruct_fet_on_api.addItemsResponse</path>
+          <path>dstruct_fet_on_api.addItemsResponse/dstruct_order</path>
+          <path>dstruct_fet_on_api.order/dstruct_basket</path>
+          <path>dstruct_fet_on_api.basket/dstruct_basketItems</path>
+          <path>dstruct_fet_on_api.basketItems/dstruct_basketItem</path>
+          <path>dstruct_fet_on_api.basketItem/dstruct_type</path>
+        </pathList>
+      </sourcePath>
+      <targetPath name="target" type="mapPath">
+        <pathList>
+          <path>doc_fet_on_ui.addItemsResponseDoc</path>
+          <path>doc_fet_on_ui.addItemsResponseDoc/leaf_basketType</path>
+        </pathList>
+      </targetPath>
+    </itemMap>
+  </itemMapList>
+  <label>addItemsResponseDS2Doc</label>
+  <metaVersion>24</metaVersion>
+  <source>dstruct_fet_on_api.addItemsResponse</source>
+  <target>doc_fet_on_ui.addItemsResponseDoc</target>
+</conversionMap>

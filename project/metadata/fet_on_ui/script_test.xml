@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet_on_ui.test">
+  <label>test</label>
+  <metaVersion>24</metaVersion>
+  <script><![CDATA[
+    /*
+     *
+     */
+
+
+    return;
+  ]]></script>
+</script>

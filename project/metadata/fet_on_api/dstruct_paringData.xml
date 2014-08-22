@@ -8,6 +8,11 @@
   <label>paringData</label>
   <metaVersion>24</metaVersion>
   <childList>
+    <child name="processId" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_fet.common.dataType.string100</element>
+      <label>processId</label>
+    </child>
     <child name="MSISDN" type="dstruct">
       <datatype>true</datatype>
       <element>dtype_com.conceptwave.system.String</element>

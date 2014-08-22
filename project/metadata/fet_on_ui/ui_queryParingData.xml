@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<userInterface name="fet_on_ui.queryParingData">
+  <extends>ui_com.conceptwave.system.UserInterface</extends>
+  <label>queryParingData</label>
+  <metaVersion>24</metaVersion>
+  <variableList>
+    <variable name="queryParingDataRequest" type="leaf">
+      <valueType>dstruct_fet_on_api.queryParingDataRequest</valueType>
+    </variable>
+    <variable name="queryParingDataResponseDoc" type="leaf">
+      <flags enum-type="metadataFlag">ARRAY</flags>
+      <valueType>doc_fet_on_ui.queryParingDataResponseDoc</valueType>
+    </variable>
+  </variableList>
+  <vformList>
+    <vform name="Forms" type="frmui">
+      <extends>ui_com.conceptwave.system.UserInterface/frmui_Forms</extends>
+      <overlayList>
+        <overlay name="Default" type="exov">
+          <base>ui_com.conceptwave.system.UserInterface/frmui_Forms/vform_Default</base>
+          <extends>ui_com.conceptwave.system.UserInterface/frmui_Forms/vform_Default</extends>
+          <label>Default</label>
+          <overrideList>
+            <override name="VerticalLayout" type="elvlt">
+              <elementList>
+                <element name="HorizontalLayout" type="elhlt">
+                  <elementList>
+                    <element name="MSISDN" type="elfld">
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.queryParingData/leaf_queryParingDataRequest</variablePath>
+                          <variablePath>dstruct_fet_on_api.queryParingDataRequest/dstruct_MSISDN</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                    <element name="IMSI" type="elfld">
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.queryParingData/leaf_queryParingDataRequest</variablePath>
+                          <variablePath>dstruct_fet_on_api.queryParingDataRequest/dstruct_IMSI</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                    <element name="Button" type="elbtn">
+                      <clickMethod type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.queryParingData/uimthd_queryParingData</variablePath>
+                        </variablePathList>
+                      </clickMethod>
+                      <label>search</label>
+                    </element>
+                  </elementList>
+                </element>
+                <element name="Table" type="eltabl">
+                  <height>300px</height>
+                  <onSelectChange type="varPath">
+                    <variablePathList>
+                      <variablePath>ui_fet_on_ui.queryParingData/uimthd_onSelected</variablePath>
+                    </variablePathList>
+                  </onSelectChange>
+                  <selectOnView>true</selectOnView>
+                  <selectionType>single</selectionType>
+                  <variable type="varPath">
+                    <variablePathList>
+                      <variablePath>ui_fet_on_ui.queryParingData/leaf_queryParingDataResponseDoc</variablePath>
+                    </variablePathList>
+                  </variable>
+                  <width>400px</width>
+                  <elementList>
+                    <element name="processId" type="elfld">
+                      <label>processId</label>
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.queryParingData/leaf_queryParingDataResponseDoc</variablePath>
+                          <variablePath>doc_fet_on_ui.queryParingDataResponseDoc/leaf_processId</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                    <element name="MSISDN1" type="elfld">
+                      <label>MSISDN</label>
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.queryParingData/leaf_queryParingDataResponseDoc</variablePath>
+                          <variablePath>doc_fet_on_ui.queryParingDataResponseDoc/leaf_MSISDN</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                    <element name="IMSI1" type="elfld">
+                      <label>IMSI</label>
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.queryParingData/leaf_queryParingDataResponseDoc</variablePath>
+                          <variablePath>doc_fet_on_ui.queryParingDataResponseDoc/leaf_IMSI</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                    <element name="ProductId" type="elfld">
+                      <label>ProductId</label>
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.queryParingData/leaf_queryParingDataResponseDoc</variablePath>
+                          <variablePath>doc_fet_on_ui.queryParingDataResponseDoc/leaf_ProductId</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                  </elementList>
+                </element>
+              </elementList>
+            </override>
+          </overrideList>
+        </overlay>
+      </overlayList>
+    </vform>
+  </vformList>
+  <methodList>
+    <method name="queryParingData" type="uimthd">
+      <script><![CDATA[
+        /*
+         *
+         */
+
+        var queryParingDataResponse = fet_on_api.queryParingDataBehavior(this.queryParingDataRequest);
+        var result = queryParingDataResponse.mapTo(new Document('fet_on_ui.queryParingDataResponseDoc'), 'fet_on_ui.queryParingDataResponseDS2Doc');
+        var dataObjectList = new DataObjectList();
+        for (var i = 0 ; result && i < result.length ; i ++) {
+            dataObjectList.addLast(result[i]);
+        }
+
+        this.queryParingDataResponseDoc = dataObjectList;
+
+        return;
+      ]]></script>
+    </method>
+    <method name="onInit" type="action">
+      <valueType>nmeta_com.conceptwave.system.Object</valueType>
+      <script><![CDATA[
+        this.queryParingDataRequest = new DataStructure('fet_on_api.queryParingDataRequest');
+        this.queryParingDataResponseDoc = new DataObjectList();
+      ]]></script>
+    </method>
+    <method name="onSelected" type="uimthd">
+      <script><![CDATA[
+        /*
+         * auther:karl
+         */
+
+        var selectedList = this.queryParingDataResponseDoc.selected;
+
+        for (var i = 0 ; selectedList && i < selectedList.length ; i ++) {
+            var selected = selectedList[i];
+            this.parent.queryEligibleOffers.queryEligibleOffersRequest.hierarchyCode = selected.ProductId;
+        }
+
+        return;
+      ]]></script>
+    </method>
+  </methodList>
+</userInterface>

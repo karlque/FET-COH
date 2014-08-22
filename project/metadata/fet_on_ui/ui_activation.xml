@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<userInterface name="fet_on_ui.activation">
+  <extends>ui_com.conceptwave.system.UserInterface</extends>
+  <label>activation</label>
+  <metaVersion>24</metaVersion>
+  <variableList>
+    <variable name="queryEligibleOffers" type="leaf">
+      <valueType>ui_fet_on_ui.queryEligibleOffers</valueType>
+    </variable>
+    <variable name="createOrder" type="leaf">
+      <valueType>ui_fet_on_ui.createOrder</valueType>
+    </variable>
+    <variable name="addItems" type="leaf">
+      <valueType>ui_fet_on_ui.addItems</valueType>
+    </variable>
+    <variable name="queryParingData" type="leaf">
+      <valueType>ui_fet_on_ui.queryParingData</valueType>
+    </variable>
+  </variableList>
+  <vformList>
+    <vform name="Forms" type="frmui">
+      <extends>ui_com.conceptwave.system.UserInterface/frmui_Forms</extends>
+      <overlayList>
+        <overlay name="Default" type="exov">
+          <base>ui_com.conceptwave.system.UserInterface/frmui_Forms/vform_Default</base>
+          <extends>ui_com.conceptwave.system.UserInterface/frmui_Forms/vform_Default</extends>
+          <label>Default</label>
+          <overrideList>
+            <override name="VerticalLayout" type="elvlt">
+              <elementList>
+                <element name="queryParingData" type="elhdr">
+                  <label>Query paring data</label>
+                </element>
+                <element name="queryParingDataForm" type="elovf">
+                  <formReference type="varPath">
+                    <variablePathList>
+                      <variablePath>ui_fet_on_ui.activation/leaf_queryParingData</variablePath>
+                      <variablePath>ui_fet_on_ui.queryParingData/frmui_Forms/exov_Default</variablePath>
+                    </variablePathList>
+                  </formReference>
+                  <variable type="varPath">
+                    <variablePathList>
+                      <variablePath>ui_fet_on_ui.activation/leaf_queryParingData</variablePath>
+                    </variablePathList>
+                  </variable>
+                </element>
+                <element name="queryEligibleOffers" type="elhdr">
+                  <label>Query eligible offers</label>
+                </element>
+                <element name="queryEligibleOffersForm" type="elovf">
+                  <formReference type="varPath">
+                    <variablePathList>
+                      <variablePath>ui_fet_on_ui.activation/leaf_queryEligibleOffers</variablePath>
+                      <variablePath>ui_fet_on_ui.queryEligibleOffers/frmui_Forms/exov_Default</variablePath>
+                    </variablePathList>
+                  </formReference>
+                  <variable type="varPath">
+                    <variablePathList>
+                      <variablePath>ui_fet_on_ui.activation/leaf_queryEligibleOffers</variablePath>
+                    </variablePathList>
+                  </variable>
+                </element>
+                <element name="createOrder" type="elhdr">
+                  <label>Create order</label>
+                </element>
+                <element name="createOrderForm" type="elovf">
+                  <formReference type="varPath">
+                    <variablePathList>
+                      <variablePath>ui_fet_on_ui.activation/leaf_createOrder</variablePath>
+                      <variablePath>ui_fet_on_ui.createOrder/frmui_Forms/exov_Default</variablePath>
+                    </variablePathList>
+                  </formReference>
+                  <variable type="varPath">
+                    <variablePathList>
+                      <variablePath>ui_fet_on_ui.activation/leaf_createOrder</variablePath>
+                    </variablePathList>
+                  </variable>
+                </element>
+              </elementList>
+            </override>
+          </overrideList>
+        </overlay>
+      </overlayList>
+    </vform>
+  </vformList>
+  <methodList>
+    <method name="onInit" type="action">
+      <valueType>nmeta_com.conceptwave.system.Object</valueType>
+      <script><![CDATA[
+        this.queryParingData = new fet_on_ui.queryParingData(null, this);
+        this.queryEligibleOffers = new fet_on_ui.queryEligibleOffers(null, this);
+        this.createOrder = new fet_on_ui.createOrder(null, this);
+        this.addItems = new fet_on_ui.addItems(null, this);
+      ]]></script>
+    </method>
+  </methodList>
+</userInterface>

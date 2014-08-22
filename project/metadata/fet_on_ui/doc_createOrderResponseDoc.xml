@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document name="fet_on_ui.createOrderResponseDoc">
+  <extends>doc_com.conceptwave.system.Document</extends>
+  <guid>{4b6d681b-a4ae-47c1-968b-c20f5348674f}</guid>
+  <label>createOrderResponseDoc</label>
+  <metaVersion>24</metaVersion>
+  <variableList>
+    <variable name="orderId" type="leaf">
+      <valueType>dtype_fet.common.dataType.string100</valueType>
+    </variable>
+    <variable name="orderType" type="leaf">
+      <valueType>dtype_fet.common.dataType.string100</valueType>
+    </variable>
+    <variable name="creationDate" type="leaf">
+      <valueType>dtype_com.conceptwave.system.DateTime</valueType>
+    </variable>
+    <variable name="customerId" type="leaf">
+      <valueType>dtype_fet.common.dataType.string100</valueType>
+    </variable>
+  </variableList>
+</document>

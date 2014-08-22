@@ -22,8 +22,8 @@
         var orderHelper = new fet.common.ClsDataOrderHelper();
         orderHelper.getOrderById(orderId);
 
-        queryOrderDetailsResponse.orderId = orderHelper.order._id;
-        fet_on_api.setBasketDS(orderHelper.basket, queryOrderDetailsResponse.basket);
+        fet_on_api.setOrderDS(orderHelper.order, queryOrderDetailsResponse.order);
+        fet_on_api.setBasketDS(orderHelper.basket, queryOrderDetailsResponse.order.basket);
 
     } catch(e) {
         queryOrderDetailsResponse.errorMessage = e.toString();

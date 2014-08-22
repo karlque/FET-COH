@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document name="fet_on_ui.queryEligibleOffersResponseDoc">
+  <extends>doc_com.conceptwave.system.Document</extends>
+  <guid>{c96a90e6-190d-4f53-b8b1-b9c10b457ef1}</guid>
+  <label>queryEligibleOffersResponseDoc</label>
+  <metaVersion>24</metaVersion>
+  <variableList>
+    <variable name="code" type="leaf">
+      <valueType>dtype_fet.common.dataType.string100</valueType>
+    </variable>
+    <variable name="label" type="leaf">
+      <valueType>dtype_fet.common.dataType.string100</valueType>
+    </variable>
+  </variableList>
+</document>

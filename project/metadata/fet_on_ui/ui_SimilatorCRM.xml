@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<userInterface name="fet_on_ui.SimilatorCRM">
+  <extends>ui_com.conceptwave.system.Application</extends>
+  <label>app</label>
+  <metaVersion>24</metaVersion>
+  <url>/SimilatorCRM</url>
+  <vformList>
+    <vform name="Forms" type="frmui">
+      <extends>ui_com.conceptwave.system.Application/frmui_Forms</extends>
+      <overlayList>
+        <overlay name="Menu" type="exov">
+          <base>ui_com.conceptwave.system.Application/frmui_Forms/exov_Menu</base>
+          <extends>ui_com.conceptwave.system.Application/frmui_Forms/exov_Menu</extends>
+          <label>Menu</label>
+          <overrideList>
+            <override name="HorizontalLayoutForMenuItems" type="elhlt">
+              <alignment>left,center</alignment>
+              <width>100%</width>
+              <elementList>
+                <element name="MenuItem" type="elmnu">
+                  <clickMethod type="varPath">
+                    <variablePathList>
+                      <variablePath>ui_fet_on_ui.SimilatorCRM/usrActionMethod_activation</variablePath>
+                    </variablePathList>
+                  </clickMethod>
+                  <label>activation</label>
+                </element>
+              </elementList>
+            </override>
+          </overrideList>
+        </overlay>
+      </overlayList>
+    </vform>
+  </vformList>
+  <methodList>
+    <method name="activation" type="usrActionMethod">
+      <form>ui_com.conceptwave.system.UserInterface/frmui_Forms/vform_Default</form>
+      <userInterface>ui_fet_on_ui.activation</userInterface>
+      <valueType>ui_fet_on_ui.activation</valueType>
+    </method>
+  </methodList>
+</userInterface>

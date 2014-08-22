@@ -25,27 +25,8 @@
     </child>
     <child name="contextVariables" type="dstruct">
       <container>true</container>
+      <extends>dstruct_fet_on_api.contextVariables</extends>
       <label>contextVariables</label>
-      <childList>
-        <child name="contextVariable" type="dstruct">
-          <array>true</array>
-          <container>true</container>
-          <label>contextVariable</label>
-          <maxInstance>-1</maxInstance>
-          <childList>
-            <child name="key" type="dstruct">
-              <datatype>true</datatype>
-              <element>dtype_fet.common.dataType.string100</element>
-              <label>key</label>
-            </child>
-            <child name="value" type="dstruct">
-              <datatype>true</datatype>
-              <element>dtype_fet.common.dataType.string100</element>
-              <label>value</label>
-            </child>
-          </childList>
-        </child>
-      </childList>
     </child>
   </childList>
 </dataStructure>

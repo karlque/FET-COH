@@ -28,8 +28,8 @@
             orderHelper.removeItem(basketItemId);
         }
 
-        removeItemsResponse.orderId = orderHelper.order._id;
-        fet_on_api.setBasketDS(orderHelper.basket, removeItemsResponse.basket);
+        fet_on_api.setOrderDS(orderHelper.order, removeItemsResponse.order);
+        fet_on_api.setBasketDS(orderHelper.basket, removeItemsResponse.order.basket);
 
     } catch(e) {
         removeItemsResponse.errorMessage = e.toString();

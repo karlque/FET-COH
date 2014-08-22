@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document name="fet_on_ui.queryParingDataResponseDoc">
+  <extends>doc_com.conceptwave.system.Document</extends>
+  <guid>{a020676d-e462-4eb1-abb7-5a6fbc7b69bb}</guid>
+  <label>queryParingDataResponseDoc</label>
+  <metaVersion>24</metaVersion>
+  <variableList>
+    <variable name="processId" type="leaf">
+      <valueType>dtype_fet.common.dataType.string100</valueType>
+    </variable>
+    <variable name="MSISDN" type="leaf">
+      <valueType>dtype_fet.common.dataType.string100</valueType>
+    </variable>
+    <variable name="IMSI" type="leaf">
+      <valueType>dtype_fet.common.dataType.string100</valueType>
+    </variable>
+    <variable name="ProductId" type="leaf">
+      <valueType>dtype_fet.common.dataType.string100</valueType>
+    </variable>
+  </variableList>
+</document>

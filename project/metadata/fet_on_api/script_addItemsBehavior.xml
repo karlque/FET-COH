@@ -28,8 +28,8 @@
             orderHelper.addItem(offerCode);
         }
 
-        addItemsResponse.orderId= orderHelper.order._id;
-        fet_on_api.setBasketDS(orderHelper.basket, addItemsResponse.basket);
+        fet_on_api.setOrderDS(orderHelper.order, addItemsResponse.order);
+        fet_on_api.setBasketDS(orderHelper.basket, addItemsResponse.order.basket);
 
     } catch (e) {
         addItemsResponse.errorMessage = e.toString();

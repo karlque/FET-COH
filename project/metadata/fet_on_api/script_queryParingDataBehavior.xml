@@ -25,10 +25,11 @@
     try {
         var paringDataDocList = paringDataDocFinder.search(null, paringDataDoc);
         for (var i = 0 ; i < paringDataDocList.length ; i ++) {
-            var paringDataDoc = paringDataDocList[i];
-            queryParingDataResponse.paringData[i].MSISDN = paringDataDoc.MSISDN;
-            queryParingDataResponse.paringData[i].IMSI = paringDataDoc.IMSI;
-            queryParingDataResponse.paringData[i].ProductId = paringDataDoc.ProductId;
+            var paringDataDocResult = paringDataDocList[i];
+            queryParingDataResponse.paringData[i].processId = paringDataDocResult.processId;
+            queryParingDataResponse.paringData[i].MSISDN = paringDataDocResult.MSISDN;
+            queryParingDataResponse.paringData[i].IMSI = paringDataDocResult.IMSI;
+            queryParingDataResponse.paringData[i].ProductId = paringDataDocResult.ProductId;
         }
     } catch (e) {
         queryParingDataResponse.errorMessage = e.toString();

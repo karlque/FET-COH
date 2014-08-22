@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<conversionMap name="fet_on_ui.queryParingDataResponseDS2Doc">
+  <itemMapList>
+    <itemMap name="IMSI-511590337" type="mapItem">
+      <sourcePath name="source" type="mapPath">
+        <pathList>
+          <path>dstruct_fet_on_api.queryParingDataResponse</path>
+          <path>dstruct_fet_on_api.queryParingDataResponse/dstruct_paringData</path>
+          <path>dstruct_fet_on_api.paringData/dstruct_IMSI</path>
+        </pathList>
+      </sourcePath>
+      <targetPath name="target" type="mapPath">
+        <pathList>
+          <path>doc_fet_on_ui.queryParingDataResponseDoc</path>
+          <path>doc_fet_on_ui.queryParingDataResponseDoc/leaf_IMSI</path>
+        </pathList>
+      </targetPath>
+    </itemMap>
+    <itemMap name="MSISDN--213481381" type="mapItem">
+      <sourcePath name="source" type="mapPath">
+        <pathList>
+          <path>dstruct_fet_on_api.queryParingDataResponse</path>
+          <path>dstruct_fet_on_api.queryParingDataResponse/dstruct_paringData</path>
+          <path>dstruct_fet_on_api.paringData/dstruct_MSISDN</path>
+        </pathList>
+      </sourcePath>
+      <targetPath name="target" type="mapPath">
+        <pathList>
+          <path>doc_fet_on_ui.queryParingDataResponseDoc</path>
+          <path>doc_fet_on_ui.queryParingDataResponseDoc/leaf_MSISDN</path>
+        </pathList>
+      </targetPath>
+    </itemMap>
+    <itemMap name="processId--795786852" type="mapItem">
+      <sourcePath name="source" type="mapPath">
+        <pathList>
+          <path>dstruct_fet_on_api.queryParingDataResponse</path>
+          <path>dstruct_fet_on_api.queryParingDataResponse/dstruct_paringData</path>
+          <path>dstruct_fet_on_api.paringData/dstruct_processId</path>
+        </pathList>
+      </sourcePath>
+      <targetPath name="target" type="mapPath">
+        <pathList>
+          <path>doc_fet_on_ui.queryParingDataResponseDoc</path>
+          <path>doc_fet_on_ui.queryParingDataResponseDoc/leaf_processId</path>
+        </pathList>
+      </targetPath>
+    </itemMap>
+    <itemMap name="ProductId--177741962" type="mapItem">
+      <sourcePath name="source" type="mapPath">
+        <pathList>
+          <path>dstruct_fet_on_api.queryParingDataResponse</path>
+          <path>dstruct_fet_on_api.queryParingDataResponse/dstruct_paringData</path>
+          <path>dstruct_fet_on_api.paringData/dstruct_ProductId</path>
+        </pathList>
+      </sourcePath>
+      <targetPath name="target" type="mapPath">
+        <pathList>
+          <path>doc_fet_on_ui.queryParingDataResponseDoc</path>
+          <path>doc_fet_on_ui.queryParingDataResponseDoc/leaf_ProductId</path>
+        </pathList>
+      </targetPath>
+    </itemMap>
+  </itemMapList>
+  <label>queryParingDataResponseDS2Doc</label>
+  <metaVersion>24</metaVersion>
+  <source>dstruct_fet_on_api.queryParingDataResponse</source>
+  <target>doc_fet_on_ui.queryParingDataResponseDoc</target>
+</conversionMap>

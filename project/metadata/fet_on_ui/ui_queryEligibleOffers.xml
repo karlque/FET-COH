@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<userInterface name="fet_on_ui.queryEligibleOffers">
+  <extends>ui_com.conceptwave.system.UserInterface</extends>
+  <label>queryEligibleOffers</label>
+  <metaVersion>24</metaVersion>
+  <variableList>
+    <variable name="contextVariable" type="leaf">
+      <flags enum-type="metadataFlag">ARRAY</flags>
+      <valueType>dstruct_fet_on_api.contextVariable</valueType>
+    </variable>
+    <variable name="queryEligibleOffersRequest" type="leaf">
+      <valueType>dstruct_fet_on_api.queryEligibleOffersRequest</valueType>
+    </variable>
+    <variable name="queryEligibleOffersResponseDoc" type="leaf">
+      <flags enum-type="metadataFlag">ARRAY</flags>
+      <valueType>doc_fet_on_ui.queryEligibleOffersResponseDoc</valueType>
+    </variable>
+  </variableList>
+  <vformList>
+    <vform name="Forms" type="frmui">
+      <extends>ui_com.conceptwave.system.UserInterface/frmui_Forms</extends>
+      <overlayList>
+        <overlay name="Default" type="exov">
+          <base>ui_com.conceptwave.system.UserInterface/frmui_Forms/vform_Default</base>
+          <extends>ui_com.conceptwave.system.UserInterface/frmui_Forms/vform_Default</extends>
+          <label>Default</label>
+          <overrideList>
+            <override name="VerticalLayout" type="elvlt">
+              <elementList>
+                <element name="HorizontalLayout" type="elhlt">
+                  <elementList>
+                    <element name="hierarchyCode" type="elfld">
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.queryEligibleOffers/leaf_queryEligibleOffersRequest</variablePath>
+                          <variablePath>dstruct_fet_on_api.queryEligibleOffersRequest/dstruct_hierarchyCode</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                    <element name="type" type="elfld">
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.queryEligibleOffers/leaf_queryEligibleOffersRequest</variablePath>
+                          <variablePath>dstruct_fet_on_api.queryEligibleOffersRequest/dstruct_type</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                    <element name="Button" type="elbtn">
+                      <clickMethod type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.queryEligibleOffers/uimthd_queryEligibleOffers</variablePath>
+                        </variablePathList>
+                      </clickMethod>
+                      <label>query</label>
+                    </element>
+                  </elementList>
+                </element>
+                <element name="VerticalLayout1" type="elvlt"/>
+                <element name="Table" type="eltabl">
+                  <height>300px</height>
+                  <onSelectChange type="varPath">
+                    <variablePathList>
+                      <variablePath>ui_fet_on_ui.queryEligibleOffers/uimthd_onSelected</variablePath>
+                    </variablePathList>
+                  </onSelectChange>
+                  <variable type="varPath">
+                    <variablePathList>
+                      <variablePath>ui_fet_on_ui.queryEligibleOffers/leaf_queryEligibleOffersResponseDoc</variablePath>
+                    </variablePathList>
+                  </variable>
+                  <width>400px</width>
+                  <elementList>
+                    <element name="code" type="elfld">
+                      <label>code</label>
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.queryEligibleOffers/leaf_queryEligibleOffersResponseDoc</variablePath>
+                          <variablePath>doc_fet_on_ui.queryEligibleOffersResponseDoc/leaf_code</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                    <element name="label" type="elfld">
+                      <label>label</label>
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.queryEligibleOffers/leaf_queryEligibleOffersResponseDoc</variablePath>
+                          <variablePath>doc_fet_on_ui.queryEligibleOffersResponseDoc/leaf_label</variablePath>
+                        </variablePathList>
+                      </variable>
+                      <width>70%</width>
+                    </element>
+                  </elementList>
+                </element>
+              </elementList>
+            </override>
+          </overrideList>
+        </overlay>
+      </overlayList>
+    </vform>
+  </vformList>
+  <methodList>
+    <method name="queryEligibleOffers" type="uimthd">
+      <script><![CDATA[
+        /*
+         *
+         */
+
+        var queryEligibleOffersResponse = fet_on_api.queryEligibleOffersBehavior(this.queryEligibleOffersRequest);
+        var result = queryEligibleOffersResponse.mapTo(new Document('fet_on_ui.queryEligibleOffersResponseDoc'), 'fet_on_ui.queryEligibleOffersResponseDS2Doc');
+        var dataObjectList = new DataObjectList();
+        for (var i = 0 ; result && i < result.length ; i ++) {
+            dataObjectList.addLast(result[i]);
+        }
+
+        this.queryEligibleOffersResponseDoc = dataObjectList;
+
+        return;
+      ]]></script>
+    </method>
+    <method name="onInit" type="action">
+      <valueType>nmeta_com.conceptwave.system.Object</valueType>
+      <script><![CDATA[
+        this.queryEligibleOffersRequest = new DataStructure('fet_on_api.queryEligibleOffersRequest');
+        this.queryEligibleOffersResponseDoc = new DataObjectList();
+      ]]></script>
+    </method>
+    <method name="onSelected" type="uimthd">
+      <script><![CDATA[
+        /*
+         * auther:karl
+         */
+
+        var selectedList = this.queryEligibleOffersResponseDoc.selected;
+
+        for (var i = 0 ; selectedList && i < selectedList.length ; i ++) {
+            var selected = selectedList[i];
+            this.parent.addItems.addItemsRequest.offerCode = selected.code;
+        }
+
+        return;
+      ]]></script>
+    </method>
+  </methodList>
+</userInterface>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataStructure name="fet_on_api.order">
+  <container>true</container>
+  <group>dataStructure</group>
+  <jsonMap type="jmap">
+    <exclude>1</exclude>
+  </jsonMap>
+  <label>order</label>
+  <metaVersion>24</metaVersion>
+  <childList>
+    <child name="id" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_fet.common.dataType.string100</element>
+      <label>id</label>
+    </child>
+    <child name="type" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_fet.common.dataType.string100</element>
+      <label>type</label>
+    </child>
+    <child name="creationDate" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_com.conceptwave.system.DateTime</element>
+      <label>creationDate</label>
+    </child>
+    <child name="customerId" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_cwt_dict.string32</element>
+      <label>customerId</label>
+    </child>
+    <child name="basket" type="dstruct">
+      <container>true</container>
+      <extends>dstruct_fet_on_api.basket</extends>
+      <label>basket</label>
+    </child>
+  </childList>
+</dataStructure>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<conversionMap name="fet_on_ui.createOrderResponseDS2Doc">
+  <itemMapList>
+    <itemMap name="customerId--699422964" type="mapItem">
+      <sourcePath name="source" type="mapPath">
+        <pathList>
+          <path>dstruct_fet_on_api.createOrderResponse</path>
+          <path>dstruct_fet_on_api.createOrderResponse/dstruct_order</path>
+          <path>dstruct_fet_on_api.order/dstruct_customerId</path>
+        </pathList>
+      </sourcePath>
+      <targetPath name="target" type="mapPath">
+        <pathList>
+          <path>doc_fet_on_ui.createOrderResponseDoc</path>
+          <path>doc_fet_on_ui.createOrderResponseDoc/leaf_customerId</path>
+        </pathList>
+      </targetPath>
+    </itemMap>
+    <itemMap name="orderId--1385911070" type="mapItem">
+      <sourcePath name="source" type="mapPath">
+        <pathList>
+          <path>dstruct_fet_on_api.createOrderResponse</path>
+          <path>dstruct_fet_on_api.createOrderResponse/dstruct_order</path>
+          <path>dstruct_fet_on_api.order/dstruct_id</path>
+        </pathList>
+      </sourcePath>
+      <targetPath name="target" type="mapPath">
+        <pathList>
+          <path>doc_fet_on_ui.createOrderResponseDoc</path>
+          <path>doc_fet_on_ui.createOrderResponseDoc/leaf_orderId</path>
+        </pathList>
+      </targetPath>
+    </itemMap>
+    <itemMap name="orderType--1079605740" type="mapItem">
+      <sourcePath name="source" type="mapPath">
+        <pathList>
+          <path>dstruct_fet_on_api.createOrderResponse</path>
+          <path>dstruct_fet_on_api.createOrderResponse/dstruct_order</path>
+          <path>dstruct_fet_on_api.order/dstruct_type</path>
+        </pathList>
+      </sourcePath>
+      <targetPath name="target" type="mapPath">
+        <pathList>
+          <path>doc_fet_on_ui.createOrderResponseDoc</path>
+          <path>doc_fet_on_ui.createOrderResponseDoc/leaf_orderType</path>
+        </pathList>
+      </targetPath>
+    </itemMap>
+    <itemMap name="creationDate--278593365" type="mapItem">
+      <sourcePath name="source" type="mapPath">
+        <pathList>
+          <path>dstruct_fet_on_api.createOrderResponse</path>
+          <path>dstruct_fet_on_api.createOrderResponse/dstruct_order</path>
+          <path>dstruct_fet_on_api.order/dstruct_creationDate</path>
+        </pathList>
+      </sourcePath>
+      <targetPath name="target" type="mapPath">
+        <pathList>
+          <path>doc_fet_on_ui.createOrderResponseDoc</path>
+          <path>doc_fet_on_ui.createOrderResponseDoc/leaf_creationDate</path>
+        </pathList>
+      </targetPath>
+    </itemMap>
+  </itemMapList>
+  <label>createOrderResponseDS2Doc</label>
+  <metaVersion>24</metaVersion>
+  <source>dstruct_fet_on_api.createOrderResponse</source>
+  <target>doc_fet_on_ui.createOrderResponseDoc</target>
+</conversionMap>

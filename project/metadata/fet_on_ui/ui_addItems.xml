@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<userInterface name="fet_on_ui.addItems">
+  <extends>ui_com.conceptwave.system.UserInterface</extends>
+  <label>addItems</label>
+  <metaVersion>24</metaVersion>
+  <variableList>
+    <variable name="addItemsResponseDoc" type="leaf">
+      <flags enum-type="metadataFlag">ARRAY</flags>
+      <valueType>doc_fet_on_ui.addItemsResponseDoc</valueType>
+    </variable>
+    <variable name="addItemsRequest" type="leaf">
+      <valueType>dstruct_fet_on_api.addItemsRequest</valueType>
+    </variable>
+  </variableList>
+  <vformList>
+    <vform name="Forms" type="frmui">
+      <extends>ui_com.conceptwave.system.UserInterface/frmui_Forms</extends>
+      <overlayList>
+        <overlay name="Default" type="exov">
+          <base>ui_com.conceptwave.system.UserInterface/frmui_Forms/vform_Default</base>
+          <extends>ui_com.conceptwave.system.UserInterface/frmui_Forms/vform_Default</extends>
+          <label>Default</label>
+          <overrideList>
+            <override name="VerticalLayout" type="elvlt">
+              <elementList>
+                <element name="HorizontalLayout" type="elhlt">
+                  <elementList>
+                    <element name="orderId" type="elfld">
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.addItems/leaf_addItemsRequest</variablePath>
+                          <variablePath>dstruct_fet_on_api.addItemsRequest/dstruct_orderId</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                    <element name="offerCode" type="elfld">
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.addItems/leaf_addItemsRequest</variablePath>
+                          <variablePath>dstruct_fet_on_api.addItemsRequest/dstruct_offerCode</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                    <element name="Button" type="elbtn">
+                      <clickMethod type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.addItems/uimthd_addItem</variablePath>
+                        </variablePathList>
+                      </clickMethod>
+                      <label>add item</label>
+                    </element>
+                  </elementList>
+                </element>
+                <element name="Table" type="eltabl">
+                  <height>300px</height>
+                  <variable type="varPath">
+                    <variablePathList>
+                      <variablePath>ui_fet_on_ui.addItems/leaf_addItemsResponseDoc</variablePath>
+                    </variablePathList>
+                  </variable>
+                  <width>400px</width>
+                  <elementList>
+                    <element name="basketId" type="elfld">
+                      <label>basket id</label>
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.addItems/leaf_addItemsResponseDoc</variablePath>
+                          <variablePath>doc_fet_on_ui.addItemsResponseDoc/leaf_basketId</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                    <element name="basketType" type="elfld">
+                      <label>basket type</label>
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.addItems/leaf_addItemsResponseDoc</variablePath>
+                          <variablePath>doc_fet_on_ui.addItemsResponseDoc/leaf_basketType</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                    <element name="itemCode" type="elfld">
+                      <label>code</label>
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.addItems/leaf_addItemsResponseDoc</variablePath>
+                          <variablePath>doc_fet_on_ui.addItemsResponseDoc/leaf_itemCode</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                    <element name="label" type="elfld">
+                      <label>label</label>
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.addItems/leaf_addItemsResponseDoc</variablePath>
+                          <variablePath>doc_fet_on_ui.addItemsResponseDoc/leaf_label</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                    <element name="state" type="elfld">
+                      <label>state</label>
+                      <variable type="varPath">
+                        <variablePathList>
+                          <variablePath>ui_fet_on_ui.addItems/leaf_addItemsResponseDoc</variablePath>
+                          <variablePath>doc_fet_on_ui.addItemsResponseDoc/leaf_state</variablePath>
+                        </variablePathList>
+                      </variable>
+                    </element>
+                  </elementList>
+                </element>
+              </elementList>
+            </override>
+          </overrideList>
+        </overlay>
+      </overlayList>
+    </vform>
+  </vformList>
+  <methodList>
+    <method name="addItem" type="uimthd">
+      <script><![CDATA[
+        /*
+         *
+         */
+
+        var addItemsResponse = fet_on_api.addItemsBehavior(this.addItemsRequest);
+        var result = addItemsResponse.mapTo(new Document('fet_on_ui.addItemsResponseDoc'), 'fet_on_ui.addItemsResponseDS2Doc');
+        var dataObjectList = new DataObjectList();
+        for (var i = 0 ; result && i < result.length ; i ++) {
+            dataObjectList.addLast(result[i]);
+        }
+
+        this.addItemsResponseDoc = dataObjectList;
+
+        return;
+      ]]></script>
+    </method>
+    <method name="onInit" type="action">
+      <valueType>nmeta_com.conceptwave.system.Object</valueType>
+      <script><![CDATA[
+        this.addItemsRequest = new DataStructure('fet_on_api.addItemsRequest');
+        this.addItemsResponseDoc = new DataObjectList();
+      ]]></script>
+    </method>
+  </methodList>
+</userInterface>

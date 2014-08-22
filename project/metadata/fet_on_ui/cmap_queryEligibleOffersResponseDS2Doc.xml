@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<conversionMap name="fet_on_ui.queryEligibleOffersResponseDS2Doc">
+  <itemMapList>
+    <itemMap name="code--1403563164" type="mapItem">
+      <sourcePath name="source" type="mapPath">
+        <pathList>
+          <path>dstruct_fet_on_api.queryEligibleOffersResponse</path>
+          <path>dstruct_fet_on_api.queryEligibleOffersResponse/dstruct_catalogItem</path>
+          <path>dstruct_fet_on_api.queryEligibleOffersResponse/dstruct_catalogItem/dstruct_code</path>
+        </pathList>
+      </sourcePath>
+      <targetPath name="target" type="mapPath">
+        <pathList>
+          <path>doc_fet_on_ui.queryEligibleOffersResponseDoc</path>
+          <path>doc_fet_on_ui.queryEligibleOffersResponseDoc/leaf_code</path>
+        </pathList>
+      </targetPath>
+    </itemMap>
+    <itemMap name="label--1430321215" type="mapItem">
+      <sourcePath name="source" type="mapPath">
+        <pathList>
+          <path>dstruct_fet_on_api.queryEligibleOffersResponse</path>
+          <path>dstruct_fet_on_api.queryEligibleOffersResponse/dstruct_catalogItem</path>
+          <path>dstruct_fet_on_api.queryEligibleOffersResponse/dstruct_catalogItem/dstruct_label</path>
+        </pathList>
+      </sourcePath>
+      <targetPath name="target" type="mapPath">
+        <pathList>
+          <path>doc_fet_on_ui.queryEligibleOffersResponseDoc</path>
+          <path>doc_fet_on_ui.queryEligibleOffersResponseDoc/leaf_label</path>
+        </pathList>
+      </targetPath>
+    </itemMap>
+  </itemMapList>
+  <label>queryEligibleOffersResponseDS2Doc</label>
+  <metaVersion>24</metaVersion>
+  <source>dstruct_fet_on_api.queryEligibleOffersResponse</source>
+  <target>doc_fet_on_ui.queryEligibleOffersResponseDoc</target>
+</conversionMap>
