@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<externalService name="fet.dummyServer.sms.SMSExternalService">
+  <group>server</group>
+  <label>SMSExternalService</label>
+  <metaVersion>24</metaVersion>
+  <portList>
+    <port name="SMSPort" type="port">
+      <binding>bind_fet.dummyServer.sms.SMSBinding</binding>
+      <label>SMSPort</label>
+      <listener>true</listener>
+      <recover>5</recover>
+    </port>
+    <port name="SMSPort_JS" type="port">
+      <binding>bind_fet.dummyServer.sms.SMSBinding_JS</binding>
+      <label>SMSPort_JS</label>
+      <recover>5</recover>
+    </port>
+  </portList>
+</externalService>

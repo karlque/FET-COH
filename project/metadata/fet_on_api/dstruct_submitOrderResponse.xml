@@ -8,6 +8,11 @@
   <label>submitOrderResponse</label>
   <metaVersion>24</metaVersion>
   <childList>
+    <child name="processId" type="dstruct">
+      <datatype>true</datatype>
+      <element>dtype_fet.common.dataType.string100</element>
+      <label>processId</label>
+    </child>
     <child name="success" type="dstruct">
       <datatype>true</datatype>
       <element>dtype_fet.common.dataType.string100</element>

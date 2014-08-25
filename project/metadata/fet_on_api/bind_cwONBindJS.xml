@@ -54,6 +54,12 @@
         <elementItem key="script">return fet_on_api.queryEligibleOffersBehavior(input);</elementItem>
       </elementItemMap>
     </extension>
+    <extension name="submitOrder" type="ext">
+      <element>Operation</element>
+      <elementItemMap>
+        <elementItem key="script">return fet_on_api.submitOrderBehavior(input);</elementItem>
+      </elementItemMap>
+    </extension>
     <extension name="queryOrderDetails" type="ext">
       <element>Operation</element>
       <elementItemMap>

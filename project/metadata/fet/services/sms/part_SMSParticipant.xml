@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<participant name="fet.services.sms.SMSParticipant">
+  <group>client</group>
+  <label>SMSParticipant</label>
+  <metaVersion>24</metaVersion>
+  <participant>iface_fet.services.sms.SMSInterface</participant>
+</participant>

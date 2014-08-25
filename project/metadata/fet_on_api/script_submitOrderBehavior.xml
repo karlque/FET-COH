@@ -18,7 +18,7 @@
     var submitOrderResponse = new DataStructure('fet_on_api.submitOrderResponse');
 
     try {
-        var processId = Process.startProcess(submitOrderRequest.order);
+        var processId = Process.startProcess('fet.om.defaultProcess', submitOrderRequest.orderId);
         submitOrderResponse.processId = processId;
 
     } catch (e) {

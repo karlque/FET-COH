@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<process name="fet.om.UpdateTxSubFlow">
+  <activity name="start" type="seqActivity">
+    <label>start</label>
+    <x>30.0</x>
+    <y>32.350586</y>
+    <childList>
+      <child name="UpdateTx" type="opActivity">
+        <element>iface_fet.services.mdm.MDMInterface/oper_UpdateTx</element>
+        <label>UpdateTx</label>
+        <participant>part_fet.services.mdm.MDMParticipant</participant>
+        <x>113.32063</x>
+        <y>141.70117</y>
+      </child>
+      <child name="MDMParticipant" type="participantActivity">
+        <label>MDMParticipant</label>
+        <participant>part_fet.services.mdm.MDMParticipant</participant>
+        <x>0.0</x>
+        <y>0.0</y>
+      </child>
+    </childList>
+  </activity>
+  <curRevision>true</curRevision>
+  <group>subFlow.mdm</group>
+  <label>UpdateTxSubFlow</label>
+  <metaVersion>24</metaVersion>
+  <priority>8</priority>
+  <type>Sub-flow</type>
+</process>

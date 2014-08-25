@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<binding name="fet.services.sms.SMSBinding">
+  <extensionList>
+    <extension name="SendSMSRq" type="ext">
+      <element>Operation</element>
+      <elementItemMap>
+        <elementItem key="soapAction">SendSMSRq</elementItem>
+      </elementItemMap>
+    </extension>
+  </extensionList>
+  <group>client</group>
+  <interface>iface_fet.services.sms.SMSInterface</interface>
+  <label>SMSBinding</label>
+  <metaVersion>24</metaVersion>
+  <provider>prov_cwf.soapprov</provider>
+</binding>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<process name="fet.om.preActivateSubscriberSubFlow">
+  <activity name="start" type="seqActivity">
+    <label>start</label>
+    <x>30.0</x>
+    <y>32.350586</y>
+    <childList>
+      <child name="preActivateSubscriber" type="opActivity">
+        <element>iface_fet.services.sbcc.SBCCInterface/oper_preActivateSubscriber</element>
+        <label>preActivateSubscriber</label>
+        <participant>part_fet.services.sbcc.SBCCParticipant</participant>
+        <x>80.63998</x>
+        <y>141.70117</y>
+        <methodList>
+          <method name="cwOnProcActBefore" type="action">
+            <category>before</category>
+            <system>true</system>
+            <script><![CDATA[
+              /*
+               * auther:karl
+               */
+
+              var order = process.processOrder;
+              var preActivateSubscriberRequest = this.activityData;
+              preActivateSubscriberRequest.orderId = order._id;
+
+              return;
+            ]]></script>
+          </method>
+        </methodList>
+      </child>
+      <child name="SBCCParticipant" type="participantActivity">
+        <label>SBCCParticipant</label>
+        <participant>part_fet.services.sbcc.SBCCParticipant</participant>
+        <x>0.0</x>
+        <y>0.0</y>
+      </child>
+    </childList>
+  </activity>
+  <curRevision>true</curRevision>
+  <group>subFlow.sbcc</group>
+  <label>preActivateSubscriberSubFlow</label>
+  <metaVersion>24</metaVersion>
+  <priority>8</priority>
+  <type>Sub-flow</type>
+</process>

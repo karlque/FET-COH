@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<process name="fet.om.activationProcess">
+  <activity name="start" type="seqActivity">
+    <label>start</label>
+    <x>90.03711</x>
+    <y>30.0</y>
+    <childList>
+      <child name="SBCC_preActivateSubscriberSubFlow" type="subflowActivity">
+        <element>proc_fet.om.preActivateSubscriberSubFlow</element>
+        <label>SBCC_preActivateSubscriberSubFlow</label>
+        <x>30.0</x>
+        <y>122.0</y>
+      </child>
+      <child name="end" type="completeActivity">
+        <label>end</label>
+        <x>96.03711</x>
+        <y>233.40234</y>
+      </child>
+    </childList>
+  </activity>
+  <curRevision>true</curRevision>
+  <document>doc_fet.om.activationProcessDoc</document>
+  <group>subProcess</group>
+  <label>activationProcess</label>
+  <metaVersion>24</metaVersion>
+  <priority>8</priority>
+  <subflowReferenceList>
+    <subflowReference type="sref">
+      <revision>1</revision>
+      <subflow>proc_fet.om.preActivateSubscriberSubFlow</subflow>
+    </subflowReference>
+  </subflowReferenceList>
+  <type>User</type>
+</process>

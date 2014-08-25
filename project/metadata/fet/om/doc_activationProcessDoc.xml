@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document name="fet.om.activationProcessDoc">
+  <extends>doc_com.conceptwave.system.Document</extends>
+  <group>doc</group>
+  <guid>{be38622b-7ff2-469c-833e-0fcc1a42c55c}</guid>
+  <label>activationProcessDoc</label>
+  <metaVersion>24</metaVersion>
+</document>

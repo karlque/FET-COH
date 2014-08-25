@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface name="fet.dummyServer.sms.SMSInterface">
+  <group>server</group>
+  <label>SMSInterface</label>
+  <metaVersion>24</metaVersion>
+  <operationList>
+    <operation name="SendSMSRq" type="oper">
+      <input>dstruct_fet.services.sms.SendSMSRqRequest</input>
+      <label>SendSMSRq</label>
+      <output>dstruct_fet.services.sms.SendSMSRqResponse</output>
+      <type>Request-Response</type>
+    </operation>
+  </operationList>
+  <revision>1</revision>
+</interface>

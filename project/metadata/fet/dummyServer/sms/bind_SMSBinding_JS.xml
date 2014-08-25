@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<binding name="fet.dummyServer.sms.SMSBinding_JS">
+  <extensionList>
+    <extension name="SendSMSRq" type="ext">
+      <element>Operation</element>
+      <elementItemMap>
+        <elementItem key="script">return fet.dummyServer.sms.SendSMSRqBehavior(input);</elementItem>
+      </elementItemMap>
+    </extension>
+  </extensionList>
+  <group>server</group>
+  <interface>iface_fet.dummyServer.sms.SMSInterface</interface>
+  <label>SMSBinding_JS</label>
+  <metaVersion>24</metaVersion>
+  <provider>prov_cwf.jsprov</provider>
+</binding>

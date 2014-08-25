@@ -9,6 +9,25 @@
         <label>OrderDecomposition</label>
         <x>30.0</x>
         <y>122.0</y>
+        <methodList>
+          <method name="cwOnProcActCond" type="action">
+            <category>cond</category>
+            <system>true</system>
+            <script><![CDATA[
+              /*
+               * auther:karl
+               */
+
+              var order = process.processOrder;
+
+              if ('Activate' === order.orderInstance.orderType) {
+                  process.startSubProcess('fet.om.activationProcess');
+              }
+
+              return;
+            ]]></script>
+          </method>
+        </methodList>
       </child>
       <child name="Wait" type="joinActivity">
         <label>Wait</label>

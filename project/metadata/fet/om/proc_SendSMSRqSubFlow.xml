@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<process name="fet.om.SendSMSRqSubFlow">
+  <activity name="start" type="seqActivity">
+    <label>start</label>
+    <x>30.0</x>
+    <y>32.350586</y>
+    <childList>
+      <child name="SendSMSRq" type="opActivity">
+        <element>iface_fet.services.sms.SMSInterface/oper_SendSMSRq</element>
+        <label>SendSMSRq</label>
+        <participant>part_fet.services.sms.SMSParticipant</participant>
+        <x>104.648766</x>
+        <y>141.70117</y>
+      </child>
+      <child name="SMSParticipant" type="participantActivity">
+        <label>SMSParticipant</label>
+        <participant>part_fet.services.sms.SMSParticipant</participant>
+        <x>126.0</x>
+        <y>30.0</y>
+      </child>
+    </childList>
+  </activity>
+  <curRevision>true</curRevision>
+  <group>subFlow.sms</group>
+  <label>SendSMSRqSubFlow</label>
+  <metaVersion>24</metaVersion>
+  <priority>8</priority>
+  <type>Sub-flow</type>
+</process>

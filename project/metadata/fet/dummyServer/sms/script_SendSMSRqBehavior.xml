@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet.dummyServer.sms.SendSMSRqBehavior">
+  <group>behaviorScript</group>
+  <label>SendSMSRqBehavior</label>
+  <metaVersion>24</metaVersion>
+  <parameterList>
+    <parameter name="input" type="rifp">
+      <type>nmeta_com.conceptwave.system.Object</type>
+    </parameter>
+  </parameterList>
+  <script><![CDATA[
+    /*
+    * auther:karl
+    */
+
+    var SendSMSRqRequest = input;
+    var SendSMSRqResponse = new DataStructure('fet.services.sms.SendSMSRqResponse');
+
+    try {
+        //Global.logDebug(preActivateSubscriberRequest.toXML());
+    } catch (e) {
+        SendSMSRqResponse.errorMessage = e.toString();
+    }
+
+    return SendSMSRqResponse;
+  ]]></script>
+</script>

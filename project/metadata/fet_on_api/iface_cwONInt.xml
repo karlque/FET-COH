@@ -56,7 +56,7 @@
       <input>dstruct_fet_on_api.submitOrderRequest</input>
       <label>submitOrder</label>
       <output>dstruct_fet_on_api.submitOrderResponse</output>
-	  <type>Request-Response</type>
+      <type>Request-Response</type>
     </operation>
     <operation name="queryOrderDetails" type="oper">
       <input>dstruct_fet_on_api.queryOrderDetailsRequest</input>
