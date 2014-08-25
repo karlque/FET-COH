@@ -10,12 +10,12 @@
   <childList>
     <child name="startingNodeCode" type="dstruct">
       <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.String</element>
+      <element>dtype_fet.common.dataType.string100</element>
       <label>startingNodeCode</label>
     </child>
     <child name="depth" type="dstruct">
       <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.String</element>
+      <element>dtype_fet.common.dataType.string100</element>
       <label>depth</label>
     </child>
   </childList>

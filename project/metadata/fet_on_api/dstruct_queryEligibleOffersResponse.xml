@@ -16,12 +16,12 @@
       <childList>
         <child name="code" type="dstruct">
           <datatype>true</datatype>
-          <element>dtype_com.conceptwave.system.String</element>
+          <element>dtype_fet.common.dataType.string100</element>
           <label>code</label>
         </child>
         <child name="label" type="dstruct">
           <datatype>true</datatype>
-          <element>dtype_com.conceptwave.system.String</element>
+          <element>dtype_fet.common.dataType.string100</element>
           <label>label</label>
         </child>
         <child name="attributes" type="dstruct">
@@ -84,7 +84,7 @@
     </child>
     <child name="errorMessage" type="dstruct">
       <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.String</element>
+      <element>dtype_fet.common.dataType.string100</element>
       <label>errorMessage</label>
     </child>
   </childList>

@@ -10,27 +10,27 @@
   <childList>
     <child name="channel" type="dstruct">
       <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.String</element>
+      <element>dtype_fet.common.dataType.string100</element>
       <label>channel</label>
     </child>
     <child name="customerId" type="dstruct">
       <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.String</element>
+      <element>dtype_fet.common.dataType.string100</element>
       <label>customerId</label>
     </child>
     <child name="accountId" type="dstruct">
       <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.String</element>
+      <element>dtype_fet.common.dataType.string100</element>
       <label>accountId</label>
     </child>
     <child name="siteId" type="dstruct">
       <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.String</element>
+      <element>dtype_fet.common.dataType.string100</element>
       <label>siteId</label>
     </child>
     <child name="orderType" type="dstruct">
       <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.String</element>
+      <element>dtype_fet.common.dataType.string100</element>
       <label>orderType</label>
     </child>
   </childList>

@@ -10,12 +10,12 @@
   <childList>
     <child name="order" type="dstruct">
       <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.String</element>
+      <element>dtype_fet.common.dataType.string100</element>
       <label>order</label>
     </child>
     <child name="date" type="dstruct">
       <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.String</element>
+      <element>dtype_fet.common.dataType.string100</element>
       <label>date</label>
     </child>
   </childList>

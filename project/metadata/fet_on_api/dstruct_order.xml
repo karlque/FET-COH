@@ -25,7 +25,7 @@
     </child>
     <child name="customerId" type="dstruct">
       <datatype>true</datatype>
-      <element>dtype_cwt_dict.string32</element>
+      <element>dtype_fet.common.dataType.string100</element>
       <label>customerId</label>
     </child>
     <child name="basket" type="dstruct">

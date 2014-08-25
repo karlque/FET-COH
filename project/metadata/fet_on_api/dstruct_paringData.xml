@@ -15,17 +15,17 @@
     </child>
     <child name="MSISDN" type="dstruct">
       <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.String</element>
+      <element>dtype_fet.common.dataType.string100</element>
       <label>MSISDN</label>
     </child>
     <child name="IMSI" type="dstruct">
       <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.String</element>
+      <element>dtype_fet.common.dataType.string100</element>
       <label>IMSI</label>
     </child>
     <child name="ProductId" type="dstruct">
       <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.String</element>
+      <element>dtype_fet.common.dataType.string100</element>
       <label>ProductId</label>
     </child>
   </childList>

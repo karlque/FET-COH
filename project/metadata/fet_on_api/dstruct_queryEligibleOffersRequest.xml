@@ -10,7 +10,7 @@
   <childList>
     <child name="hierarchyCode" type="dstruct">
       <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.String</element>
+      <element>dtype_fet.common.dataType.string100</element>
       <label>hierarchyCode</label>
     </child>
     <child name="type" type="dstruct">

@@ -10,12 +10,12 @@
   <childList>
     <child name="success" type="dstruct">
       <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.String</element>
+      <element>dtype_fet.common.dataType.string100</element>
       <label>success</label>
     </child>
     <child name="errorMessage" type="dstruct">
       <datatype>true</datatype>
-      <element>dtype_com.conceptwave.system.String</element>
+      <element>dtype_fet.common.dataType.string100</element>
       <label>errorMessage</label>
     </child>
   </childList>
