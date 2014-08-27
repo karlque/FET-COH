@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet.test.checkCatalogItems">
+  <group>catalog</group>
+  <label>checkCatalogItems</label>
+  <metaVersion>24</metaVersion>
+  <script><![CDATA[
+    /*
+    * auther:karl
+    */
+
+    var catalogItemListFromSpec = {
+        "0" : {"type" : "SUB",
+            "0" : { "itemCode" : "baseSub", "baseItemCode" : "", "name" : "Base Subscription",},
+            "1" : { "itemCode" : "mobileFETSub", "baseItemCode" : "baseSub", "name" : "FET Mobile Subscription",},
+            "2" : { "itemCode" : "mobileArcoaSub", "baseItemCode" : "baseSub", "name" : "Arcoa Mobile Subscription",},
+            "3" : { "itemCode" : "mobileSevenSub", "baseItemCode" : "baseSub", "name" : "Seven Mobile Subscription",},
+        },
+
+        "0" : {"type" : "PROOFF",
+            "0" : { "itemCode" : "baseProdOff", "baseItemCode" : "", "name" : "Base Product Offering",},
+            "1" : { "itemCode" : "baseFMV01010101", "baseItemCode" : "baseProdOff", "name" : "FET行動通話預付型 2G -- 一塊卡",},
+            "2" : { "itemCode" : "baseFMV01010102", "baseItemCode" : "baseProdOff", "name" : "FET行動通話預付型 2G -- 外勞卡",},
+            "3" : { "itemCode" : "baseFMV01010103", "baseItemCode" : "baseProdOff", "name" : "FET行動通話預付型 2G – 親子卡",},
+            "4" : { "itemCode" : "baseFMV01010104", "baseItemCode" : "baseProdOff", "name" : "FET行動通話預付型 2G – 易付卡",},
+            "5" : { "itemCode" : "baseFMV01010105", "baseItemCode" : "baseProdOff", "name" : "FET行動通話預付型 2G -- 行動上網卡",},
+            "6" : { "itemCode" : "baseFMV01010106", "baseItemCode" : "baseProdOff", "name" : "FET行動通話預付型 2G --一般費率方案",},
+            "7" : { "itemCode" : "baseFMV01010107", "baseItemCode" : "baseProdOff", "name" : "FET行動通話預付型 2G -- F2預付卡",},
+            "8" : { "itemCode" : "baseFMV01010201", "baseItemCode" : "baseProdOff", "name" : "FET行動通話預付型 3G -- 一塊卡",},
+            "9" : { "itemCode" : "baseFMV01010202", "baseItemCode" : "baseProdOff", "name" : "FET行動通話預付型 3G -- 外勞卡",},
+            "10" : { "itemCode" : "baseFMV01010203", "baseItemCode" : "baseProdOff", "name" : "FET行動通話預付型 3G – 易付卡",},
+            "11" : { "itemCode" : "baseFMV01010204", "baseItemCode" : "baseProdOff", "name" : "FET行動通話預付型 3G -- 行動上網卡",},
+            "12" : { "itemCode" : "baseFMV01020101", "baseItemCode" : "baseProdOff", "name" : "FET服務異動/查詢–來電答鈴系列",},
+            "13" : { "itemCode" : "baseFMV01020102", "baseItemCode" : "baseProdOff", "name" : "FET服務異動/查詢--網內免費",},
+            "14" : { "itemCode" : "baseFMV01020201", "baseItemCode" : "baseProdOff", "name" : "FET服務異動/查詢--餘額通知",},
+            "15" : { "itemCode" : "baseFMV01020202", "baseItemCode" : "baseProdOff", "name" : "FET服務異動/查詢--服務異動",},
+            "16" : { "itemCode" : "baseFMD01010101", "baseItemCode" : "baseProdOff", "name" : "FET行動上網預付型 3G -- 無線飆網系列",},
+            "17" : { "itemCode" : "baseFMD01010102", "baseItemCode" : "baseProdOff", "name" : "FET行動上網預付型 3G -- 易付飆網系列",},
+            "18" : { "itemCode" : "baseFMD01010103", "baseItemCode" : "baseProdOff", "name" : "FET行動上網預付型 3G -- 飆網儲值系列",},
+            "19" : { "itemCode" : "100118835", "baseItemCode" : "baseFMV01010106", "name" : "PPS RP 一塊卡一般費率",},
+            "20" : { "itemCode" : "100119232", "baseItemCode" : "baseFMV01010201", "name" : "PPS3RP 3G易付一塊卡298型",},
+            "21" : { "itemCode" : "100119518", "baseItemCode" : "baseFMV01010204", "name" : "PPS3RP 機場5日行動上網包",},
+            "22" : { "itemCode" : "100119519", "baseItemCode" : "baseFMV01010204", "name" : "PPS3RP 機場10日行動上網包",},
+            "23" : { "itemCode" : "100450036", "baseItemCode" : "baseFMV01020201", "name" : "PPS3PN 剩餘用量低於5M 提醒",},
+            "24" : { "itemCode" : "100119207", "baseItemCode" : "baseFMD01010101", "name" : "PPS3XX 無線飆網30日_$1500",},
+            "25" : { "itemCode" : "100450007", "baseItemCode" : "baseFMD01010101", "name" : "PPS3XX 無線飆網30日_$520",},
+            "26" : { "itemCode" : "100119489", "baseItemCode" : "baseFMD01010101", "name" : "PPS3XX 無線飆網3日_贈送",},
+            "27" : { "itemCode" : "100119246", "baseItemCode" : "baseFMD01010101", "name" : "PPS3XX 無線飆網30日_$800",},
+            "28" : { "itemCode" : "100119303", "baseItemCode" : "baseFMD01010101", "name" : "PPS3XX 無線飆網30日_$499",},
+            "29" : { "itemCode" : "100119508", "baseItemCode" : "baseFMD01010102", "name" : "PPS3XX 遠傳易付飆網服務1GB_體驗",},
+            "30" : { "itemCode" : "100119495", "baseItemCode" : "baseFMD01010102", "name" : "PPS3XX 遠傳易付飆網服務1GB_$180",},
+            "31" : { "itemCode" : "100119490", "baseItemCode" : "baseFMD01010102", "name" : "PPS3XX 遠傳易付飆網服務2GB_$350",},
+            "32" : { "itemCode" : "100119525", "baseItemCode" : "baseFMD01010102", "name" : "PPS3XX 遠傳易付飆網服務250MB_$50",},
+            "33" : { "itemCode" : "100118641", "baseItemCode" : "baseFMD01010103", "name" : "PPS3XX 遠傳易付飆網儲值服務_$100",},
+            "34" : { "itemCode" : "100118640", "baseItemCode" : "baseFMD01010103", "name" : "PPS3XX 無線飆網5日_$350",},
+            "35" : { "itemCode" : "100118996", "baseItemCode" : "baseFMD01010103", "name" : "PPS3XX 遠傳易付飆網體驗享行動上網7.5M(3G)",},
+            "36" : { "itemCode" : "100118639", "baseItemCode" : "baseFMD01010103", "name" : "PPS3XX 無線飆網3日_$250",},
+            "37" : { "itemCode" : "100118638", "baseItemCode" : "baseFMD01010103", "name" : "PPS3XX 無線飆網1日_$100",},
+            "38" : { "itemCode" : "100118760", "baseItemCode" : "baseFMD01010103", "name" : "PPS3XX 遠傳易付飆網儲值服務_上市活動優惠",},
+            "39" : { "itemCode" : "100119224", "baseItemCode" : "baseFMD01010103", "name" : "PPS3XX 遠傳易付飆網儲值服務_$300",},
+            "40" : { "itemCode" : "100119208", "baseItemCode" : "baseFMD01010103", "name" : "PPS3XX 遠傳易付飆網儲值服務_$500",},
+            "41" : { "itemCode" : "100119497", "baseItemCode" : "baseProdOff", "name" : "PPS3XX 無線飆網10日_體驗",},
+            "42" : { "itemCode" : "100119496", "baseItemCode" : "baseProdOff", "name" : "PPS3XX 無線飆網5日_體驗",},
+            "43" : { "itemCode" : "100119501", "baseItemCode" : "baseProdOff", "name" : "PPS3XX 遠傳易付飆網服務1GB_2轉3贈送",},
+            "44" : { "itemCode" : "100119233", "baseItemCode" : "baseProdOff", "name" : "PPS3XX 遠傳易付飆網服務100MB",},
+            "45" : { "itemCode" : "100119256", "baseItemCode" : "baseProdOff", "name" : "PPS3XX 遠傳易付飆網服務1GB",},
+            "46" : { "itemCode" : "100119469", "baseItemCode" : "baseProdOff", "name" : "PPS3XX 無線飆網5日_贈送",},
+            "47" : { "itemCode" : "100119214", "baseItemCode" : "baseProdOff", "name" : "PPS3XX 遠傳易付飆網服務200MB(GA PACK)",},
+            "48" : { "itemCode" : "100119263", "baseItemCode" : "baseProdOff", "name" : "PPS3XX 遠傳易付飆網服務100MB(3G-30天)贈送",},
+            "49" : { "itemCode" : "100119261", "baseItemCode" : "baseProdOff", "name" : "PPS3XX 遠傳易付飆網服務50MB(3G-30天)贈送",},
+            "50" : { "itemCode" : "100450038", "baseItemCode" : "baseProdOff", "name" : "PPS3XX 遠傳易付飆網服務100MB(測試用)",},
+            "51" : { "itemCode" : "100450034", "baseItemCode" : "baseProdOff", "name" : "PPS3XX 遠傳易付飆網服務250MB(測試用)",},
+            "52" : { "itemCode" : "100119507", "baseItemCode" : "baseProdOff", "name" : "PPS3XX 遠傳易付飆網服務1GB_轉3G手機贈送",},
+            "53" : { "itemCode" : "100119524", "baseItemCode" : "baseProdOff", "name" : "PPS3XX 無線飆網30日_贈送",},
+            "54" : { "itemCode" : "100119448", "baseItemCode" : "baseProdOff", "name" : "PPS3XX 遠傳易付飆網服務50MB(Sampling)",},
+            "55" : { "itemCode" : "100119447", "baseItemCode" : "baseProdOff", "name" : "PPS3XX 無線飆網1日_$0",},
+            "56" : { "itemCode" : "100119503", "baseItemCode" : "baseProdOff", "name" : "PPSQXX 7-Mobile無線飆網5日型(免費)",},
+            "57" : { "itemCode" : "100119462", "baseItemCode" : "baseProdOff", "name" : "PPSQXX 7-Mobile無線飆網1日型(免費)_$100",},
+            "58" : { "itemCode" : "100119465", "baseItemCode" : "baseProdOff", "name" : "PPSQXX 7-Mobile無線飆網30日_$800",},
+            "59" : { "itemCode" : "100119463", "baseItemCode" : "baseProdOff", "name" : "PPSQXX 7-Mobile無線飆網1日型_$100",},
+            "60" : { "itemCode" : "100450006", "baseItemCode" : "baseProdOff", "name" : "PPSQXX 7-Mobile飆網服務1GB_轉3G手機贈送",},
+            "61" : { "itemCode" : "100450005", "baseItemCode" : "baseProdOff", "name" : "PPSQXX 7-Mobile飆網服務1GB_2轉3贈送",},
+            "62" : { "itemCode" : "100119464", "baseItemCode" : "baseProdOff", "name" : "PPSQXX 7-Mobile無線飆網7日型_$420",},
+            "63" : { "itemCode" : "100119506", "baseItemCode" : "baseProdOff", "name" : "PPSQXX 7-Mobile飆網服務_1GB_$180",},
+            "64" : { "itemCode" : "100119505", "baseItemCode" : "baseProdOff", "name" : "PPSQXX 7-Mobile無線飆網5日型_$350",},
+            "65" : { "itemCode" : "100119504", "baseItemCode" : "baseProdOff", "name" : "PPSQXX 7-Mobile無線飆網3日型_$250",},
+            "66" : { "itemCode" : "100450044", "baseItemCode" : "baseProdOff", "name" : "PPSQXX 7-Mobile 飆網服務_2GB_$350",},
+            "67" : { "itemCode" : "100119526", "baseItemCode" : "baseProdOff", "name" : "PPSQXX 7-Mobile飆網服務250MB_$50",},
+            "68" : { "itemCode" : "100000001", "baseItemCode" : "baseFMV01020202", "name" : "MCH Service",},
+            "69" : { "itemCode" : "100000002", "baseItemCode" : "baseFMV01020202", "name" : "SIMDG Service",},
+            "70" : { "itemCode" : "100000003", "baseItemCode" : "baseFMV01020202", "name" : "GPRS Service",},
+            "71" : { "itemCode" : "100000004", "baseItemCode" : "baseFMV01020202", "name" : "Bar All Calls Service",},
+            "72" : { "itemCode" : "100000005", "baseItemCode" : "baseFMV01020202", "name" : "Bar Outgoing Calls Service",},
+            "73" : { "itemCode" : "100000006", "baseItemCode" : "baseFMV01020202", "name" : "Default Call Forward Service",},
+            "74" : { "itemCode" : "100000007", "baseItemCode" : "baseFMV01020202", "name" : "來電過濾Service",},
+            "75" : { "itemCode" : "100000008", "baseItemCode" : "baseFMV01020202", "name" : "限制行動上網Service",},
+            "76" : { "itemCode" : "100000009", "baseItemCode" : "baseFMV01020202", "name" : "GPRS FlatRate CC-Flag Service",},
+        },
+
+
+    };
+
+    var catalogItemDocFinder = new Finder('fet.test.catalogItemDocFinder');
+    var catalogItemDoc = new Document('fet.test.catalogItemDoc');
+
+    Global.logDebug('=== check catalog items definition ===');
+    for (var i = 0 ;; i ++) {
+        var catalogItemFromSpec = catalogItemListFromSpec[i];
+        if (!catalogItemFromSpec) {
+            break;
+        }
+
+        catalogItemDoc.itemType = catalogItemFromSpec.type;
+
+        for (var j = 0 ;; j ++) {
+            var catalogItemDetailFromSpec = catalogItemFromSpec[j];
+            if (!catalogItemDetailFromSpec) {
+                break;
+            }
+
+            catalogItemDoc.itemCode = catalogItemDetailFromSpec.itemCode;
+            catalogItemDoc.baseItemCode = catalogItemDetailFromSpec.baseItemCode;
+            //catalogItemDoc.name = catalogItemDetailFromSpec.name;
+
+            var catalogItem = catalogItemDocFinder.search(null, catalogItemDoc);
+            try {
+                assertTrue(catalogItem.length == 1);
+            } catch (e) {
+                Global.logDebug('Catalog Item undefined >>> itemType: ' + catalogItemDoc.itemType + ', itemCode: ' + catalogItemDoc.itemCode + ', baseItemCode: ' + catalogItemDoc.baseItemCode);
+            }
+        }
+    }
+
+    return;
+  ]]></script>
+</script>

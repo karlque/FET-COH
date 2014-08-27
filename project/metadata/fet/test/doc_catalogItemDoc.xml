@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document name="fet.test.catalogItemDoc">
+  <dbSchema>CATALOG</dbSchema>
+  <extends>doc_com.conceptwave.system.Document</extends>
+  <group>finder</group>
+  <guid>{3adac581-8ee0-42c7-9262-8dd9cddb6a31}</guid>
+  <label>catalogItemDoc</label>
+  <metaVersion>24</metaVersion>
+  <variableList>
+    <variable name="itemCode" type="leaf">
+      <column>ITEMCODE</column>
+      <key>1</key>
+      <table>CWPC_ITEM</table>
+      <valueType>dtype_cwt_common.string32</valueType>
+    </variable>
+    <variable name="itemType" type="leaf">
+      <column>ITEMTYPE</column>
+      <table>CWPC_ITEM</table>
+      <valueType>dtype_cwt_common.string32</valueType>
+    </variable>
+    <variable name="baseItemCode" type="leaf">
+      <column>BASEITEMCODE</column>
+      <table>CWPC_ITEM</table>
+      <valueType>dtype_cwt_common.string32</valueType>
+    </variable>
+    <variable name="name" type="leaf">
+      <valueType>dtype_cwt_pcdd.string128</valueType>
+    </variable>
+    <variable name="description" type="leaf">
+      <column>DESCRIPTION</column>
+      <table>CWPC_ITEM</table>
+      <valueType>dtype_cwt_common.string1024</valueType>
+    </variable>
+  </variableList>
+</document>

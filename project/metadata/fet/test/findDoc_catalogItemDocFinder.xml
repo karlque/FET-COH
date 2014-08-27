@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<findDoc name="fet.test.catalogItemDocFinder">
+  <extends>find_com.conceptwave.system.Finder</extends>
+  <group>finder</group>
+  <input>doc_fet.test.catalogItemDoc</input>
+  <label>catalogItemDocFinder</label>
+  <metaVersion>24</metaVersion>
+  <output>doc_fet.test.catalogItemDoc</output>
+  <type>document</type>
+  <volatility>0</volatility>
+  <searchList>
+    <search type="sitem">
+      <document>doc_fet.test.catalogItemDoc</document>
+      <mappedDocument>doc_fet.test.catalogItemDoc</mappedDocument>
+      <mappedPath>doc_fet.test.catalogItemDoc/leaf_baseItemCode</mappedPath>
+      <operation>equal</operation>
+      <path>doc_fet.test.catalogItemDoc/leaf_baseItemCode</path>
+    </search>
+    <search type="sitem">
+      <document>doc_fet.test.catalogItemDoc</document>
+      <mappedDocument>doc_fet.test.catalogItemDoc</mappedDocument>
+      <mappedPath>doc_fet.test.catalogItemDoc/leaf_description</mappedPath>
+      <operation>equal</operation>
+      <path>doc_fet.test.catalogItemDoc/leaf_description</path>
+    </search>
+    <search type="sitem">
+      <document>doc_fet.test.catalogItemDoc</document>
+      <mappedDocument>doc_fet.test.catalogItemDoc</mappedDocument>
+      <mappedPath>doc_fet.test.catalogItemDoc/leaf_itemCode</mappedPath>
+      <operation>equal</operation>
+      <path>doc_fet.test.catalogItemDoc/leaf_itemCode</path>
+    </search>
+    <search type="sitem">
+      <document>doc_fet.test.catalogItemDoc</document>
+      <mappedDocument>doc_fet.test.catalogItemDoc</mappedDocument>
+      <mappedPath>doc_fet.test.catalogItemDoc/leaf_itemType</mappedPath>
+      <operation>equal</operation>
+      <path>doc_fet.test.catalogItemDoc/leaf_itemType</path>
+    </search>
+  </searchList>
+</findDoc>
