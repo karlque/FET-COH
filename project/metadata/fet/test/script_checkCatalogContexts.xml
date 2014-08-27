@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet.test.checkCatalogContexts">
+  <group>catalog</group>
+  <label>checkCatalogContexts</label>
+  <metaVersion>24</metaVersion>
+  <script><![CDATA[
+    /*
+    * auther:karl
+    */
+
+    var catalogContextListFromSpec = {
+        "0" : {"contextCode" : "cohContext",
+            "0" : { "contextVariableName" : "channel", "type" : "stringAttribute",},
+            "1" : { "contextVariableName" : "customerType", "type" : "stringAttribute",},
+            "2" : { "contextVariableName" : "rechargeCardType", "type" : "stringAttribute",},
+            "3" : { "contextVariableName" : "np", "type" : "stringAttribute",},
+        },
+    };
+
+    var cwt_contextAttributeFinder = new Finder('cwt_pc.cwt_contextAttributeFinder');
+    var cwt_contextAttributeSearch = new Document('cwt_pc.cwt_contextAttributeSearch');
+
+    Global.logDebug('=== check catalog rules definition ===');
+    for (var i = 0 ;; i ++) {
+        var catalogContextFromSpec = catalogContextListFromSpec[i];
+        if (!catalogContextFromSpec) {
+            break;
+        }
+
+        cwt_contextAttributeSearch.contextCode = catalogContextFromSpec.contextCode;
+
+        for (var j = 0 ;; j ++) {
+            var catalogContextDetailFromSpec = catalogContextFromSpec[j];
+            if (!catalogContextDetailFromSpec) {
+                break;
+            }
+
+            cwt_contextAttributeSearch.contextVariableName = catalogContextDetailFromSpec.contextVariableName;
+            var catalogContext = cwt_contextAttributeFinder.search(null, cwt_contextAttributeSearch);
+            try {
+                assertTrue(catalogContext.length == 1);
+                assertTrue(catalogContext[0].attributeCode == catalogContextDetailFromSpec.type);
+            } catch (e) {
+                Global.logDebug('Catalog Context undefined >>> contextName: ' + cwt_contextAttributeSearch.contextCode + ', contextVariable: ' + cwt_contextAttributeSearch.contextVariableName + ', contextVariableType: ' + catalogContextDetailFromSpec.type);
+            }
+        }
+    }
+
+    return;
+  ]]></script>
+</script>

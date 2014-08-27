@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet.test.checkAttributeTypes">
+  <group>catalog</group>
+  <label>checkAttributeTypes</label>
+  <metaVersion>24</metaVersion>
+  <script><![CDATA[
+    /*
+    * auther:karl
+    */
+
+    var attributeTypeListFromSpec = {
+        "0" : {"attributeCode" : "booleanAttribute", "type" : "Boolean"},
+        "1" : {"attributeCode" : "numberAttribute", "type" : "Number"},
+        "2" : {"attributeCode" : "stringAttribute", "type" : "String"},
+        "3" : {"attributeCode" : "ivrLanguageAttribute", "type" : "Code Table"},
+        "4" : {"attributeCode" : "channelAttribute", "type" : "Code Table"},
+        "5" : {"attributeCode" : "rechargeCardTypeAttribute", "type" : "Code Table"},
+        "6" : {"attributeCode" : "productTypeAttribute", "type" : "Code Table"},
+        "7" : {"attributeCode" : "productOfferAttribute", "type" : "Code Table"},
+        "8" : {"attributeCode" : "offerLevelAttribute", "type" : "Code Table"},
+        "9" : {"attributeCode" : "prodHierarchyAttribute", "type" : "Code Table"},
+    };
+
+    var cwt_attributeFinder = new Finder('cwt_pc.cwt_attributeFinder');
+    var cwt_attributeSearch = new Document('cwt_pc.cwt_attributeSearch');
+
+    Global.logDebug('=== check attribute type definition ===');
+    for (var i = 0 ;; i ++) {
+        var attributeTypeFormSpec = attributeTypeListFromSpec[i];
+        if (!attributeTypeFormSpec) {
+            break;
+        }
+        cwt_attributeSearch.attributeCode = attributeTypeFormSpec.attributeCode;
+        var attributeType = cwt_attributeFinder.search(null, cwt_attributeSearch);
+        try {
+            assertTrue(attributeType.length == 1);
+            assertTrue(attributeType[0].compAttr == attributeTypeFormSpec.type);
+        } catch (e) {
+            Global.logDebug('Attribute Type undefined >>> code: ' + attributeTypeFormSpec.attributeCode + ', type: ' + attributeTypeFormSpec.type);
+        }
+    }
+
+    return;
+  ]]></script>
+</script>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet.test.catalogUnitTest">
+  <group>catalog</group>
+  <label>catalogUnitTest</label>
+  <metaVersion>24</metaVersion>
+  <script><![CDATA[
+    /*
+     * auther:karl
+     */
+
+    fet.test.checkAttributeTypes();
+    fet.test.checkCodeTables();
+
+    return;
+  ]]></script>
+</script>

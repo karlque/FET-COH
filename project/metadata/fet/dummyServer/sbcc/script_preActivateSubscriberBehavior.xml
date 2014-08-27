@@ -17,6 +17,10 @@
     var preActivateSubscriberResponse = new DataStructure('fet.services.sbcc.preActivateSubscriberResponse');
 
     try {
+        var orderId = preActivateSubscriberRequest.orderId;
+        var systemName = 'SBCC-preActivateSubscriber';
+        var inputData = preActivateSubscriberRequest.toXML();
+        fet.common.saveDummyServerInput(orderId, systemName, inputData);
         //Global.logDebug(preActivateSubscriberRequest.toXML());
     } catch (e) {
         preActivateSubscriberResponse.errorMessage = e;

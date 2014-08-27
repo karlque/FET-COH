@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<findDoc name="fet.test.codeTableDocFinder">
+  <extends>find_com.conceptwave.system.Finder</extends>
+  <group>finder</group>
+  <input>doc_cwl_ct.codeTableSearch</input>
+  <label>codeTableDocFinder</label>
+  <metaVersion>24</metaVersion>
+  <output>doc_cwl_ct.codeTable</output>
+  <type>document</type>
+  <volatility>0</volatility>
+  <searchList>
+    <search type="sitem">
+      <document>doc_cwl_ct.codeTableSearch</document>
+      <mappedDocument>doc_cwl_ct.codeTable</mappedDocument>
+      <mappedPath>doc_cwl_ct.codeTable/leaf_code</mappedPath>
+      <operation>equal</operation>
+      <path>doc_cwl_ct.codeTableSearch/leaf_code</path>
+    </search>
+    <search type="sitem">
+      <document>doc_cwl_ct.codeTableSearch</document>
+      <mappedDocument>doc_cwl_ct.codeTable</mappedDocument>
+      <mappedPath>doc_cwl_ct.codeTable/leaf_cttype</mappedPath>
+      <operation>equal</operation>
+      <path>doc_cwl_ct.codeTableSearch/leaf_cttype</path>
+    </search>
+  </searchList>
+</findDoc>

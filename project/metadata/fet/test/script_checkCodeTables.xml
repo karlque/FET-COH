@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet.test.checkCodeTables">
+  <group>catalog</group>
+  <label>checkCodeTables</label>
+  <metaVersion>24</metaVersion>
+  <script><![CDATA[
+    /*
+    * auther:karl
+    */
+
+    var codeTableListFromSpec = {
+
+        "0" : {"name" : "cwtct_itemType",
+            "0" : {"code":"BFS",},
+            "1" : {"code":"CFS",},
+            "2" : {"code":"PROD",},
+            "3" : {"code":"PROOFF",},
+            "4" : {"code":"RFS",},
+            "5" : {"code":"SERV",},
+            "6" : {"code":"SUB",},
+            "7" : {"code":"WF",},
+            "8" : {"code":"ILPROV",},
+            "9" : {"code":"BPROV",},
+            "10" : {"code":"L3PG",},
+            "11" : {"code":"L4PG",},
+        },
+
+        "1" : {"name" : "fet_ivrLanguage",
+            "0" : {"code":"E","Description":"English"},
+            "1" : {"code":"H","Description":"Hakka"},
+            "2" : {"code":"I","Description":"Thai"},
+            "3" : {"code":"M","Description":"Mandarin"},
+            "4" : {"code":"T","Description":"Taiwanese"},
+        },
+
+        "2" : {"name" : "fet_channel",
+            "0" : {"code":"IA","Description":"IA(啟用)"},
+            "1" : {"code":"Fax","Description":"Fax Server"},
+            "2" : {"code":"SOA","Description":"SOA"},
+            "3" : {"code":"WM","Description":"Web Michelle"},
+            "4" : {"code":"IVR","Description":"IVR"},
+            "5" : {"code":"SSI","Description":"SSI(服務異動)"},
+            "6" : {"code":"OLR","Description":"On-line Recharge"},
+            "7" : {"code":"NSP","Description":"New Store Portal"},
+            "8" : {"code":"eService","Description":"eService"},
+            "9" : {"code":"APP","Description":"APP"},
+            "10" : {"code":"MDM","Description":"Customer Master DB"},
+        },
+
+        "3" : {"name" : "fet_rechargeCardType",
+            "0" : {"code":"A","Description":"Data_300"},
+            "1" : {"code":"B","Description":"Data_CVS"},
+            "2" : {"code":"C","Description":"Regular"},
+            "3" : {"code":"CC","Description":"Regular_T"},
+            "4" : {"code":"D","Description":"Data"},
+            "5" : {"code":"E","Description":"Data_1day"},
+            "6" : {"code":"FF","Description":"On-net free_T"},
+            "7" : {"code":"F","Description":"On-net free "},
+            "8" : {"code":"G","Description":"King3G_Data_1_Day"},
+            "9" : {"code":"H","Description":"On-net free_$10000"},
+            "10" : {"code":"I","Description":"不能使用"},
+            "11" : {"code":"J","Description":"NewCash_Data_1_Day"},
+            "12" : {"code":"K","Description":"KING"},
+            "13" : {"code":"L","Description":"King3G_Data_7_Day"},
+            "14" : {"code":"M","Description":"King3G_Data_30_Day"},
+            "15" : {"code":"N","Description":"不能使用"},
+            "16" : {"code":"O","Description":"不能使用"},
+            "17" : {"code":"P","Description":"KING_NP"},
+            "18" : {"code":"Q","Description":"Data_1GB_60days"},
+            "19" : {"code":"R","Description":"NewCash_Data_3_Day"},
+            "20" : {"code":"S","Description":"不能使用"},
+            "21" : {"code":"T","Description":"ONNETFREE_10MINS"},
+            "22" : {"code":"TT","Description":"ONNETFREE_10MINS_T"},
+            "23" : {"code":"U","Description":"不能使用"},
+            "24" : {"code":"V","Description":"不能使用"},
+            "25" : {"code":"W","Description":"NewCash_Data_5_Day"},
+            "26" : {"code":"X","Description":"NewCash_Data_1GB_180"},
+            "27" : {"code":"Y","Description":"NewCash_Data_2GB_350"},
+            "28" : {"code":"Z","Description":"NewCash_Data_1GB_trial"},
+            "29" : {"code":"AA","Description":"NewCash_Data_6D+2D free"},
+            "30" : {"code":"AB","Description":"NewCash_Data_10D+3D free"},
+            "31" : {"code":"AC","Description":"NewCash_Data_3D_free"},
+            "32" : {"code":"AD","Description":"King3G_Data_3_Day "},
+            "33" : {"code":"AE","Description":"King3G_Data_5_Day "},
+            "34" : {"code":"AF","Description":"King3G_Data_1G"},
+            "35" : {"code":"AG","Description":"NewCash_Data_250MB_virtual"},
+            "36" : {"code":"AH","Description":"King3G_Data_250MB_virtual"},
+            "37" : {"code":"AJ","Description":"King3G_Data_250MB"},
+            "38" : {"code":"AK","Description":"King3G_Data_1G_223_HS"},
+            "39" : {"code":"AL","Description":"NewCash_Data_30D_520"},
+            "30" : {"code":"AM","Description":"NewCash_Data_5D_free"},
+            "41" : {"code":"AN","Description":"NewCash_Data_10D_free"},
+            "42" : {"code":"AP","Description":"King3G_Data_2GB_350"},
+            "43" : {"code":"AQ","Description":"King3G_Data_2GB_350_virtual"},
+            "44" : {"code":"AR","Description":"NewCash_Data_30D_850"},
+            "45" : {"code":"AT","Description":"NewCash_Data_1GB_free"},
+            "46" : {"code":"AW","Description":"NewCash_Data_2GB_free"},
+            "47" : {"code":"AX","Description":"NewCash_Data_250MB_free"},
+            "48" : {"code":"AY","Description":"King3G_Data_1GB_free"},
+            "49" : {"code":"AZ","Description":"King3G_Data_2GB_free"},
+            "40" : {"code":"BA","Description":"King3G_Data_250MB_free"},
+        },
+
+        "4" : {"name" : "fet_serviceProduct",
+            "0" : {"code":"SP0001","Description":"Basic Prepaid 2G Product"},
+            "1" : {"code":"SP0002","Description":"Basic Prepaid 3G Product"},
+            "2" : {"code":"SP0003","Description":"RBT Product"},
+            "3" : {"code":"SP0004","Description":"MCH Product"},
+            "4" : {"code":"SP0005","Description":"SIMDG Product"},
+            "5" : {"code":"SP0006","Description":"GPRS Product"},
+            "6" : {"code":"SP0007","Description":"Bar All Calls Product"},
+            "7" : {"code":"SP0008","Description":"Bar Outgoing Calls Product"},
+            "8" : {"code":"SP0009","Description":"Default Call Forward Product"},
+            "9" : {"code":"SP0010","Description":"來電過濾Product"},
+            "10" : {"code":"SP0011","Description":"限制行動上網Product"},
+            "11" : {"code":"SP0012","Description":"GPRS FlatRate CC-Flag Product"},
+        },
+
+        "5" : {"name" : "fet_productOfferLevel",
+            "0" : {"code":"C","Description":"Subscribe level"},
+            "1" : {"code":"G","Description":"Group level"},
+        },
+
+        "6" : {"name" : "fet_productOfferType",
+            "0" : {"code":"AW","Description":"Allowance"},
+            "1" : {"code":"DIS","Description":"Discount"},
+            "2" : {"code":"OC","Description":"One Time Charge"},
+            "3" : {"code":"RC","Description":"VAS Monthly Fee"},
+            "4" : {"code":"RP","Description":"GSM Rate Plan"},
+            "5" : {"code":"SM","Description":"Service"},
+        },
+
+        "7" : {"name" : "fet_subscriberType",
+            "0" : {"code":"T","Description":"3G"},
+            "1" : {"code":"G","Description":"GSM"},
+            "2" : {"code":"K","Description":"7 mobile (2G)"},
+            "3" : {"code":"Q","Description":"7 mobile (3G)"},
+            "4" : {"code":"VM","Description":"F2 migration"},
+            "5" : {"code":"V","Description":"F2"},
+        },
+
+        "8" : {"name" : "fet_productHierarchy",
+            "0" : {"code":"FMV01","Description":"(L1)遠傳行動通話"},
+            "1" : {"code":"FMV0101","Description":"(L2)個人行動通話"},
+            "2" : {"code":"FMV010101","Description":"(L3)行動通話預付型 2G"},
+            "3" : {"code":"FMV01010101","Description":"(L4)一塊卡"},
+            "4" : {"code":"FMV01010102","Description":"(L4)外勞卡"},
+            "5" : {"code":"FMV01010103","Description":"(L4)親子卡"},
+            "6" : {"code":"FMV01010104","Description":"(L4)易付卡"},
+            "7" : {"code":"FMV01010105","Description":"(L4)行動上網卡"},
+            "8" : {"code":"FMV01010106","Description":"(L4)一般費率方案"},
+            "9" : {"code":"FMV01010107","Description":"(L4)F2 預付卡"},
+            "10" : {"code":"FMV010102","Description":"(L3)行動通話預付型 3G"},
+            "11" : {"code":"FMV01010201","Description":"(L4)一塊卡"},
+            "12" : {"code":"FMV01010202","Description":"(L4)外勞卡"},
+            "13" : {"code":"FMV01010203","Description":"(L4)易付卡"},
+            "14" : {"code":"FMV01010204","Description":"(L4)行動上網卡"},
+            "15" : {"code":"FMV0102","Description":"(L2)加值服務"},
+            "16" : {"code":"FMV010201","Description":"(L3)語音加值"},
+            "17" : {"code":"FMV01020101","Description":"(L4)來電答鈴系列"},
+            "18" : {"code":"FMV01020102","Description":"(L4)網內免費系列"},
+            "19" : {"code":"FMV010202","Description":"(L3)服務異動/查詢"},
+            "20" : {"code":"FMV01020201","Description":"(L4)餘額通知"},
+            "21" : {"code":"FMV01020202","Description":"(L4)服務異動"},
+            "22" : {"code":"FMD01","Description":"(L1)遠傳行動上網"},
+            "23" : {"code":"FMD0101","Description":"(L2)個人行動上網"},
+            "24" : {"code":"FMD010101","Description":"(L3)行動上網預付型 3G"},
+            "25" : {"code":"FMD01010101","Description":"(L4)無線飆網系列"},
+            "26" : {"code":"FMD01010102","Description":"(L4)易付飆網系列"},
+            "27" : {"code":"FMD01010103","Description":"(L4)飆網儲值系列"},
+            "28" : {"code":"7MV01","Description":"(L1)7 Mobile行動通話"},
+            "29" : {"code":"7MV0101","Description":"(L2)個人行動通話"},
+            "30" : {"code":"7MV010101","Description":"(L3)行動通話預付型 2G"},
+            "31" : {"code":"7MV01010101","Description":"(L4)預付型"},
+            "32" : {"code":"7MV010102","Description":"(L3)行動通話預付型 3G"},
+            "33" : {"code":"7MV01010201","Description":"(L4)預付型"},
+            "34" : {"code":"7MD01","Description":"(L1)7 Mobile行動上網"},
+            "35" : {"code":"7MD0101","Description":"(L2)個人行動上網"},
+            "36" : {"code":"7MD010101","Description":"(L3)行動上網預付型 3G"},
+            "37" : {"code":"7MD01010101","Description":"(L4)飆網服務系列"},
+            "38" : {"code":"7MD01010102","Description":"(L4)飆網儲值系列"},
+        },
+    };
+
+    var codeTableDocFinder = new Finder('fet.test.codeTableDocFinder');
+    var codeTableSearchDoc = new Document('cwl_ct.codeTableSearch');
+
+    Global.logDebug('=== check code table definition ===');
+    for (var i = 0 ;; i ++) {
+        var codeTableFromSpec = codeTableListFromSpec[i];
+        if (!codeTableFromSpec) {
+            break;
+        }
+
+        codeTableSearchDoc.cttype = codeTableFromSpec.name;
+
+        for (var j = 0 ;; j ++) {
+            var codeTableDetailFromSpec = codeTableFromSpec[j];
+            if (!codeTableDetailFromSpec) {
+                break;
+            }
+            codeTableSearchDoc.code = codeTableDetailFromSpec.code;
+            var searchResult = codeTableDocFinder.search(null, codeTableSearchDoc);
+            try {
+                assertTrue(searchResult.length == 1);
+            } catch (e) {
+                Global.logDebug('Code Table undefined >>> name : ' + codeTableSearchDoc.cttype + ', code : ' + codeTableSearchDoc.code);
+            }
+        }
+    }
+
+    return;
+  ]]></script>
+</script>
