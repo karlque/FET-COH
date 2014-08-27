@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataType name="fet.common.dataType.string2000">
+  <extends>dtype_com.conceptwave.system.String</extends>
+  <group>string</group>
+  <label>string2000</label>
+  <length>2000</length>
+  <metaVersion>24</metaVersion>
+</dataType>

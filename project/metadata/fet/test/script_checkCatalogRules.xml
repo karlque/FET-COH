@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet.test.checkCatalogRules">
+  <group>catalog</group>
+  <label>checkCatalogRules</label>
+  <metaVersion>24</metaVersion>
+  <script><![CDATA[
+    /*
+    * auther:karl
+    */
+
+    var catalogRuleListFromSpec = {
+        "0" : {"ruleName" : "isNP"},
+        "1" : {"ruleName" : "isChannel"},
+        "2" : {"ruleName" : "isRechargeCard"},
+        "3" : {"ruleName" : "isConsumer"},
+        "4" : {"ruleName" : "isEnterprise"},
+    };
+
+    var catalogRuleDocFinder = new Finder('fet.test.catalogRuleDocFinder');
+    var cwt_catalogRuleSearch = new Document('cwt_pc.cwt_catalogRuleSearch');
+
+    Global.logDebug('=== check catalog rules definition ===');
+    for (var i = 0 ;; i ++) {
+        var catalogRuleFromSpec = catalogRuleListFromSpec[i];
+        if (!catalogRuleFromSpec) {
+            break;
+        }
+
+        cwt_catalogRuleSearch.ruleName = catalogRuleFromSpec.ruleName;
+        cwt_catalogRuleSearch.ruleType = 'C';
+
+        var catalogRules = catalogRuleDocFinder.search(null, cwt_catalogRuleSearch);
+        try {
+            assertTrue(catalogRules.length == 1);
+        } catch (e) {
+            Global.logDebug('Catalog Rule undefined >>> ruleName: ' + cwt_catalogRuleSearch.ruleName);
+        }
+    }
+
+    return;
+  ]]></script>
+</script>

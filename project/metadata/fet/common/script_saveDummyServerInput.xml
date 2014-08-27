@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet.common.saveDummyServerInput">
+  <group>dummyServer</group>
+  <label>orderId,systemName,input</label>
+  <metaVersion>24</metaVersion>
+  <parameterList>
+    <parameter name="orderId" type="rifp">
+      <type>dtype_com.conceptwave.system.String</type>
+    </parameter>
+    <parameter name="systemName" type="rifp">
+      <type>dtype_com.conceptwave.system.String</type>
+    </parameter>
+    <parameter name="input" type="rifp">
+      <type>dtype_com.conceptwave.system.String</type>
+    </parameter>
+  </parameterList>
+  <script><![CDATA[
+    /*
+     * auther:karl
+     */
+
+    var dummyServerDoc = new Document('fet.on.dao.dummyserverDoc');
+    dummyServerDoc.orderId = orderId;
+    dummyServerDoc.externalSystem = systemName;
+    dummyServerDoc.receivedRequest = input;
+    dummyServerDoc.save();
+
+    return;
+  ]]></script>
+</script>

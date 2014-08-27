@@ -18,7 +18,12 @@
     var invokeResourceActviityResponse = new DataStructure('fet.services.nrm.invokeResourceActviityResponse');
 
     try {
-        Global.logDebug(invokeResourceActviityRequest.toXML());
+        //var orderId = invokeResourceActviityRequest.orderId;
+        //var systemName = 'NRM-invokeResourceActviityBehavior';
+        //var inputData = invokeResourceActviityRequest.toXML();
+        //fet.common.saveDummyServerInput(orderId, systemName, inputData);
+
+        //Global.logDebug(invokeResourceActviityRequest.toXML());
     } catch (e) {
         invokeResourceActviityResponse.errorMessage = e;
     }

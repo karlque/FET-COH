@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<script name="fet.test.checkAssociationTypes">
+  <group>catalog</group>
+  <label>checkAssociationTypes</label>
+  <metaVersion>24</metaVersion>
+  <script><![CDATA[
+    /*
+    * auther:karl
+    */
+
+    var associationTypeListFromSpec = {
+        "0" : {"relationTypeCode" : "oeDisplay", "category" : "ItemAttribute"},
+    };
+
+    var cwt_relationTypeFinder = new Finder('cwt_pc.cwt_relationTypeFinder');
+    var cwt_relationType = new Document('cwt_pc.cwt_relationType');
+
+    Global.logDebug('=== check attribute type definition ===');
+    for (var i = 0 ;; i ++) {
+        var associationTypeFromSpec = associationTypeListFromSpec[i];
+        if (!associationTypeFromSpec) {
+            break;
+        }
+        cwt_relationType.relationTypeCode = associationTypeFromSpec.relationTypeCode;
+        cwt_relationType.category = associationTypeFromSpec.category;
+        var relationType = cwt_relationTypeFinder.search(null, cwt_relationType);
+        try {
+            assertTrue(relationType.length == 1);
+        } catch (e) {
+            Global.logDebug('Association Type undefined >>> relationTypeCode: ' + cwt_relationType.relationTypeCode + ', category: ' + cwt_relationType.category);
+        }
+    }
+
+    return;
+  ]]></script>
+</script>

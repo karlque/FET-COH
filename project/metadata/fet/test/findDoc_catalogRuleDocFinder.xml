@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<findDoc name="fet.test.catalogRuleDocFinder">
+  <extends>find_com.conceptwave.system.Finder</extends>
+  <group>finder</group>
+  <input>doc_cwt_pc.cwt_catalogRuleSearch</input>
+  <label>catalogRuleDocFinder</label>
+  <metaVersion>24</metaVersion>
+  <output>doc_cwt_pc.cwt_catalogRule</output>
+  <type>document</type>
+  <volatility>0</volatility>
+  <searchList>
+    <search type="sitem">
+      <document>doc_cwt_pc.cwt_catalogRuleSearch</document>
+      <mappedDocument>doc_cwt_pc.cwt_catalogRule</mappedDocument>
+      <mappedPath>doc_cwt_pc.cwt_catalogRule/leaf_ruleName</mappedPath>
+      <operation>equal</operation>
+      <path>doc_cwt_pc.cwt_catalogRuleSearch/leaf_ruleName</path>
+    </search>
+    <search type="sitem">
+      <document>doc_cwt_pc.cwt_catalogRuleSearch</document>
+      <mappedDocument>doc_cwt_pc.cwt_catalogRule</mappedDocument>
+      <mappedPath>doc_cwt_pc.cwt_catalogRule/leaf_ruleType</mappedPath>
+      <operation>equal</operation>
+      <path>doc_cwt_pc.cwt_catalogRuleSearch/leaf_ruleType</path>
+    </search>
+  </searchList>
+</findDoc>
